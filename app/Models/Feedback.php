@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -12,5 +11,5 @@ class Feedback extends Model
         'health_conditions', 'workout_environment', 'feedback', 'sentiment',
     ];
 
-    public $timestamps = false;
+    // Removed the public $timestamps = false; to enable automatic timestamps
 }

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Feedback;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Schema;
 
 class FeedbackController extends Controller
 {
@@ -46,6 +48,7 @@ class FeedbackController extends Controller
         return back()->with('error', 'Feedback submission failed due to sentiment analysis error: ' . $sentimentResult);
     }
 
+
     // Store the data in the Feedback table
     Feedback::create([
         'fitness_goal' => $validatedData['fitness_goal'],
@@ -56,7 +59,7 @@ class FeedbackController extends Controller
         'feedback' => $request->feedback_text, // Use the original text as feedback
         'sentiment' => $sentimentResult,
     ]);
-
+    
     // Redirect back with a success message and include the sentiment result
     return back()->with([
         'success' => 'Feedback submitted successfully!',
