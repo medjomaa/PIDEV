@@ -5,11 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Feedback extends Model
-{ 
-    protected $fillable = [
-        'fitness_goal', 'workout_duration', 'exercise_type', 
-        'health_conditions', 'workout_environment', 'feedback', 'sentiment',
-    ];
+{
+    // Define the table if it's not the pluralized form of the model name
+    protected $table = 'feedback';
 
-    // Removed the public $timestamps = false; to enable automatic timestamps
+    // Specify the fields that can be filled through mass assignment
+    protected $fillable = [
+        'cleanliness',
+        'equipment_quality',
+        'staff',
+        'classes',
+        'safety_measures',
+        'membership_fees',
+        'atmosphere',
+        'additional_amenities',
+        'feedback_text',
+        'sentiment', // Make sure to include this
+    ];
+    
+
+    // Cast attributes to native types
+    protected $casts = [
+        'safety_measures' => 'array',
+        'additional_amenities' => 'array',
+    ];
 }

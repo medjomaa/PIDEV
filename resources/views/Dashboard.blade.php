@@ -6,12 +6,12 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
 
-    <title>Admin - Power Gym</title>
+
 
     <!DOCTYPE html>
 <html>
 <head>
-  <title>Admin - Power Gym</title>
+  
 </head>
 <style>
      
@@ -193,7 +193,7 @@
   color: #11101D;
 }
 .sidebar li a .links_name{
-  color: #1f1c2e; /* Changed from rgb(124, 0, 0) */
+  color: rgb(118,121,123); /* Changed from rgb(124, 0, 0) */
   font-size: 15px;
   font-weight: 400;
   white-space: nowrap;
@@ -350,92 +350,86 @@
 </style>
 
 
-
 <div class="layout">
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
             <div class="sidebar">
-            <div class="logo-details">
-                
-                <div class="logo_name">Power Gym</div>
-                <i class='bx bx-menu' id="btn" ></i>
-            </div>
-            <ul class="nav-list">
-              <li>
-              <a id="dashboard-link" href="/dashboard" class="{{ request()->is('dashboard') ? 'active' : '' }}">
-                <i class='bx bx-tachometer'></i>
-                <span class="links_name">Admin Dashboard</span>
-              </a>
-                 <span class="tooltip" >Admin Dashboard</span>
-              </li>
-              <li>
-              <a href="/user-manager" class="{{ request()->is('user-manager') ? 'active' : '' }}">
-                <i class='bx bx-user'></i>
-                <span class="links_name">User Manager</span>
-              </a>
-              <span class="tooltip">User Manager</span>
-             </li>
-             <li>
-               <a href="/entrainement" class="{{ request()->is('entrainement') ? 'active' : '' }}">
-              <i class='bx bx-bar-chart-alt-2'></i>
-              <span class="links_name">Entrainement</span>
-                </a>
-            <span class="tooltip">Entrainement</span>
-
-             </li>
-             <li>
-              <a href="/evenement" class="{{ request()->is('evenement') ? 'active' : '' }}">
-              <i class='bx bx-bar-chart-alt-2'></i>
-              <span class="links_name">Evenement</span>
-            </a>
-            <span class="tooltip">Evenement</span>
-             </li>
-             <li>
-               <a href="/produit" class="{{ request()->is('produit') ? 'active' : '' }}">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="links_name">Produit</span>
-              </a>
-              <span class="tooltip">Produit</span>
-
-             </li>
-             <li>
-             <a href="/category" class="{{ request()->is('category') ? 'active' : '' }}">
-              <i class="fas fa-star"></i>
-              <span class="links_name">Category</span>
-            </a>
-            <span class="tooltip">Category</span>
-
-            </li>
-             <li>
-             <a id="feedback-link" href="/feedback" class="{{ request()->is('feedback') ? 'active' : '' }}">
-              <i class="fas fa-star"></i>
-               <span class="links_name">Feedback</span>
-            </a>
-               <span class="tooltip">Feedback</span>
-             </li>
-             
-        
-             <li class="profile">
-             
-             <div class="profile-details">
-               <!--<img src="profile.jpg" alt="profileImg">-->
-               <div class="name_job">
-                <span id="user-email"></span>
-                <span id="job" style="color:rgb(105, 105, 105)"></span>
-                
-                <i class='bx bx-log-out' id="logout"  ></i>
-               </div>
-             </div>
-            
-         </li>
-            </ul>
-          </div>
-                </nav>
-                <!-- Main content where child views will be injected -->
-             
+                <div class="logo-details">
+                    <div class="logo_name">Power Gym</div>
+                    <i class='bx bx-menu' id="btn"></i>
+                </div>
+                <ul class="nav-list">
+                    <li>
+                        <a href="/dashboard" class="{{ request()->is('dashboard') || request()->is('visualizations') ? 'active' : '' }}">
+                            <i class='bx bx-tachometer'></i>
+                            <span class="links_name">Admin Dashboard</span>
+                        </a>
+                        <span class="tooltip">Admin Dashboard</span>
+                    </li>
+                    <li>
+                        <a href="/home" class="{{ request()->is('home') ? 'active' : '' }}">
+                            <i class='bx bx-home'></i>
+                            <span class="links_name">Home</span>
+                        </a>
+                        <span class="tooltip">Home</span>
+                    </li>
+                    <li>
+                        <a href="/user-manager" class="{{ request()->is('user-manager') ? 'active' : '' }}">
+                            <i class='bx bx-user'></i>
+                            <span class="links_name">User Manager</span>
+                        </a>
+                        <span class="tooltip">User Manager</span>
+                    </li>
+                    <li>
+                    <a href="/entrainement" class="{{ request()->is('entrainement') || request()->is('entrainement/*') ? 'active' : '' }}">
+                            <i class='bx bx-bar-chart-alt-2'></i>
+                            <span class="links_name">Entrainement</span>
+                        </a>
+                        <span class="tooltip">Entrainement</span>
+                    </li>
+                    <li>
+                        <a href="/events" class="{{ request()->is('events') ? 'active' : '' }}">
+                            <i class='bx bx-calendar-event'></i>
+                            <span class="links_name">Evenement</span>
+                        </a>
+                        <span class="tooltip">Evenement</span>
+                    </li>
+                    <li>
+                        <a href="/produit" class="{{ request()->is('produit') ? 'active' : '' }}">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="links_name">Produit</span>
+                        </a>
+                        <span class="tooltip">Produit</span>
+                    </li>
+                    <li>
+                        <a href="/categories" class="{{ request()->is('categories') ? 'active' : '' }}">
+                            <i class="fas fa-tags"></i>
+                            <span class="links_name">Category</span>
+                        </a>
+                        <span class="tooltip">Category</span>
+                    </li>
+                    <li>
+                        <a href="/recommendation" class="{{ request()->is('feedback') || request()->is('recommendation') ? 'active' : '' }}">
+                            <i class="fas fa-heart"></i>
+                            <span class="links_name">Recommendation</span>
+                        </a>
+                        <span class="tooltip">Recommendation</span>
+                    </li>
+                    <li class="profile">
+                        <div class="profile-details">
+                            <!-- <img src="profile.jpg" alt="profileImg"> -->
+                            <div class="name_job">
+                                <span id="user-email"></span>
+                                <span id="job" style="color:rgb(105, 105, 105)"></span>
+                                <i class='bx bx-log-out' id="logout"></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
+    </div>
         <div class="home-section">
             @yield('content')
           </div>

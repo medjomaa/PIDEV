@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <section id="hero" class="animated-section">
+    <section id="hero" >
     
     <div id="hero-slider">
       <div class="hero-slide-item" style="background-image:url('https://i0.wp.com/connectthewatts.com/wp-content/uploads/sites/11/2021/03/silofit-1-scaled-1.jpg');">

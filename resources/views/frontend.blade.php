@@ -8,7 +8,7 @@
     
         <nav>
           <ul class="flex">
-            <li><a class="smooth-scroll-link" href="#">Home</a></li>
+            <li><a class="smooth-scroll-link" href="/dashboard">Home</a></li>
             <li><a class="smooth-scroll-link" href="#">Entrainement</a></li>
             <li><a class="smooth-scroll-link" href="#">Evenement</a></li>
             <li id="header-logo" class="top-gym-logo">

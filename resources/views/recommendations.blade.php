@@ -3,20 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recommended Fitness Activities</title>
-    <style>
-        body { font-family: Arial, sans-serif; }
-        .summary { margin-bottom: 20px; }
-    </style>
+    <title>Recommendations</title>
 </head>
 <body>
-    <h1>Recommended Fitness Activities</h1>
-    @if (!empty($recommendations['summary']))
-        <div class="summary">
-            <p>{{ $recommendations['summary'] }}</p>
-        </div>
+    <h1>Your Customized Fitness Recommendations</h1>
+    @if (is_string($recommendations['recommendations']))
+        <p>{{ $recommendations['recommendations'] }}</p>
     @else
-        <p>No recommendations found.</p>
+        @foreach ($recommendations['recommendations'] as $recommendation)
+            <p>{{ $recommendation }}</p>
+        @endforeach
     @endif
 </body>
 </html>

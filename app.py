@@ -22,11 +22,11 @@ def analyze_sentiment(text):
     sentiment_scores = sia.polarity_scores(text)
 
     if sentiment_scores['compound'] >= 0.05:
-        return 'positive'
+        return 'Positive'
     elif sentiment_scores['compound'] <= -0.05:
-        return 'negative'
+        return 'Negative'
     else:
-        return 'neutral'
+        return 'Neutral'
 
 @app.route('/analyze', methods=['POST'])
 def sentiment_analysis():
