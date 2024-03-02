@@ -21,6 +21,8 @@ class CreateFeedbackTable extends Migration
             $table->text('feedback_text');
             $table->string('sentiment')->nullable(); // Removed the 'after' keyword
             $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

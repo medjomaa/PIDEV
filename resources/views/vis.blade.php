@@ -4,13 +4,40 @@
 @section('content')
 <title>Admin Dashboard</title>
 <style>
+
+       
     body {
-        background-image: url(https://wallpapers.com/images/hd/high-resolution-red-background-2560-x-1600-28m1gzesarjlpk18.jpg);
-        color: #000; /* Adjusted to black for better visibility */
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: transparent;
+        background-image: linear-gradient(to bottom right, #ff0000 0%, #000000 60%);
+        color: #fff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    header, .dashboard-title, .graph-description {
+        text-shadow: 2px 2px 4px #000;
+    }
+    .date-picker-container input[type="date"], .date-picker-container button {
+        transition: all 0.3s;
+        outline: none;
+    }
+    .date-picker-container input[type="date"]:focus, .date-picker-container button:focus {
+        box-shadow: 0 0 0 2px #fff;
+    }
+    .graph-box {
+        transition: transform 0.3s ease-in-out;
+    }
+    .graph-box:hover {
+        transform: translateY(-5px);
+    }
+    .modal-content {
+        border-radius: 15px;
+    }
+    .close {
+        font-size: 24px;
+        color: #000;
+        transition: color 0.3s;
+    }
+    .close:hover {
+        color: #dc3545;
     }
     header {
         text-align: center;
@@ -151,9 +178,10 @@
 <div class="dashboard">
     <div class="dashboard-title">Gym Performance Dashboard</div>
     <div class="user-info">
-        <div class="user-name">Admins</div>
-        <i class="fas fa-user" style="font-size: 40px; color: #333;"></i>
-    </div>
+    <div class="user-name">{{ $userName }}</div>
+    <i class="fas fa-user" style="font-size: 40px; color: #333;"></i>
+</div>
+
 
     <div class="date-picker-container">
         <form action="{{ route('dashboard') }}" method="get">

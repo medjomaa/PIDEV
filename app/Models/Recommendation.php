@@ -31,7 +31,7 @@ class Recommendation extends Model
         'initial_assessment_results',
         'ongoing_progress',
         'feedback',
-        // 'user_id', // Ensure this is included if you're linking recommendations to users
+        'user_id', // Ensure this is included if you're linking recommendations to users
     ];
 
     // Define the relationship with the User model, assuming each recommendation is associated with a user
@@ -39,4 +39,5 @@ class Recommendation extends Model
     // {
     //     return $this->belongsTo(User::class); // Ensure User model exists and is properly namespaced
     // }
+    
 }

@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recommendations</title>
-</head>
-<body>
-    <h1>Your Customized Fitness Recommendations</h1>
-    @if (is_string($recommendations['recommendations']))
-        <p>{{ $recommendations['recommendations'] }}</p>
-    @else
-        @foreach ($recommendations['recommendations'] as $recommendation)
-            <p>{{ $recommendation }}</p>
+@section('content')
+    <h1>Recommendations</h1>
+    <ul>
+        @foreach($recommendations as $recommendation)
+            <li>
+                {{ $recommendation->title }} - {{ $recommendation->description }}
+                {{-- Add more fields as needed --}}
+            </li>
         @endforeach
-    @endif
-</body>
-</html>
+    </ul>
+@endsection

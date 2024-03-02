@@ -20,7 +20,8 @@ class Feedback extends Model
         'atmosphere',
         'additional_amenities',
         'feedback_text',
-        'sentiment', // Make sure to include this
+        'sentiment', 
+        'user_id',// Make sure to include this
     ];
     
 

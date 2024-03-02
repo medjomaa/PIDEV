@@ -1,35 +1,45 @@
 <?php
-// App/Http/Controllers/FlaskAPIController.php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
+
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class FlaskAPIController extends Controller
 {
-    public function fetchRecommendations($user_id)
+    public function __construct()
     {
-        $client = new Client();
-        $recommendationsUrl = "http://localhost:5001/api/recommendations/" . $user_id;
-        $userInfoUrl = "http://localhost:5001/api/userinfo/" . $user_id; // Adjust the endpoint as necessary
+        // Require users to be authenticated for all actions in this controller
+        $this->middleware('auth');
+    }
+
+    public function fetchRecommendations()
+    {
+        $user_id = Auth::id(); // Obtain the authenticated user's ID
+        Log::info("Fetching recommendations for user ID: {$user_id}");
+
+        $client = new Client([
+            'base_uri' => 'http://localhost:5001/api/', // Specify the base URI for API requests
+            'timeout'  => 2.0, // Set a timeout for requests
+        ]);
 
         try {
-            // Fetch recommendations
-            $recResponse = $client->request('GET', $recommendationsUrl);
+            // Attempt to fetch recommendations for the authenticated user
+            $recResponse = $client->request('GET', "recommendations/{$user_id}");
             $recommendations = json_decode($recResponse->getBody()->getContents(), true);
-            
-            // Fetch user info
-            $userInfoResponse = $client->request('GET', $userInfoUrl);
+
+            // Attempt to fetch additional user info for the authenticated user
+            $userInfoResponse = $client->request('GET', "userinfo/{$user_id}");
             $userInfo = json_decode($userInfoResponse->getBody()->getContents(), true);
 
-            // Return the 'entrainement' view with both recommendations and user info
-            return view('entrainement', [
-                'recommendations' => $recommendations,
-                'userInfo' => $userInfo // Pass user info to the view
-            ]);
+            // Pass the fetched data to the 'entrainement' view
+            return view('entrainement', compact('recommendations', 'userInfo'));
         } catch (\Exception $e) {
-            // Handle any exceptions, such as network errors or issues with the Flask API
-            return response()->json(['error' => 'Could not fetch data: ' . $e->getMessage()], 500);
+            Log::error("Error fetching data for user ID {$user_id}: " . $e->getMessage());
+            // Return to the previous page with an error message
+            return back()->with('error', 'Could not fetch data. Please try again later.');
         }
     }
 }

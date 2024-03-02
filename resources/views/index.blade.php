@@ -108,37 +108,39 @@
     <div class="container">
       <div id="trainers-slider">
         <div class="trainer-slider-item">
-          <img src="https://m.media-amazon.com/images/I/61oSwPvRWLL._AC_SL1500_.jpg"  />
+          <img src="https://shop.lifefitness.com/cdn/shop/products/Rubber-Hex-Dumbbell-L_1_1800x1800_78ea050c-4f5a-4e8a-bdae-a664272eac80_1200x1200.jpg?v=1619710214"  />
           <h4>Basics Easy Grip Workout</h4>
           <p>Dumbbell</p>
         </div>
 
         <div class="trainer-slider-item">
-          <img src="https://m.media-amazon.com/images/I/61LbkAtN7dL._AC_SL1500_.jpg" />
+          <img src="https://i5.walmartimages.com/seo/Body-Sport-Cast-Iron-Vinyl-Coated-Kettlebells-45-lb-Gray-Kettlebell-for-Weight-Lifting-Strength-Training_7451d948-41a1-45fc-8929-bd564a9b47cc.a68ba549510e896b45168b85141a9920.jpeg" />
           <h4>Kettlebell</h4>
-          <p>Vinyl Coated Cast Iron</p>
+          <p>Vinyl Coated Cast</p>
+          <p> Iron</p>
         </div>
 
         <div class="trainer-slider-item">
-          <img src="https://m.media-amazon.com/images/I/71TLR6dE1zL._AC_SL1500_.jpg"/>
+          <img src="https://shop.lifefitness.com/cdn/shop/products/c1-upright-bike-track-2.0-callout-1000x1000_1200x1200.jpg?v=1700249874"/>
           <h4>SQUATZ</h4>
           <p>Stationary Cycling Bike Exerciser</p>
         </div>
 
         <div class="trainer-slider-item">
-          <img src="https://m.media-amazon.com/images/I/61oSwPvRWLL._AC_SL1500_.jpg" />
+          <img src="https://shop.lifefitness.com/cdn/shop/products/Rubber-Hex-Dumbbell-L_1_1800x1800_78ea050c-4f5a-4e8a-bdae-a664272eac80_1200x1200.jpg?v=1619710214" />
           <h4>Basics Easy Grip Workout</h4>
           <p>Dumbbell</p>
         </div>
 
         <div class="trainer-slider-item">
-          <img src="https://m.media-amazon.com/images/I/61LbkAtN7dL._AC_SL1500_.jpg"/>
+          <img src="https://i5.walmartimages.com/seo/Body-Sport-Cast-Iron-Vinyl-Coated-Kettlebells-45-lb-Gray-Kettlebell-for-Weight-Lifting-Strength-Training_7451d948-41a1-45fc-8929-bd564a9b47cc.a68ba549510e896b45168b85141a9920.jpeg"/>
           <h4>Kettlebell</h4>
-          <p>Vinyl Coated Cast Iron</p>
+          <p>Vinyl Coated Cast</p>
+          <p> Iron</p>
         </div>
 
         <div class="trainer-slider-item">
-          <img src="https://m.media-amazon.com/images/I/71TLR6dE1zL._AC_SL1500_.jpg" />
+          <img src="https://shop.lifefitness.com/cdn/shop/products/c1-upright-bike-track-2.0-callout-1000x1000_1200x1200.jpg?v=1700249874" />
           <h4>SQUATZ</h4>
           <p>Stationary Cycling Bike Exerciser</p>
         </div>

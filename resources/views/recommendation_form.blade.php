@@ -172,13 +172,18 @@ input[type="submit"]:hover {
 </head>
 <body>
     <div id="form-selection">
-    <button onclick="window.location.href='{{ route('feedback.form') }}';">Feedback Form</button>
+    <button onclick="window.location.href='{{ route('feedback.form', ['id' => Auth::id()]) }}'">Recommendation Form</button>
     </div>
 
     <div id="recommendationForm" style="display:block;">
     <h1>Power Gym - Workout Recommendation Form</h1>
     <p>Tell us about your fitness goals and preferences to receive personalized workout recommendations.</p>
+    @if(isset($recommendation))
+    <form action="{{ route('recommendation.update', $recommendation->id) }}" method="post">
+    @method('PUT')
+    @else
     <form action="{{ route('recommendation.submit') }}" method="post">
+    @endif
 
     @csrf
 
@@ -391,7 +396,7 @@ input[type="submit"]:hover {
         
         
         <br><br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="{{ isset($recommendation) ? 'Update' : 'Submit' }}">
     </form>
     @if(session('success'))
     <div class="alert alert-success">

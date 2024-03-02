@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateRecommendationsTable extends Migration
 {
+    /**
+     * Run the migrations to create the recommendations table with a user_id foreign key.
+     */
     public function up()
     {
         Schema::create('recommendations', function (Blueprint $table) {
@@ -25,7 +28,7 @@ class CreateRecommendationsTable extends Migration
             $table->string('exercise_frequency')->nullable();
             $table->text('current_exercise_types')->nullable();
             $table->text('fitness_challenges')->nullable();
-            $table->text('past_injuries')->nullable();
+
 
             // Health Information
             $table->text('medical_conditions')->nullable();
@@ -45,12 +48,15 @@ class CreateRecommendationsTable extends Migration
 
             $table->timestamps();
 
-            // Assuming each recommendation is linked to a specific user
+            // Link to a specific user
             $table->unsignedBigInteger('user_id');
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down()
     {
         Schema::dropIfExists('recommendations');

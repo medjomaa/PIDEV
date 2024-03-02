@@ -17,7 +17,7 @@
             <li><a class="smooth-scroll-link" href="#">Produit</a></li>
             <li><a class="smooth-scroll-link" href="#">Feedback</a></li>
             <li>
-              <button id="search" style="position: right;">Sing IN</button>
+            <a href="registration"> Se connecter</a>
             </li>
           </ul>
         </nav>
@@ -334,43 +334,78 @@ header nav ul li a {
   background: url('https://i.pinimg.com/originals/7d/45/99/7d45996cee4ce99a1c795b5e60e10105.jpg') top center no-repeat;
   background-size: cover;
   color: #FF0000;
+  padding: 50px 0; /* Adjust padding as needed */
 }
 
 #trainers-slider {
-  width: 90%;
-  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Adjust gap between items as needed */
+  padding: 20px; /* Adds padding around the slider for better spacing */
 }
 
-#trainers-slider .slick-slide {
-  padding: 0 20px;
+.trainer-slider-item {
+  flex: 1 0 21%; /* Adjust the basis to control the item width, change the percentage as needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 200px; /* Set a max-width to keep items from growing too large */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for better visibility */
+  padding: 20px; /* Padding inside each slider item */
+  border-radius: 10px; /* Rounded corners for a sleek look */
 }
 
-#trainers-slider .trainer-slider-item img {
-  width: 100%;
+.trainer-slider-item img {
+  width: 100%; /* Make images responsive */
+  height: auto;
+  border-radius: 10px; /* Optional: adds rounded corners to images */
 }
 
-#trainers-slider h4 {
-  color: #fff;
-  margin-top: 2.5rem;
+.trainer-slider-item h4,
+.trainer-slider-item p {
+  margin: 10px 0; /* Adds margin to space out the text */
+  color: #fff; /* Adjust text color as needed */
 }
 
-#trainers-slider p {
-  color: #fff;
-  opacity: 0.6;
-}
-
-#trainers-slider .slick-prev {
-  left: -30px;
-}
-
+#trainers-slider .slick-prev,
 #trainers-slider .slick-next {
-  right: -10px;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  background-color: rgba(0,0,0,0.5);
+  border: none;
+  border-radius: 50%;
+  width: 40px; /* Size of the arrow buttons */
+  height: 40px; /* Size of the arrow buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
 }
+
+#trainers-slider .slick-prev { left: -45px; }
+#trainers-slider .slick-next { right: -45px; }
 
 #trainers-slider .slick-prev:before,
 #trainers-slider .slick-next:before {
-  font-size: 40px;
+  content: ''; /* Remove default arrows */
 }
+
+#trainers-slider .slick-prev:after {
+  content: '←'; /* Custom arrow */
+  font-size: 24px;
+  color: #fff;
+}
+
+#trainers-slider .slick-next:after {
+  content: '→'; /* Custom arrow */
+  font-size: 24px;
+  color: #fff;
+}
+
 /* end: trainers section styles */
 
 /* start: schedule services styles */
@@ -990,7 +1025,7 @@ $(document).ready(function() {
 <footer>
     <div class="footer-container">
       <div id="footer-logo" class="top-gym-logo">
-        <a href="#">Top<br/>Gym</a>
+        <a href="#">Power<br/>Gym</a>
       </div>
 
       <nav>

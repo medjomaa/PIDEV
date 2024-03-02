@@ -8,45 +8,59 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\FlaskAPIController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RecommendationsController;
+use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\EventsController;
+use Illuminate\Support\Facades\Session;
+
 
 // Home route
 Route::get('/', HomeController::class)->name('home');
+// Authentication Routes
+
+
+
+Route::get('/login', [AuthManager::class,  'login'])->name('login');
+Route::post('/login', [AuthManager::class,  'loginPost'])->name('login.post');
+Route::get('/registration', [AuthManager::class,  'registration'])->name('registration');
+Route::post('/registration', [AuthManager::class,  'registrationPost'])->name('registration.post');
+Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
+
 
 // Feedback routes
-Route::get('/feedback', [FeedbackController::class, 'showForm'])->name('feedback.show');
-Route::post('/feedback/submit', [FeedbackController::class, 'submitFeedback'])->name('feedback.submit');
+Route::get('/feedback/{id}', [FeedbackController::class, 'index'])->name('feedback.form');
+Route::post('/feedback/submit', [FeedbackController::class, 'submitFeedback'])->name('feedback.form');
 Route::get('/feedback/confirmation', function () {
     return view('feedback_confirmation');
 })->name('feedback.confirmation');
 // Display the feedback form
-Route::get('/feedback', [FeedbackController::class, 'showForm'])->name('feedback.show');
-Route::get('/feedback', [FeedbackController::class, 'showForm'])->name('feedback.form');
+Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.show');
+Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.form');
 
 // Process the feedback form submission
 Route::post('/feedback', [FeedbackController::class, 'submitFeedback'])->name('feedback.submit');
 
+// Using a POST request for logout (recommended for security)
+Route::post('/logout', [AuthManager::class, 'logout'])->name('logout');
 
 
-// Display the form for creating a new recommendation
-Route::get('/recommendation', [RecommendationsController::class, 'showForm'])->name('recommendation.form');
 
-// Submit a new recommendation
-Route::post('/recommendation/submit', [RecommendationsController::class, 'submitRecommendation'])->name('recommendation.submit');
 
-// Display all recommendations
-Route::get('/recommendations', [RecommendationsController::class, 'index'])->name('recommendations.index');
+// Route for displaying the recommendation form
 
-// Display a specific recommendation
-Route::get('/recommendation/{id}', [RecommendationsController::class, 'show'])->name('recommendation.show');
+Route::get('/recommendation', [RecommendationsController::class, 'index'])->name('recommendation.form');
+Route::put('/recommendation', [App\Http\Controllers\RecommendationsController::class, 'update'])->name('recommendation.form');
 
-// Show the form for editing a specific recommendation
+Route::post('/recommendation/submit', [RecommendationsController::class, 'store'])->name('recommendation.submit');
+Route::get('/recommendations', [RecommendationsController::class,'index'])->name('recommendations.index');
 Route::get('/recommendation/{id}/edit', [RecommendationsController::class, 'edit'])->name('recommendation.edit');
+Route::delete('/recommendation/{id}', [RecommendationsController::class, 'destroy'])->name('recommendation.destroy');
 
-// Submit the updated recommendation
-Route::put('/recommendation/{id}', [RecommendationsController::class, 'update'])->name('recommendation.update');
 
 // Delete a specific recommendation
 Route::delete('/recommendation/{id}', [RecommendationsController::class, 'destroy'])->name('recommendation.destroy');
+Route::get('/recommendations/{recommendation}/edit',[RecommendationsController::class, 'edit'])->name('recommendations.edit');
+Route::put('/recommendations/{recommendation}', [RecommendationsController::class, 'update'])->name('recommendations.update');
+
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -60,12 +74,13 @@ Route::get('/visualizations', [DashboardController::class, 'index'])->name('dash
 
 // // Define a route for fetching recommendations for a given user ID
 // Route::get('/entrainement/{user_id}', [FlaskAPIController::class, 'fetchRecommendations'])->name('entrainement');
-Route::get('/entrainement/{user_id}', [FlaskAPIController::class, 'fetchRecommendations'])->name('entrainement.with.id');
-Route::get('/entrainement', function () {
-    return view('entrainement'); // Assumes you have a view named evenement.blade.php
-})->name('entrainement');
+// Route::get('/entrainement', [App\Http\Controllers\FlaskAPIController::class, 'fetchRecommendations'])->name('entrainement');
 
 
+// Route for authenticated users to fetch and view their recommendations
+Route::get('/entrainement', [FlaskAPIController::class, 'fetchRecommendations'])
+     ->middleware('auth')
+     ->name('entrainement');
 
 
 Route::get('/user-manager', function () {
@@ -108,3 +123,4 @@ Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('eve
 // Route::get('/recommendation', 'RecommendationsController@showForm')->name('recommendation.show');
 // Route::post('/recommendation', 'RecommendationsController@submitRecommendation')->name('recommendation.submit');
 // Route::get('/recommendation', [RecommendationsController::class, 'showForm'])->name('recommendation.form');
+Route::get('/home', [EventsController::class, 'index'])->name('home');

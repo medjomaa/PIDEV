@@ -82,4 +82,5 @@ class EventController extends Controller
         // Redirect to the index page with a success message
         return redirect()->route('events.index')->with('success', 'Event deleted successfully.');
     }
+    
 }

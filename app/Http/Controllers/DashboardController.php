@@ -6,20 +6,33 @@ use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class DashboardController extends Controller
 {
     public function index(Request $request)
-    {
+{
+    // Check if the user is authenticated and the name is 'admin'
+    if (Auth::check() && Auth::user()->name == 'admin') {
         $selectedDate = $request->input('date'); // Retrieve the selected date from the request
         $graphJSON = $this->getVisualizationData($selectedDate); // Fetch the graph data with the selected date
+        $userName = Auth::user()->name; // This will be 'admin' as per the condition
 
-        // Pass the data and the selected date back to the 'vis' view
+        // Pass the data, the selected date, and the user's name back to the view
         return view('vis', [
             'graphJSON' => $graphJSON,
             'selectedDate' => $selectedDate,
+            'userName' => $userName,
         ]);
+    } else {
+        // If the user is not 'admin', redirect them or show an error
+        // For example, redirect back with an error message
+        return redirect()->back()->with('error', 'You are not authorized to access this page.');
+        // Or, to redirect to a specific route, you can use: return redirect()->route('home')->with('error', 'You are not authorized to access this page.');
     }
+}
+
 
     protected function getVisualizationData($date = null)
     {
@@ -41,4 +54,5 @@ class DashboardController extends Controller
 
         return $data; // Return the data directly
     }
+    
 }

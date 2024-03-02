@@ -293,16 +293,45 @@
     display: none;
   }
 }
-#user-email{
-    align-items: center;
-    color: #E4E9F7;
+/* Add this at the end of your existing CSS */
+.profile-details {
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center align items */
+    padding: 10px; /* Padding for spacing */
 }
-#logout{
-  position: relative;
-  right: 0cm;
- cursor: pointer;
 
+#user-email {
+    color: #E4E9F7; /* Color for visibility */
+    margin-bottom: 10px; /* Space between username and logout button */
+    text-align: center; /* Center the text */
 }
+
+#logout {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Adjust based on your preference */
+    height: 40px; /* Adjust based on your preference */
+    border-radius: 50%; /* Circular shape */
+}
+
+#logout {
+    font-size: 20px; /* Icon size */
+    color: #ffffff; /* Icon color */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+#logout:hover  {
+  background-color: white;  
+  color: red; /* Icon color on hover */
+}
+
+
+/* Improve profile container */
+
+
+
 * {
   box-sizing: border-box;
 }
@@ -416,16 +445,20 @@
                         </a>
                         <span class="tooltip">Recommendation</span>
                     </li>
+                    
                     <li class="profile">
-                        <div class="profile-details">
-                            <!-- <img src="profile.jpg" alt="profileImg"> -->
-                            <div class="name_job">
-                                <span id="user-email"></span>
-                                <span id="job" style="color:rgb(105, 105, 105)"></span>
-                                <i class='bx bx-log-out' id="logout"></i>
-                            </div>
-                        </div>
+                    <div class="profile-details">
+                          <!-- Display User Email -->
+                          <span id="user-email">{{ Auth::user()->name }}</span>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              @csrf
+                          </form>
+                          <!-- Logout Icon, when clicked, submits the logout form -->
+                          <i class='bx bx-log-out' id="logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"></i>
+                      </div>
                     </li>
+
+
                 </ul>
             </div>
         </div>

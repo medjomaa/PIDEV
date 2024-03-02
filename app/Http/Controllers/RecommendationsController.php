@@ -4,34 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Recommendation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class RecommendationsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index']); // Require users to be authenticated for all actions except viewing recommendations
+    }
+
     public function index()
     {
-        // Fetch all recommendations
-        $recommendations = Recommendation::all();
-        // Assuming you have a Blade view named "recommendations_list.blade.php" to display the list
-        return view('recommendations_list', compact('recommendations'));
+        // If you need to pass any additional data to your form, you can query it here
+        // For now, it seems we are just displaying the form, so no additional data is fetched
+        return view('recommendation_form'); // Make sure this matches the name of your view file
     }
 
-    public function showForm()
+    // Store a newly created or update an existing recommendation in storage
+    public function store(Request $request)
     {
-        // Display the recommendation form
-        return view('recommendation_form');
-    }
-
-    public function submitRecommendation(Request $request)
-    {
-        Log::info('Recommendation form submission received', $request->all());
-        
-        // Include all new fields in the validation
         $validatedData = $request->validate([
             'age' => 'required|integer|min:12|max:100',
             'sex' => 'required|in:male,female',
-            'height' => 'required|numeric|min:100', // Assuming height in centimeters
-            'weight' => 'required|numeric|min:30', // Assuming weight in kilograms
+            'height' => 'required|numeric|min:100',
+            'weight' => 'required|numeric|min:30',
             'fitness_goal' => 'required|string',
             'specific_targets' => 'nullable|string',
             'exercise_frequency' => 'required|string|in:daily,several-times-week,rarely',
@@ -45,23 +42,22 @@ class RecommendationsController extends Controller
             'available_equipment' => 'nullable|string',
             'time_availability' => 'required|string',
             'dietary_preferences' => 'nullable|string',
-            'initial_assessment_results' => 'nullable|string', // Consider specific fields if you have structured assessments
-            'ongoing_progress' => 'nullable|string', // This could be a JSON field to capture various progress metrics over time
+            'initial_assessment_results' => 'nullable|string',
+            'ongoing_progress' => 'nullable|string',
             'feedback' => 'nullable|string',
-            // 'user_id' => 'required|exists:users,id', // Validate that the user_id exists in the users table
         ]);
-        
 
-        try {
-            $recommendation = Recommendation::create($validatedData);
-            Log::info('New recommendation created successfully', ['recommendation_id' => $recommendation->id]);
-            return back()->with('success', 'Your recommendation has been submitted successfully!');
-        }  catch (\Exception $e) {
-            Log::error('Error creating recommendation: ' . $e->getMessage());
-            return back()->with('error', 'An error occurred: ' . $e->getMessage())->withInput();
+        $userId = Auth::id(); // Get the currently authenticated user's ID
+
+        $recommendation = Recommendation::updateOrCreate(
+            ['user_id' => $userId], // Conditions to match an existing record
+            $validatedData // Data to update or create
+        );
+
+        if ($recommendation->wasRecentlyCreated) {
+            return redirect()->route('recommendations.index')->with('success', 'Recommendation submitted successfully.');
+        } else {
+            return redirect()->route('recommendations.index')->with('success', 'Recommendation updated successfully.');
         }
-        
     }
-
-   
 }

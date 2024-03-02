@@ -922,12 +922,12 @@
           }
         
           .content {
-            grid-template-columns: 100%;
-            grid-template-rows: 45% 55%;
-            grid-template-areas:
-              "rightContent"
-              "leftContent";
-          }
+    display: flex;
+    flex-direction: row; /* Adjust if necessary to match your layout */
+    justify-content: flex-start; /* Align children to the start of the container */
+    padding: 20px;
+    gap: 20px; /* Adds space between items */
+}
         
           /* .left-content {
             grid-area: leftContent;
@@ -959,9 +959,156 @@
             display: none;
           }
         }
-        </style>
+     /* General styling for the event section */
+/* General styling for the event section */
+.event-section {
+  font-family: 'Arial', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.section-title {
+  text-align: center;
+  color: #8B0000; /* Darker, blood red for section title */
+  margin-bottom: 30px;
+}
+
+.event-cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Styling for individual event cards with black to red gradient background */
+.event-card {
+  background-image: url("https://png.pngtree.com/background/20220718/original/pngtree-red-and-black-cool-abstract-sports-background-picture-image_1657984.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  cursor: pointer;
+  margin-bottom: 20px;
+  position: relative; /* Needed for positioning the overlay */
+  color: #FFFFFF; /* Sets a default text color for better readability */
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* Starts darker */
+  border-radius: 15px; /* Matches the card's border radius */
+  transition: opacity 1.5s ease; /* Smooth transition for opacity */
+  opacity: 1; /* Visible by default */
+}
+
+.event-card:hover::before {
+  opacity: 0; /* Less visible on hover for a clearer effect */
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+}
+
+.event-card-header,
+.event-card-body {
+  padding: 20px;
+  position: relative; /* Ensures text is above the overlay */
+  z-index: 1;
+}
+
+.event-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Adds shadow for better readability */
+  color: white;
+}
+
+.event-date {
+  color: #FFD700; /* Gold for dates to make them stand out */
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: bold; /* Adds emphasis */
+}
+
+.event-description {
+  font-size: 16px; /* Adjusted for readability */
+  margin-bottom: 15px;
+  line-height: 1.5; /* Improves text flow and readability */
+  color: white;
+}
+
+.event-type {
+  font-weight: bold;
+  background: #FF6347; /* Tomato red for a vibrant tag look */
+  color: #FFFFFF;
+  padding: 5px 10px;
+  display: inline-block;
+  border-radius: 5px; /* Rounded edges for the event type tag */
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.3); /* Subtle shadow for depth */
+  text-transform: uppercase; /* Makes the event type stand out */
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 10px; /* Optional: for rounded corners */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+       </style>
 </header>
-<body>  <body>
+<body>  
+
+@auth
+    <!-- Content for authenticated users -->
+    Welcome back, {{ Auth::user()->name }}!
+@else
+    <!-- Content for guests -->
+    Please <a href="{{ route('login') }}">login</a> to see your dashboard.
+@endauth
+
     <main>
    <section class="content">
         <div class="left-content">
@@ -1128,8 +1275,9 @@
           </div>
 
           <div class="friends-activity">
-            <h1>Friends Activity</h1>
+            <!-- <h1>Friends Activity</h1>
             <div class="card-container">
+
               <div class="card">
                 <div class="card-user-info">
                   <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/9290037d-a5b2-4f50-aea3-9f3f2b53b441" alt="" />
@@ -1139,19 +1287,42 @@
                 <p>We completed the 30-Day Running Streak Challenge!🏃‍♀️🎉</p>
               </div>
 
-              <div class="card card-two">
-                <div class="card-user-info">
-                  <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/42616ef2-ba96-49c7-80ea-c3cf1e2ecc89" alt="" />
-                  <h2>Mike</h2>
+              
+            </div> -->
+
+            <div class="event-section">
+            <h1 class="section-title">Upcoming Events</h1>
+            <div class="event-cards-container">
+                @foreach($events->sortByDesc('start_date')->take(-2) as $event)
+                <div class="event-card">
+                    <div class="event-card-header">
+                        <h2 class="event-title">{{ $event->title }}</h2>
+                        <p class="event-date">{{ \Carbon\Carbon::parse($event->start_date)->format('M d, Y') }} - {{ \Carbon\Carbon::parse($event->end_date)->format('M d, Y') }}</p>
+                    </div>
+                    <div class="event-card-body">
+                        <p class="event-description">{{ $event->description }}</p>
+                        <p class="event-type">Type: {{ $event->type }}</p>
+                    </div>
                 </div>
-                <img class="card-img" src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/2dcc1b94-06c5-4c62-b886-53b9e433fd44" alt="" />
-                <p>I just set a new record in cycling: 30 miles!💪</p>
-              </div>
+                @endforeach
             </div>
+        </div>
+
+
           </div>
         </div>
       </section>
     </main>
+<!-- The Modal -->
+<div id="eventModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 id="modalEventTitle">Event Title</h2>
+    <p id="modalEventDate">Date: Event Date</p>
+    <p id="modalEventDescription">Description: This is a more detailed description of the event.</p>
+  </div>
+</div>
 
 
     <script>
@@ -1165,6 +1336,33 @@ navItems.forEach((navItem, i) => {
     navItem.className = "nav-item active";
   });
 });
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// Loop through each event card to add the click event
+document.querySelectorAll('.event-card').forEach(item => {
+  item.addEventListener('click', function() {
+    modal.style.display = "block";
+    // Optional: Update modal content based on the clicked card
+  });
+});
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
 
 
     </script>

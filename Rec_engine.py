@@ -70,12 +70,12 @@ def generate_recommendations(user_id):
     user_row = user_data.iloc[0]
     
     # Extracting detailed user information for personalized recommendations
-    specific_targets = user_row['specific_targets'].split(',')  # Assuming comma-separated values
+
     exercise_frequency = user_row['exercise_frequency']
-    current_exercise_types = user_row['current_exercise_types'].split(',')
+
     fitness_challenges = user_row['fitness_challenges']
-    past_injuries = user_row['past_injuries'].split(',')
-    available_equipment = user_row['available_equipment'].split(',')
+
+
     time_availability = user_row['time_availability']
     dietary_preferences = user_row['dietary_preferences']
     initial_assessment_results = user_row['initial_assessment_results']
@@ -87,8 +87,16 @@ def generate_recommendations(user_id):
     closest_users_data = dataset.iloc[closest_users_indices]
     
     user_fitness_goal = user_row['fitness_goal']
-    preferred_exercise_types = user_row['preferred_exercise_types'].split(',')
-    
+
+    # Example adjustments for .split(',') on nullable fields
+    specific_targets = user_row['specific_targets'].split(',') if user_row['specific_targets'] else []
+    current_exercise_types = user_row['current_exercise_types'].split(',') if user_row['current_exercise_types'] else []
+    # Using .get() with a default empty string if 'past_injuries' column doesn't exist
+    past_injuries = user_row.get('past_injuries', '').split(',') if user_row.get('past_injuries') else []
+
+    available_equipment = user_row['available_equipment'].split(',') if user_row['available_equipment'] else []
+    preferred_exercise_types = user_row['preferred_exercise_types'].split(',') if user_row['preferred_exercise_types'] else []
+
     recommendation_details = []
     for exercise in preferred_exercise_types:
         if exercise in exercise_to_muscle_map:

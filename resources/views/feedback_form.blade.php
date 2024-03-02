@@ -175,7 +175,8 @@ input[type="submit"]:hover {
 </head>
 <body>
     <div id="form-selection">
-        <button onclick="window.location.href='{{ route('recommendation.form') }}'">Recommendation Form</button>
+    <button onclick="window.location.href='{{ route('recommendation.form', ['id' => Auth::id()]) }}'">Recommendation Form</button>
+
     </div>
 
 
