@@ -21,12 +21,12 @@ body {
     border-radius: 50px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     
-    padding: 20px 20px; /* Adjusted padding for wider fields */
+    padding: 10px 20px 20px; /* Adjusted padding for wider fields */
     width: 600px; /* Increased box width */
     max-height: calc(100% - 40px); /* Adjust height to account for body padding */
     display: flex;
     flex-direction: column;
-    align-items: center;
+
     overflow-y: auto; /* Ensure content is scrollable if it exceeds the box height */
 }
 .logo, .log-in-text {
@@ -53,7 +53,8 @@ body {
     border-radius: 5px;
     color: #000;
     padding: 15px;
-    width: 100%; /* Full width of the box */
+    width: 100%; /* Full width of parent, accounting for padding */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 20px;
@@ -70,13 +71,15 @@ body {
 .footer-links {
     margin-top: auto;
     font-size: 14px;
+    text-align: center; /* Center the footer links */
 }
 
 .footer-links a {
     color: #000;
     text-decoration: none;
-    margin: 0 10px;
+    margin: 0 10px; /* Keeps spacing between links */
 }
+
 </style>
 <div class="login-box">
     <div class="logo">PowerGym</div>
@@ -94,7 +97,7 @@ body {
         <button type="submit" class="btn-custom">Login</button>
     </form>
     <div class="footer-links">
-        <a href="#">Privacy</a> | <a href="#">Terms of Use</a>
+    <a href="registration">Sing Up</a> | <a href="#">Privacy</a> | <a href="#">Terms of Use</a>
     </div>
 </div>
 @endsection

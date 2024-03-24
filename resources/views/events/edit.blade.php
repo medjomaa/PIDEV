@@ -9,77 +9,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <style>
-        body {
-            background-color: #f2f2f2;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+        body, html {
+    margin: 0;
+    padding: 0;
+    background-image: url('https://img.freepik.com/premium-photo/dark-gym-with-red-lights-black-bar-that-says-fitness_911201-3358.jpg');
+    background-size: cover; /* Cover the entire page */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background */
+    font-family: "Nunito", sans-serif;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center content horizontally */
+    justify-content: flex-start; /* Align content to the top */
+}
 
-        h1 {
-            width: 100%;
-            text-align: center;
-        }
+h1 {
+    font-size: 36px; /* Increased font size */
+    color: white; /* Changed color to white */
+    text-align: center;
+    margin-top: 30px; /* Added some margin to the top */
+}
 
-        .case {
-            width: 300px;
-            height: auto;
-            background-color: white;
-            border-radius: 5px;
-            box-shadow: 0px 0px 4px #dbdbdb;
-            margin: 0 auto;
-            margin-top: 50px;
-            overflow: hidden;
-            padding: 20px;
-            padding-bottom: 50px;
-        }
+.case {
+    width: 700px; /* Increased width for a wider appearance */
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+    border-radius: 10px; /* Increased border-radius */
+    box-shadow: 0px 0px 8px #FF4136; /* Shadow with red color */
+    margin: 0 auto;
+    margin-top: 50px;
+    overflow: hidden;
+    padding: 40px; /* Increased padding */
+    padding-bottom: 60px; /* Increased padding-bottom */
+    color: white; /* Changed text color to white */
+}
 
-        h3 {
-            width: 100%;
-            text-align: center;
-            font-size: 30px;
-            color: #4d2df1ff;
-        }
+h3 {
+    font-size: 40px; /* Increased font size */
+    color: white; /* Changed color to white */
+}
 
-        .grid {
-            display: grid;
-            width: 100%;
-            height: auto;
-            grid-template-columns: 10% 83%;
-            grid-template-rows: 40px 40px 40px;
-            grid-gap: 10px;
-        }
+.grid {
+    display: grid;
+    grid-template-columns: 15% 85%; /* Adjusted column sizes */
+    grid-template-rows: auto; /* Auto-adjust row height */
+    grid-gap: 20px; /* Increased grid gap for better spacing */
+    margin-top: 20px; /* Added some margin to the top inside the grid */
+}
 
-        #ic {
-            font-size: 15px;
-            color: #4d2df1ff;
-        }
+#ic {
+    font-size: 20px; /* Increased font size */
+    color: white; /* Adjusted icon color to white */
+}
 
-        .input {
-            width: 100%;
-            height: 20px;
-            outline: none;
-            border: 0;
-            border-bottom: 2px solid #4d2df1ff;
-            padding: 3px;
-            font-size: 15px;
-            margin-top: 5px;
-        }
+.input, select, textarea {
+    background-color: #2C2C54; /* Darker background for inputs */
+    color: white; /* White text color for better contrast */
+    width: 100%;
+    padding: 10px; /* Increased padding for better appearance */
+    border: 2px solid #FF4136; /* Red border */
+    border-radius: 5px; /* Rounded borders for inputs */
+    margin-top: 5px; /* Adjusted margin top */
+    font-size: 16px; /* Increased font size */
+}
 
-        .simpan {
-            background-color: #4d2df1ff;
-            margin-top: 30px;
-            width: 100%;
-            height: 40px;
-            border: 0;
-            border-radius: 5px;
-            color: white;
-            font-size: 15px;
-            outline: none;
-            transition: 0.3s;
-        }
+.btn-green { /* Assuming this replaces your '.simpan' class */
+    background-color: #FF4136;
+    width: 100%;
+    padding: 15px 0; /* Adjust padding for bigger button */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px; /* Increased font size */
+    cursor: pointer; /* Cursor pointer for better UX */
+    transition: 0.3s;
+}
 
-        .simpan:hover {
-            opacity: 0.2;
-        }
+button {
+    background-color: #FF4136;
+    width: 60%; /* Adjusted width to make the button smaller */
+    padding: 10px 0; /* Adjust padding for a slightly smaller button */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px; /* Optionally adjust font size for better fit */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: block; /* Changed to block to enable margin auto to work */
+    margin: 20px auto; /* Adds margin to the top and bottom, auto centers it horizontally */
+}
+
+button:hover {
+    opacity: 0.7;
+    transform: scale(1.05); /* Slightly enlarges the button to give a lift effect */
+    box-shadow: 0 5px 15px rgba(255, 65, 54, 0.4); /* Adds a shadow for more depth */
+}
+
+
 
     </style>
 </head>

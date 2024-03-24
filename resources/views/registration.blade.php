@@ -20,13 +20,37 @@ body {
     background-color: rgba(255, 255, 255, 0.5); /* Matching the login box transparency */
     border-radius: 50px; /* Rounded edges as in the login box */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    padding: 20px 20px; /* Consistent padding */
+    padding: 20px; /* Keep padding, which affects inner content alignment */
+    margin-left: 10px; /* Gap on the left */
     width: 600px; /* Matching width */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     overflow-y: auto; /* Scrollable content */
 }
+
+.form-control, .btn-custom {
+    background-color: #ffffff;
+    border: 2px solid #cc0000;
+    border-radius: 5px;
+    color: #000;
+    padding: 15px;
+    width: 100%; /* Full width of parent, accounting for padding */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.btn-custom {
+    background-color: #cc0000;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 
 .logo, .registration-text {
     text-align: center; /* Center align the logo and registration text */
@@ -47,37 +71,18 @@ body {
     margin-bottom: 30px; /* Space below "Register" */
 }
 
-.form-control, .btn-custom {
-    background-color: #ffffff;
-    border: 2px solid #cc0000;
-    border-radius: 5px;
-    color: #000;
-    padding: 15px;
-    width: 100%; /* Full width */
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.btn-custom {
-    background-color: #cc0000;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
 .footer-links {
     margin-top: auto;
     font-size: 14px;
+    text-align: center; /* Center the footer links */
 }
 
 .footer-links a {
     color: #000;
     text-decoration: none;
-    margin: 0 10px;
+    margin: 0 10px; /* Keeps spacing between links */
 }
+
 </style>
 <div class="registration-box">
     <div class="logo">PowerGym</div>

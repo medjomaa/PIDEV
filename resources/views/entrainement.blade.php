@@ -13,12 +13,15 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-    body {
+      body {
         font-family: 'Roboto', sans-serif;
         margin: 0;
         padding: 0;
         color: #ffffff; /* White text color for readability */
-        background-image: linear-gradient(to right, #0a0f0b, #3a4042, #0a0f0b), url('https://i.pinimg.com/originals/e9/54/3d/e9543dd03c5888d3351411933b9a0eba.jpg');
+        background-image:url('https://wallpapercave.com/wp/wp9142703.jpg');
+        background-size: cover; /* Cover the entire page */
+        background-position: center; /* Center the background image */
+         background-repeat: no-repeat; /* Do not repeat the background */
         background-size: cover;
         background-position: center;
         display: flex;
@@ -28,45 +31,270 @@
         min-height: 100vh;
         text-align: center; /* Center text */
     }
+    .recommendation-action {
+ /* Vibrant red background */
+    color: white; /* White text color */
+    padding: 15px 20px; /* Padding inside the div */
+    margin: 20px 0; /* Margin around the div */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Changes cursor to a pointer to indicate clickability */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth background color and transform transition */
+    text-align: center; /* Centers the text */
+    display: inline-block; /* Allows the use of margin and text-align */
+    width: auto; /* Adjust width as needed */
+    max-width: 100%; /* Ensures the div does not overflow its container */
+}
 
-    .container {
-        display: flex;
-        flex-direction: column; /* Stack content vertically */
-        align-items: center; /* Center content horizontally */
-        width: 90%;
-        max-width: 1200px; /* Maximum width to prevent overly wide layouts on large screens */
-    }
+.recommendation-action:hover {
+/* A darker shade of red on hover */
+    transform: scale(1.05); /* Slightly enlarges the div on hover */
+}
 
-    .content, .user-info {
-        width: 100%; /* Full width of the container */
-        margin: 20px 0;
-        padding: 20px;
-        background: rgba(28, 28, 28, 0.8); /* Semi-transparent dark background */
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(255, 105, 105, 0.6);
+.recommendation-action p {
+    margin: 0; /* Removes default paragraph margin */
+    font-weight: bold; /* Makes the text bold */
+}
 
-        backdrop-filter: blur(5px); /* Soften the background */
-    }
-
-    .banner {
-       color: #C41E3A;
-        margin-bottom: 20px;
-        padding: 20px;
-        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5); /* White shadow */
-        text-shadow: 2px 2px 4px #000000; /* Black text shadow */
-    }
-
-    h1 {
-        font-size: 24px;
-        margin-bottom: 15px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-    }
+.container {
+    padding: 20px;
+    max-width: 1200px; /* Adjust based on your preference */
+    width: 100%; /* Adjusted to ensure it fits within its parent container */
+    background-color: rgba(255, 255, 255, 0.01); /* Semi-transparent background */
+    border-radius: 8px; /* Smaller rounded edges */
+    box-shadow: 0 0 200px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+    margin: 20px auto; /* Centers the container horizontally */
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+}
 
 
+.content {
+    position: relative; /* Keeps children positioned relative to this */
+    text-align: center; /* Centers text and inline elements */
+    width: 100%; /* Expands to match the page width */
+    margin: 20px auto; /* Centers the div horizontally with some vertical margin */
+    padding: 20px; /* Inner spacing around content */
+
+    
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Align items in the center for a neater layout */
+    overflow-y: auto; /* Allows vertical scrolling if the content overflows */
+}
+
+
+
+.banner h1 {
+    color: red; /* Vibrant red */
+    margin-bottom: 15px;
+}
+
+.banner p {
+    margin-bottom: 10px;
+    
+    color: white; /* Light grey for contrast */
+    font-size: 16px;
+}
+
+.login-link {
+  background-color: red; /* Gold color for the login link */
+    font-weight: bold;
+}
+
+.btn {
+    display: inline-block;
+    background-color: red; /* Vibrant red */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: red; /* Darker shade of button color */
+}
+
+.processing p, .recommendation-action p {
+
+    text-align: center;
+    cursor: pointer;
+}
+
+#load {
+  position:absolute;
+  width:600px;
+  height:36px;
+  left:50%;
+  top:40%;
+  margin-left:-300px;
+  overflow:visible;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+  cursor:default;
+}
+
+#load div {
+  position:absolute;
+  width:20px;
+  height:36px;
+  opacity:0;
+  font-family:Helvetica, Arial, sans-serif;
+  animation:move 2s linear infinite;
+  -o-animation:move 2s linear infinite;
+  -moz-animation:move 2s linear infinite;
+  -webkit-animation:move 2s linear infinite;
+  transform:rotate(180deg);
+  -o-transform:rotate(180deg);
+  -moz-transform:rotate(180deg);
+  -webkit-transform:rotate(180deg);
+  color:rgb(173,216,230);
+}
+
+#load div:nth-child(2) {
+  animation-delay:0.2s;
+  -o-animation-delay:0.2s;
+  -moz-animation-delay:0.2s;
+  -webkit-animation-delay:0.2s;
+}
+#load div:nth-child(3) {
+  animation-delay:0.4s;
+  -o-animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+  -webkit-animation-delay:0.4s;
+}
+#load div:nth-child(4) {
+  animation-delay:0.6s;
+  -o-animation-delay:0.6s;
+  -moz-animation-delay:0.6s;
+  -webkit-animation-delay:0.6s;
+}
+#load div:nth-child(5) {
+  animation-delay:0.8s;
+  -o-animation-delay:0.8s;
+  -moz-animation-delay:0.8s;
+  -webkit-animation-delay:0.8s;
+}
+#load div:nth-child(6) {
+  animation-delay:1s;
+  -o-animation-delay:1s;
+  -moz-animation-delay:1s;
+  -webkit-animation-delay:1s;
+}
+#load div:nth-child(7) {
+  animation-delay:1.2s;
+  -o-animation-delay:1.2s;
+  -moz-animation-delay:1.2s;
+  -webkit-animation-delay:1.2s;
+}
+
+@keyframes move {
+  0% {
+    left:0;
+    opacity:0;
+  }
+	35% {
+		left: 41%; 
+		-moz-transform:rotate(0deg);
+		-webkit-transform:rotate(0deg);
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%; 
+		-moz-transform:rotate(0deg); 
+		-webkit-transform:rotate(0deg); 
+		-o-transform:rotate(0deg);
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	100% {
+		left:100%; 
+		-moz-transform:rotate(-180deg); 
+		-webkit-transform:rotate(-180deg); 
+		-o-transform:rotate(-180deg); 
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+@-moz-keyframes move {
+	0% {
+		left:0; 
+		opacity:0;
+	}
+	35% {
+		left:41%; 
+		-moz-transform:rotate(0deg); 
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	65% {
+		left:59%; 
+		-moz-transform:rotate(0deg); 
+		transform:rotate(0deg);
+		opacity:1;
+	}
+	100% {
+		left:100%; 
+		-moz-transform:rotate(-180deg); 
+		transform:rotate(-180deg);
+		opacity:0;
+	}
+}
+
+@-webkit-keyframes move {
+	0% {
+		left:0; 
+		opacity:0;
+	}
+	35% {
+		left:41%; 
+		-webkit-transform:rotate(0deg); 
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	65% {
+		left:59%; 
+		-webkit-transform:rotate(0deg); 
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	100% {
+		left:100%;
+		-webkit-transform:rotate(-180deg); 
+		transform:rotate(-180deg); 
+		opacity:0;
+	}
+}
+
+@-o-keyframes move {
+	0% {
+		left:0; 
+		opacity:0;
+	}
+	35% {
+		left:41%; 
+		-o-transform:rotate(0deg); 
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	65% {
+		left:59%; 
+		-o-transform:rotate(0deg); 
+		transform:rotate(0deg); 
+		opacity:1;
+	}
+	100% {
+		left:100%; 
+		-o-transform:rotate(-180deg); 
+		transform:rotate(-180deg); 
+		opacity:0;
+	}
+}
  article,
 aside,
 details,
@@ -11317,12 +11545,21 @@ body.has-skin .owl-item {
 </head>
 <body>
 <title>Training</title>
+<div class="container">
 <div class="content">
     <div class="banner">
         <h1>Body Part Workouts</h1>
-        Balance Your Body and Mind - Select an Area to Focus On!
+        <p>Balance Your Body and Mind - Select an Area to Focus On!</p>
+        @auth
+            <p>Welcome back, <strong>{{ Auth::user()->name }}</strong>! Ready for your next challenge?</p>
+        @else
+            @if(Auth::guest())
+                <p>Please <a href="{{ route('login') }}" class="login-link">login</a> or <a href="{{ route('register') }}" class="register-link">register</a> to see your dashboard and receive personalized recommendations.</p>
+            @else
+                <p>Welcome, <strong>guest</strong>! <a href="{{ route('register') }}" class="register-link">Register</a> to track your progress and receive personalized recommendations.</p>
+            @endif
+        @endauth
     </div>
-    
 </div>
 
 <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" viewBox="0 0 473.37009 493.9" id="Layer_1" xml:space="preserve">
@@ -13118,35 +13355,44 @@ body.has-skin .owl-item {
   <path d="m 319.72433,61.7 c 0,0 0.1,-0.4 0.2,-0.8 0.2,-0.6 0.4,-1.3 0.7,-2.3 0.2,-0.5 0.5,-1 0.7,-1.5 0.2,-0.5 0.5,-1.1 0.9,-1.6 0.7,-1.1 1.3,-2.3 2.2,-3.3 0.9,-1.1 1.6,-2.1 2.3,-3 0.2,-0.5 0.7,-1 0.9,-1.5 0.1,-0.2 0.2,-0.5 0.4,-0.7 0.1,-0.2 0.1,-0.5 0.2,-0.7 0.1,-0.5 0.2,-0.9 0.2,-1.2 0.1,-0.4 0.1,-0.7 0.1,-1 0,-0.6 0,-1 0,-1 0,0 0.1,0.4 0.2,0.9 0,0.2 0.1,0.6 0.1,1.1 0,0.4 0,0.9 -0.1,1.5 0,0.2 -0.1,0.5 -0.1,0.8 -0.1,0.2 -0.2,0.5 -0.2,0.9 -0.1,0.6 -0.5,1.1 -0.9,1.7 -0.4,0.5 -0.7,1.1 -1.1,1.6 -0.4,0.5 -0.9,1.1 -1.2,1.6 -0.5,0.5 -0.7,1.1 -1.1,1.6 -0.4,0.5 -0.7,1 -1.1,1.6 -0.4,0.5 -0.6,1 -1,1.5 -0.2,0.5 -0.6,1 -0.9,1.3 -0.5,0.9 -0.9,1.6 -1.2,2.1 0,0.1 -0.2,0.4 -0.2,0.4 z" id="path2462" style="fill:#231f20"></path>
 </svg>
 <div class="content">
-  <div class="banner">
-  <h1>Your Customized Fitness Recommendations</h1>
+    <div class="banner">
+        <h1>Your Customized Fitness Recommendations</h1>
 
-@if(isset($recommendations['recommendations']))
+        <div id="getRecommendation" class="recommendation-action">
+            <p>Click here to receive your personalized workout recommendation.</p>
+        </div>
 
-    @if (is_string($recommendations['recommendations']))
+        <div id="processing" class="processing" style="display: none;">
+</br></br></br></br>
+          <div id="load">
+              <div>G</div>
+              <div>N</div>
+              <div>I</div>
+              <div>D</div>
+              <div>A</div>
+              <div>O</div>
+              <div>L</div>
+            </div>
+          </div>
 
-        <p>{{ $recommendations['recommendations'] }}</p>
+        <div id="recommendationResult" style="display: none;">
+            @if(isset($recommendations['recommendations']))
+                @if(is_string($recommendations['recommendations']))
+                    <p>{{ $recommendations['recommendations'] }}</p>
+                @else
+                    @foreach($recommendations['recommendations'] as $recommendation)
+                        <p>{{ $recommendation }}</p>
+                    @endforeach
+                @endif
 
-    @else
-
-        @foreach ($recommendations['recommendations'] as $recommendation)
-
-            <p>{{ $recommendation }}</p>
-
-        @endforeach
-
-    @endif
-
-    @if(isset($user_id)) <!-- Check if $user_id is set -->
-        <a href="{{ url('/entrainement/' . $user_id) }}">View Your Training Plan</a>
-    @endif
-
-@else
-
-    <p>Recommendations are not available at the moment.</p>
-
-@endif
-      </div>
+                @if(isset($user_id))
+                    <a href="{{ url('/entrainement/' . $user_id) }}">View Your Training Plan</a>
+                @endif
+            @else
+                <p>Recommendations are not available at the moment.</p>
+            @endif
+        </div>
+    </div>
 </div>
   </body>
 <script>
@@ -13177,6 +13423,14 @@ function navigateToWorkout(bodyPart) {
     console.error('No workout video found for', bodyPart);
   }
 }
+document.getElementById('getRecommendation').addEventListener('click', function() {
+    this.style.display = 'none';
+    document.getElementById('processing').style.display = 'block';
+    setTimeout(function() {
+        document.getElementById('processing').style.display = 'none';
+        document.getElementById('recommendationResult').style.display = 'block';
+    }, 4000); // Simulate processing for 4 seconds
+});
 </script>
 
 </html>

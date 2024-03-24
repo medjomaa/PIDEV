@@ -5,6 +5,36 @@
 <header>
 <title>Home</title>
     <style>@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Roboto:wght@300;400;500;700&display=swap");
+  :root {
+  --primary-light: #8abdff;
+  --primary: #6d5dfc;
+  --primary-dark: #5b0eeb;
+  --white: #ffffff;
+  --greyLight-1: #e4ebf5;
+  --greyLight-2: #c8d0e7;
+  --greyLight-3: #bec8e4;
+  --greyDark: #9baacf;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  overflow-y: scroll;
+  background: var(--greyLight-1);
+}
+@media screen and (min-width: 900px) {
+  html {
+    font-size: 75%;
+  }
+}
 
         *,
         *::before,
@@ -184,13 +214,15 @@
         /* LEFT CONTENT */
         
         .left-content {
-          display: grid;
-          grid-template-rows: 50% 50%;
-         
-          margin: 15px;
-          padding: 20px;
-          border-radius: 15px;
-        }
+        display: grid;
+        grid-template-rows: 50% 50%;
+        margin: 15px;
+        padding: 20px;
+        border-radius: 15px;
+        position: relative; /* Add this line */
+      }
+
+    
         
         /* ACTIVITIES */
         
@@ -504,13 +536,16 @@
         /* RIGHT CONTENT */
         
         .right-content {
-          display: grid;
-          grid-template-rows: 5% 20% 75%;
+          display: flex;
+          flex-direction: column;
+          align-items: center; /* Centers children horizontally in the container */
+          justify-content: flex-start; /* Aligns children to the start of the container vertically */
           background: rgba(27, 27, 50, 0.85);
           margin: 15px 15px 15px 0;
           padding: 10px 0;
           border-radius: 15px;
         }
+
         
         /* USER INFO */
         
@@ -966,6 +1001,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  margin-top: 20px;
 }
 
 .section-title {
@@ -1096,24 +1132,156 @@
   text-decoration: none;
   cursor: pointer;
 }
+#user-name {
+    color: #808080; /* Grey color */
+    font-family: 'Arial', sans-serif; /* Default font, but you can choose any */
+    font-size: 16px; /* Example size, adjust as needed */
+    font-weight: bold; /* Makes the text bold */
+    
+        top: 0;
+        right: 0;
+        margin: 10px; /* Adjust as needed for spacing */
+        color: #FFF; /* Adjust the color as needed */
+        background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a background to the user name for better visibility */
+        padding: 5px;
+        border-radius: 5px;/* Example spacing, adjust as needed */
+  }
+
+/*  CLOCK  */
+.clock {
+  background-color: rgba(0, 0, 0, 0.8); /* Darker background for contrast */
+  box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight-2), -0.2rem -0.2rem 0.5rem var(--white);
+  border: 2px solid rgba(255, 0, 0, 0.5); /* Red border with some transparency */
+  border-radius: 50%;
+  width: 12rem;
+  grid-column: 2/3;
+  grid-row: 1/3;
+  height: 12rem;
+  margin: 5px auto; /* Center horizontally */
+  margin-bottom: 20px; /* Spacing between the clock and the next element */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+
+
+.clock .hand {
+  position: absolute;
+  transform-origin: bottom;
+  bottom: 6rem;
+  border-radius: 0.2rem;
+  z-index: 200;
+}
+.clock .hours {
+  width: 0.4rem;
+  height: 3.2rem;
+  background: rgba(255, 0, 0, 0.9); /* Red hours hand */
+}
+.clock .minutes {
+  width: 0.4rem;
+  height: 4.6rem;
+  background: rgba(255, 255, 255, 0.8); /* White minutes hand for contrast */
+}
+.clock .seconds {
+  width: 0.2rem;
+  height: 5.2rem;
+  background: rgba(255, 0, 0, 0.9); /* Red seconds hand */
+}
+.clock .point {
+  position: absolute;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.9); /* Red center point */
+  z-index: 300;
+}
+
+/* Simplify the marker design for a sleeker look */
+.clock .marker {
+  display: none; /* Optionally, hide the detailed markers for a cleaner look */
+}
+
+/* Additional styles for the clock hands and markers can follow the theme */
+
+.clock .marker {
+  width: 95%;
+  height: 95%;
+  border-radius: 50%;
+  position: absolute; /* Adjusted to position absolutely within the clock */
+  border: 1px solid #fff; /* White border for visibility */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the marker within the clock */
+  display: flex; /* Enables center alignment of inner elements */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+}
+
+/* Individual markers for the hours */
+.clock .marker__1, .clock .marker__2, .clock .marker__3, .clock .marker__4 {
+  position: absolute;
+  background: #fff; /* White background for visibility */
+}
+
+.clock .marker__1, .clock .marker__2 {
+  width: 2%; /* Adjust width as necessary */
+  height: 6%; /* Adjust height to extend towards the clock center */
+}
+
+.clock .marker__3, .clock .marker__4 {
+  width: 6%; /* Adjust width to extend towards the clock center */
+  height: 2%; /* Adjust height as necessary */
+}
+
+/* Positioning each marker at the respective quarter */
+.clock .marker__1 {
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.clock .marker__2 {
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
+.clock .marker__3 {
+  left: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.clock .marker__4 {
+  left: 90%;
+  top: 50%;
+  transform: translate(-100%, -50%);
+}
+
+.digital-clock {
+  color: #fff; /* White color for visibility */
+  font-size: 2rem; /* Large font size for readability */
+  text-align: center; /* Center the text */
+  margin-top: 10px; /* Space between the analog clock and digital clock display */
+  font-family: 'Nunito', sans-serif; /* Consistent font style */
+}
 
        </style>
 </header>
 <body>  
 
-@auth
-    <!-- Content for authenticated users -->
-    Welcome back, {{ Auth::user()->name }}!
-@else
-    <!-- Content for guests -->
-    Please <a href="{{ route('login') }}">login</a> to see your dashboard.
-@endauth
+
 
     <main>
    <section class="content">
         <div class="left-content">
           <div class="activities">
             <h1>Popular Activities</h1>
+            <span id="user-name">Welcome {{ Auth::user()->name }}</span>
+</br>
             <div class="activity-container">
               <div class="image-container img-one">
                 <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/467cf682-03fb-4fae-b129-5d4f5db304dd" alt="tennis" />
@@ -1253,27 +1421,7 @@
 
         <div class="right-content">
          
-
-          
-
-          <div class="mobile-personal-bests">
-            <h1>Personal Bests</h1>
-            <div class="personal-bests-container">
-              <div class="best-item box-one">
-                <p>Fastest 5K Run: 22min</p>
-                <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/05dfc444-9ed3-44cc-96af-a9cf195f5820" alt="" />
-              </div>
-              <div class="best-item box-two">
-                <p>Longest Distance Cycling: 4 miles</p>
-                <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/9ca170e9-1252-4fa6-8677-36493540c1f2" alt="" />
-              </div>
-              <div class="best-item box-three">
-                <p>Longest Roller-Skating: 2 hours</p>
-                <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/262d1611-ed4c-4297-981c-480cf7f95714" alt="" />
-              </div>
-            </div>
-          </div>
-
+       
           <div class="friends-activity">
             <!-- <h1>Friends Activity</h1>
             <div class="card-container">
@@ -1288,8 +1436,23 @@
               </div>
 
               
-            </div> -->
-
+            </div> --> 
+            <!-- Clock -->
+            <h1 class="section-title">Time</h1>
+            <div class="clock">
+            <div class="hand hours"></div>
+            <div class="hand minutes"></div>
+            <div class="hand seconds"></div>
+            <div class="point"></div>
+            <div class="marker">
+              <span class="marker__1"></span>
+              <span class="marker__2"></span>
+              <span class="marker__3"></span>
+              <span class="marker__4"></span>
+            </div>
+          </div>
+          <div id="digital-clock" class="digital-clock">00:00:00</div>
+          <!-- events -->
             <div class="event-section">
             <h1 class="section-title">Upcoming Events</h1>
             <div class="event-cards-container">
@@ -1310,7 +1473,10 @@
 
 
           </div>
+         
+
         </div>
+        
       </section>
     </main>
 <!-- The Modal -->
@@ -1326,46 +1492,70 @@
 
 
     <script>
-   const navItems = document.querySelectorAll(".nav-item");
 
-navItems.forEach((navItem, i) => {
+const navItems = document.querySelectorAll(".nav-item");
+
+navItems.forEach((navItem) => {
   navItem.addEventListener("click", () => {
-    navItems.forEach((item, j) => {
+    navItems.forEach((item) => {
       item.className = "nav-item";
     });
     navItem.className = "nav-item active";
   });
 });
 
-// Get the modal
-var modal = document.getElementById("myModal");
+// Clock function
+const clock = () => {
+  const today = new Date();
+  let hours = today.getHours();
+  let minutes = today.getMinutes();
+  let seconds = today.getSeconds();
+  const formatTime = (time) => (`0${time}`).slice(-2); // Format time with leading zero
 
-// Get the <span> element that closes the modal
+  // Calculate angles
+  const hoursAngle = (hours % 12 + minutes / 60) * 30; // 12 hours on clock, 360 degrees
+  const minutesAngle = minutes * 6; // 60 minutes, 360 degrees
+  const secondsAngle = seconds * 6; // 60 seconds, 360 degrees
+
+  // Apply rotation
+  document.querySelector('.hours').style.transform = `rotate(${hoursAngle}deg)`;
+  document.querySelector('.minutes').style.transform = `rotate(${minutesAngle}deg)`;
+  document.querySelector('.seconds').style.transform = `rotate(${secondsAngle}deg)`;
+
+  // Update digital clock
+  hours = formatTime(hours);
+  minutes = formatTime(minutes);
+  seconds = formatTime(seconds);
+  document.getElementById('digital-clock').textContent = `${hours}:${minutes}:${seconds}`;
+
+  // Call clock function every second
+  setTimeout(clock, 1000);
+};
+
+// Initialize clock function
+clock();
+
+// Modal interaction script (Unchanged)
+var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
 
-// Loop through each event card to add the click event
 document.querySelectorAll('.event-card').forEach(item => {
   item.addEventListener('click', function() {
     modal.style.display = "block";
-    // Optional: Update modal content based on the clicked card
   });
 });
 
-// When the user clicks on <span> (x), close the modal
 span.onclick = function() {
   modal.style.display = "none";
-}
+};
 
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
-}
+};
+</script>
 
-
-
-    </script>
     </body>
     </html>
     @endsection

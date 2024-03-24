@@ -378,7 +378,6 @@
 }
 </style>
 
-
 <div class="layout">
     <div class="container-fluid">
         <div class="row">

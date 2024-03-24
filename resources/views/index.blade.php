@@ -19,13 +19,13 @@
         <div class="hero-slider-marketing">
           <a href="#" class="youtube-button"><span class="fa fa-play"></span></a>
           <h2>Be Fit. Top Trainer</h2>
-          <button>More Info</button>
+          <button >More Info</button>
         </div>
       </div>
 
-      <div class="hero-slide-item" style="background-image:url('https://cdn-live.powerhouse-fitness.co.uk/pictures/case_studies/raise-the-bar/slider_4.jpg');">
+      <div class="hero-slide-item" style="background-image:url('https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?cs=srgb&dl=pexels-leon-ardho-1552252.jpg&fm=jpg');">
         <div class="hero-slider-marketing">
-          <a href="#" class="youtube-button"><span class="fa fa-play"></span></a>
+          <a href="" class="youtube-button"><span class="fa fa-play"></span></a>
           <h2>Be Fit. Top Body</h2>
           <button>More Info</button>
         </div>

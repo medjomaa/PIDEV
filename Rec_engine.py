@@ -64,8 +64,8 @@ def find_closest_users(current_user_row, all_users, num_results=3):
     return [sim[0] for sim in similarities[:num_results]]
 def generate_recommendations(user_id):
     user_data = dataset[dataset['id'] == user_id]
-    if user_data.empty:
-        return "User ID not found."
+    # if user_data.empty:
+    #     return "User ID not found."
     
     user_row = user_data.iloc[0]
     
