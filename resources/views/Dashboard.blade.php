@@ -14,7 +14,10 @@
   
 </head>
 <style>
-     
+     body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f2f5;
+}
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 *{
   margin: 0;
@@ -27,6 +30,9 @@
   min-height: 100vh;
 }
 .sidebar{
+  background: #11101D; /* Darker shade for contrast */
+  transition: width 0.5s ease;
+  width: 90px; /* Initial width */
   position: fixed;
   left: 0;
   top: 0;
@@ -39,11 +45,11 @@
 }
 .sidebar a.active {
   background-color: #ffffff;
-  color: #000000; /* Change text color for visibility if needed */
+  color: #11101D; /* Text color for active state */
 }
 
 .sidebar a.active i {
-  color: #000000; /* Change icon color for visibility if needed */
+  color: #11101D;
 }
 
 .sidebar.open{
@@ -253,6 +259,23 @@
 .sidebar li.profile .job{
   font-size: 12px;
 }
+/* Initially hide the dropdown content */
+.dropdown-content {
+    display: none;
+    flex-direction: column;
+    padding-left: 10px; /* Indent dropdown items for a nested look */
+}
+
+/* Style for the dropdown items */
+.dropdown-content a {
+    font-size: 14px; /* Smaller font size */
+    color: #f0f0f0; /* Lighter text color for contrast */
+    background-color: #333333; /* Darker background for dropdown items */
+    padding: 5px 10px; /* Smaller padding */
+}
+
+
+
 .sidebar .profile #log_out{
   position: absolute;
   top: 50%;
@@ -330,7 +353,50 @@
 
 /* Improve profile container */
 
+.dropdown-content a {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+    color: #fff; /* Adjust the color based on your design */
+    transition: background 0.3s ease;
+}
 
+.dropdown-content a i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+/* Style for hover state */
+.sidebar:not(.open) .dropdown-content a:hover {
+    background-color: #555; /* Darker background on hover */
+    color: #fff;
+}
+
+/* Improve readability */
+.dropdown-content {
+    display: none;
+    flex-direction: column;
+    background-color: #333; /* Light background to distinguish dropdown */
+    width: 100%; /* Match parent width */
+}
+
+.sidebar.open .dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+
+/* Tooltip styling for better visibility */
+.sidebar li:hover .tooltip {
+    background-color: #fff;
+    color: #000;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    opacity : 1;
+    transform: translateY(-50%) translateX(0%);
+}
+
+/* When sidebar is not open, show tooltip next to icon */
+.sidebar:not(.open) li:hover .tooltip {
+    transform: translateY(-50%) translateX(20px);
+}
 
 * {
   box-sizing: border-box;
@@ -416,13 +482,25 @@
                         </a>
                         <span class="tooltip">Entrainement</span>
                     </li>
-                    <li>
+
+                    <li class="dropdown">
+                    <a href="/events" class="{{ request()->is('events') ? 'active' : '' }}">
+                        <i class='bx bx-calendar-event'></i>
+                        <span class="links_name">events</span>
+                      </a>
+                      <span class="tooltip">Events</span>
+                      <div class="dropdown-content">
                         <a href="/events" class="{{ request()->is('events') ? 'active' : '' }}">
-                            <i class='bx bx-calendar-event'></i>
-                            <span class="links_name">Evenement</span>
+                          <i class='bx bx-calendar-check'></i><span class="links_name">Events</span>
                         </a>
-                        <span class="tooltip">Evenement</span>
+                        <a href="/calendar" class="{{ request()->is('calendar') ? 'active' : '' }}">
+                          <i class='bx bx-calendar-event'></i><span class="links_name">Calendar</span>
+                        </a>
+                        <!-- Add additional dropdown items here as needed -->
+                      </div>
                     </li>
+
+
                     <li>
                         <a href="/produit" class="{{ request()->is('produit') ? 'active' : '' }}">
                             <i class="fas fa-shopping-cart"></i>
@@ -430,6 +508,7 @@
                         </a>
                         <span class="tooltip">Produit</span>
                     </li>
+
                     <li>
                         <a href="/categories" class="{{ request()->is('categories') ? 'active' : '' }}">
                             <i class="fas fa-tags"></i>
@@ -437,13 +516,24 @@
                         </a>
                         <span class="tooltip">Category</span>
                     </li>
-                    <li>
-                        <a href="/recommendation" class="{{ request()->is('feedback') || request()->is('recommendation') ? 'active' : '' }}">
+
+                    <li class="dropdown" >
+                    <a href="/recommendation" class="{{ request()->is('recommendation') ? 'active' : '' }}">
                             <i class="fas fa-heart"></i>
-                            <span class="links_name">Recommendation</span>
+                            <span class="links_name">Services</span>
                         </a>
-                        <span class="tooltip">Recommendation</span>
+                        <span class="tooltip">Services</span>
+                        <div class="dropdown-content">
+                            <a href="/recommendation" class="{{ request()->is('recommendation') ? 'active' : '' }}">
+                                <i class="fas fa-thumbs-up"></i><span class="links_name">Recommendation</span>
+                            </a>
+                            <a href="/feedback" class="{{ request()->is('feedback') ? 'active' : '' }}">
+                                <i class="fas fa-comment"></i><span class="links_name">Feedback</span>
+                            </a>
+                        </div>
                     </li>
+
+
                     
                     <li class="profile">
                     <div class="profile-details">
@@ -505,6 +595,64 @@ document.addEventListener("DOMContentLoaded", function() {
         // Change the dashboard background color to white
         dashboardSection.style.backgroundColor = "#1f1c2e";
     });
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const dropBtn = document.querySelector('.dropbtn');
+    dropBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dropdownContent = this.nextElementSibling;
+        dropdownContent.style.display = dropdownContent.style.display === 'flex' ? 'none' : 'flex';
+    });
+});
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the current URL path
+    const path = window.location.pathname;
+
+    // Check if the current path is recommendation or feedback
+    if (path.includes('/recommendation') || path.includes('/feedback')) {
+        // Get the Services menu item
+        const servicesMenuItem = document.getElementById('services-menu-item');
+
+        // Add the 'active' class to the Services menu item
+        servicesMenuItem.classList.add('active');
+    }
+});
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the current URL path
+    const path = window.location.pathname;
+
+    // Check if the current path is recommendation or feedback
+    if (path.includes('/calendar') || path.includes('/events')) {
+        // Get the Services menu item
+        const servicesMenuItem = document.getElementById('calendar-menu-item');
+
+        // Add the 'active' class to the Services menu item
+        servicesMenuItem.classList.add('active');
+    }
+});
+document.addEventListener("DOMContentLoaded", function() {
+    // Select all dropdown buttons
+    const dropdownBtns = document.querySelectorAll('.dropbtn');
+    
+    // Iterate over each button and add click event
+    dropdownBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const dropdownContent = this.nextElementSibling;
+            // Toggle display
+            dropdownContent.style.display = dropdownContent.style.display === 'none' ? 'flex' : 'none';
+        });
+    });
+});
+document.addEventListener('click', function(event) {
+    if (!event.target.matches('.dropbtn')) {
+        const dropdowns = document.getElementsByClassName('dropdown-content');
+        for (let i = 0; i < dropdowns.length; i++) {
+            let openDropdown = dropdowns[i];
+            if (openDropdown.style.display === 'flex') {
+                openDropdown.style.display = 'none';
+            }
+        }
+    }
 });
 
 </script>

@@ -9,12 +9,12 @@
         <nav>
           <ul class="flex">
             <li><a class="smooth-scroll-link" href="/dashboard">Home</a></li>
-            <li><a class="smooth-scroll-link" href="#">Entrainement</a></li>
-            <li><a class="smooth-scroll-link" href="#">Evenement</a></li>
+            <li><a class="smooth-scroll-link" href="#">Training</a></li>
+            <li><a class="smooth-scroll-link" href="#">Events</a></li>
             <li id="header-logo" class="top-gym-logo">
               <a class="smooth-scroll-link" href="#">Power<br/>Gym</a>
             </li>
-            <li><a class="smooth-scroll-link" href="#">Produit</a></li>
+            <li><a class="smooth-scroll-link" href="#">Products</a></li>
             <li><a class="smooth-scroll-link" href="#">Feedback</a></li>
             <li>
             <a href="registration"> Se connecter</a>
@@ -57,6 +57,7 @@
 
 body {
     color: #000000; /* black text color */
+    padding-top: 100px;
     background-color: #000000;
     /* background-image: url(https://img.freepik.com/premium-photo/dark-gym-with-red-lights-black-background_876956-1224.jpg); */
   }
@@ -151,15 +152,15 @@ section, footer {
 }
 
 header {
-  position: absolute;
-  width: 100%;
+  position: fixed; /* Fix position to the top of the viewport */
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  padding: 1rem 0;
-  z-index: 1;
+  align-items: centered;
+  width: 100%;
+  z-index: 1000; /* Ensure the header is above other content */
+  background: rgba(0, 0, 0, 0.8); /* Optional: Make the background slightly transparent or solid */
 }
+
 
 header nav {
   max-width: 950px;
@@ -871,6 +872,22 @@ footer small a {
     opacity: 1;
     transform: translateY(0);
   }
+  /* Social Icons hover effect */
+.social-icons li a {
+  transition: color 0.3s ease-in-out; /* Smooth transition for color change */
+}
+
+.social-icons li a:hover .fab {
+  color: inherit; /* This ensures the color changes on hover */
+}
+
+/* Individual color for each social icon on hover */
+.social-icons li a:hover .fa-pinterest { color: #BD081C; } /* Pinterest red */
+.social-icons li a:hover .fa-facebook { color: #3B5998; } /* Facebook blue */
+.social-icons li a:hover .fa-twitter { color: #1DA1F2; } /* Twitter blue */
+.social-icons li a:hover .fa-youtube { color: #FF0000; } /* YouTube red */
+.social-icons li a:hover .fa-behance { color: #053EFF; } /* Behance blue */
+
     </style>
 </head>
 <body>
@@ -1040,7 +1057,7 @@ $(document).ready(function() {
 
       <div class="mailing-list">
         <input type="text" placeholder="YOUR EMAIL" />
-        <button>SIGN UP</button>
+        <button><a href="/registration">SIGN UP</a></button>
       </div>
 
 

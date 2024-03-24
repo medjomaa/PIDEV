@@ -11,7 +11,7 @@ use App\Http\Controllers\RecommendationsController;
 use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\EventsController;
 use Illuminate\Support\Facades\Session;
-
+use App\Http\Controllers\Event2Controller;
 
 // Home route
 Route::get('/', HomeController::class)->name('home');
@@ -124,3 +124,4 @@ Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('eve
 // Route::post('/recommendation', 'RecommendationsController@submitRecommendation')->name('recommendation.submit');
 // Route::get('/recommendation', [RecommendationsController::class, 'showForm'])->name('recommendation.form');
 Route::get('/home', [EventsController::class, 'index'])->name('home');
+Route::get('/calendar', [Event2Controller::class, 'index'])->name('calendar.index');
