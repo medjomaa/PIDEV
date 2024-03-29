@@ -12,6 +12,8 @@ use App\Http\Controllers\AuthManager;
 use App\Http\Controllers\EventsController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Event2Controller;
+use App\Http\Controllers\UserProfileController;
+
 
 // Home route
 Route::get('/', HomeController::class)->name('home');
@@ -83,9 +85,16 @@ Route::get('/entrainement', [FlaskAPIController::class, 'fetchRecommendations'])
      ->name('entrainement');
 
 
-Route::get('/user-manager', function () {
-    return view('user-manager'); // Assumes you have a view named user-manager.blade.php
-})->name('user-manager');
+Route::get('/user-manager', [UserProfileController::class, 'index'])->name('profile')->middleware('auth');
+Route::get('/user-manager', [UserProfileController::class, 'index'])
+     ->name('profile')
+     ->middleware('auth');
+
+// Route for submitting the profile update form
+Route::post('/user-manager/update', [UserProfileController::class, 'update'])
+     ->name('profile.update') // This names the route as 'profile.update'
+     ->middleware('auth');
+
 // Route::get('/entrainement', function () {
 //     return view('entrainement'); // Assumes you have a view named entrainement.blade.php
 // })->name('entrainement');

@@ -887,8 +887,143 @@ footer small a {
 .social-icons li a:hover .fa-twitter { color: #1DA1F2; } /* Twitter blue */
 .social-icons li a:hover .fa-youtube { color: #FF0000; } /* YouTube red */
 .social-icons li a:hover .fa-behance { color: #053EFF; } /* Behance blue */
+/* BMI Calculator Styles */
+#bmi-calculator {
+  background-color: #fff;
+  color: #fff;
+  padding: 50px 0;
+  text-align: center;
+}
 
-    </style>
+#bmi-calculator {
+  background-color: #000;
+  color: #fff;
+  padding: 50px 0;
+  text-align: center;
+}
+
+#bmi-calculator h3 {
+  color: #ff0000;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  animation: pulse 2s infinite;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.form-group input[type="number"],
+.form-group select {
+  width: 80%;
+  padding: 10px;
+  margin: auto;
+  border: 2px solid #ff0000;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+}
+
+button[type="submit"] {
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2em;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #e60000;
+}
+
+#bmi-result p {
+  font-size: 1.4em;
+  margin-top: 20px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.fa-dumbbell:before {
+  content: "\f44b";
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-image: url('https://example.com/background-image.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+}
+
+.youtube-button,
+#search-container button,
+#video-frame-hide {
+  background-color: #ff0000;
+  color: #fff;
+}
+
+.loader-5 {
+  width: 48px;
+  height: 48px;
+  border: 3px solid #FFF;
+  border-radius: 50%;
+  display: none; /* Initially hidden */
+  position: relative;
+  animation: rotation 1s linear infinite;
+  margin: 20px auto; /* Center the loader */
+}
+
+.loader-5:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid;
+  border-color: #FF3D00 transparent;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
 </head>
 <body>
     @yield('content')

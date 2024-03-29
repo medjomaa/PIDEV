@@ -70,6 +70,81 @@
       </div>
     </div>
   </section>
+  <script>
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('bmi-form');
+  var loader = document.querySelector('.loader-5');
+  var resultContainer = document.getElementById('bmi-result');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Show the loader
+    loader.style.display = 'inline-block';
+    resultContainer.innerHTML = ''; // Clear previous results
+
+    // Delay calculation to simulate loading
+    setTimeout(function() {
+      var age = document.getElementById('age').value;
+      var height = document.getElementById('height').value;
+      var weight = document.getElementById('weight').value;
+
+      if (height <= 0 || weight <= 0) {
+        resultContainer.innerHTML = `<p>Please enter valid height and weight values.</p>`;
+      } else {
+        var bmi = calculateBMI(weight, height);
+        var resultText = getBMICategory(bmi);
+        resultContainer.innerHTML = `<p>Your BMI is ${bmi}. ${resultText}</p>`;
+      }
+
+      // Hide the loader
+      loader.style.display = 'none';
+    }, 5000);
+  });
+
+  function calculateBMI(weight, height) {
+    return (weight / ((height / 100) * (height / 100))).toFixed(2);
+  }
+
+  function getBMICategory(bmi) {
+    if (bmi < 16) return "Severely underweight - It's crucial to seek advice from healthcare professionals to understand and address the underlying causes.";
+    if (bmi >= 16 && bmi < 18.5) return "Underweight - It's recommended to eat a balanced diet and consult a healthcare provider to gain weight healthily.";
+    if (bmi >= 18.5 && bmi < 22) return "Normal weight - You're doing great maintaining a healthy weight! Keep up with your balanced diet and regular exercise.";
+    if (bmi >= 22 && bmi <= 24.9) return "Normal weight, closer to overweight - You're at the higher end of the healthy weight range. Consider monitoring your diet and exercise to maintain your weight.";
+    if (bmi >= 25 && bmi < 27) return "Overweight - You're slightly over the ideal weight range. Consider adopting healthier eating habits and increasing physical activity.";
+    if (bmi >= 27 && bmi <= 29.9) return "Overweight, closer to obesity - It's advisable to take steps towards a healthier lifestyle through improved diet and more exercise to prevent obesity.";
+    if (bmi >= 30 && bmi < 35) return "Obesity, Class I - It's important to consult a healthcare provider for advice on achieving a healthier weight through diet and exercise.";
+    if (bmi >= 35 && bmi < 40) return "Obesity, Class II - Significant health risks are associated with this weight. Professional guidance on diet and exercise is recommended.";
+    return "Obesity, Class III - Extremely high health risks are present. Immediate medical intervention is essential for health improvement.";
+  }
+
+
+});
+</script>
+
+<section id="bmi-calculator" class="animated-section" style="background-color: black; color: white;">
+  <div class="container">
+    <h3 style="color: red;">Calculate Your BMI</h3>
+    <form id="bmi-form">
+      <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+      </div>
+      <div class="form-group">
+        <label for="height">Height (in cm):</label>
+        <input type="number" id="height" name="height" required>
+      </div>
+      <div class="form-group">
+        <label for="weight">Weight (in kg):</label>
+        <input type="number" id="weight" name="weight" required>
+      </div>
+      <button type="submit" style="background-color: red; color: white;">Calculate BMI</button>
+    </form>
+    <!-- Loader is initially hidden and shown when form is submitted -->
+    <div><span class="loader-5"></span></div>
+    <div id="bmi-result" style="margin-top: 20px;"></div>
+  </div>
+</section>
 
   <section id="services" class="animated-section">
     <h3>Services</h3>
