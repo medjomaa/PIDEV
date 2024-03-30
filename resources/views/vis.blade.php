@@ -4,6 +4,14 @@
 @section('content')
 <title>Admin Dashboard</title>
 <style>
+.user-profile-image {
+    font-size: 40px; /* This property won't affect the image but kept for consistency */
+    color: #333; /* This won't affect the image but kept for consistency */
+    width: 40px; /* Set the width of the image */
+    height: 40px; /* Set the height of the image */
+    object-fit: cover; /* Ensure the image covers the area without distorting aspect ratio */
+    border-radius: 50%; /* Make the image circular */
+}
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 body {
@@ -869,7 +877,16 @@ header {
     <div class="dashboard-title">Gym Performance Dashboard</div>
     <div class="user-info">
     <div class="user-name">{{ $userName }}</div>
-    <i class="fas fa-user" style="font-size: 40px; color: #333;"></i>
+    <header>
+    @if($userImage)
+        <img src="{{ $userImage }}" alt="User Profile Image" class="user-profile-image">
+    @else
+        <i class="fas fa-user" style="font-size: 40px; color: #333;"></i>
+    @endif
+</header>
+
+
+
 </div>
 
 

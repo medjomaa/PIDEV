@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
+    <!-- Additional head content -->
 
-
-
-    <!DOCTYPE html>
-<html>
 <head>
   
 </head>
 <style>
+  .logo img {
+    width: 32px; /* Or whatever size fits your layout */
+    height: 32px;
+    margin: 10px; /* Adjust as needed */
+}
      body {
   font-family: 'Poppins', sans-serif;
   background-color: #f0f2f5;

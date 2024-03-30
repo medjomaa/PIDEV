@@ -28,28 +28,29 @@ class UserProfileController extends Controller
      */
     public function update(Request $request)
     {
-        $user = Auth::user();
+       // Inside your profile update method
+        $user = Auth::user(); // Get the authenticated user
 
-        // Validate the request data
+        // Validate the request
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'password' => 'nullable|string|min:8|confirmed',
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'password' => 'nullable|min:6|confirmed',
+            'profile_image' => 'nullable|url', // Ensure it's a valid URL
         ]);
 
-        // Update the user's profile information
+        // Update user information
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->profile_image = $request->profile_image; // Save the image URL directly
 
-        // Update the password if it is provided
-        if (!empty($request->password)) {
+        if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
 
-        // Save the changes
         $user->save();
 
-        // Redirect back with a success message
-        return back()->with('success', 'Profile updated successfully.');
+        return redirect()->back()->with('success', 'Profile updated successfully.');
+
     }
 }

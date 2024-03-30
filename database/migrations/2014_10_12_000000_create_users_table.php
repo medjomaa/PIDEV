@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('profile_image')->nullable()->after('password');
         });
     }
 
@@ -27,6 +28,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        
+        Schema::table('users', function (Blueprint $table) {
+            // Remove the profile_image column if the migration is rolled back
+            $table->dropColumn('profile_image');
+        });
+        
     }
 };

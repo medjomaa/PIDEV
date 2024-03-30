@@ -81,6 +81,18 @@ body {
 }
 
 </style>
+<!-- Before your login form -->
+@if($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+<!-- Your login form continues below -->
+
 <div class="login-box">
     <div class="logo">PowerGym</div>
     <div class="log-in-text">Log in</div>

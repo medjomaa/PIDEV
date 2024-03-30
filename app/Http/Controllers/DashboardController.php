@@ -17,7 +17,12 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
 {
-    if (Auth::check() && Auth::user()->name == 'admin') {
+    $userImage = Auth::user()->profile_image; // Get the authenticated user's profile image.
+
+    // Pass it to the view
+ 
+
+    if (Auth::check() && Auth::user()->email == 'admin@gmail.com') {
         $selectedDate = $request->input('date');
         $graphJSON = $this->getVisualizationData($selectedDate);
         $userName = Auth::user()->name;
@@ -53,6 +58,7 @@ class DashboardController extends Controller
         $poorqp = ($totalFeedbacks > 0) ? ($poorq / $totalFeedbacks) * 100 : 0;
 
         return view('vis', [
+            'userImage' => $userImage,
             'graphJSON' => $graphJSON,
             'selectedDate' => $selectedDate,
             'userName' => $userName,
@@ -66,6 +72,7 @@ class DashboardController extends Controller
             'goodqp'=>$goodqp,
             'fairqp'=>$fairqp,
             'poorqp'=>$poorqp
+            
         ]);
     } else {
         return redirect()->back()->with('error', 'You are not authorized to access this page.');

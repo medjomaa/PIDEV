@@ -1,4 +1,3 @@
-
 @extends('dashboard')
 @section('title', 'Power Gym - Feedback')
 @section('content')
@@ -19,39 +18,54 @@
 @endif
 
 <div class="profile-update-wrapper">
-    <form class="form-horizontal profile-update" method="POST" action="{{ route('profile.update') }}">
+<header>
+    <img src="{{ $user->profile_image ?: 'https://w7.pngwing.com/pngs/981/645/png-transparent-default-profile-united-states-computer-icons-desktop-free-high-quality-person-icon-miscellaneous-silhouette-symbol-thumbnail.png' }}" alt="User Profile Image" class="user-profile-image">
+</header>
+
+
+
+
+    <form class="form-horizontal profile-update" method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
         @csrf
-    <!-- Name Field -->
-    <div class="form-group clearfix">
-        <div class="col-sm-12 control-label">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Your name" value="{{ $user->name }}">
+        <!-- Name Field -->
+        <div class="form-group clearfix">
+            <div class="col-sm-12 control-label">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Your name" value="{{ $user->name }}">
+            </div>
         </div>
-    </div>
-    <!-- Email Field -->
-    <div class="form-group clearfix">
-        <div class="col-sm-12 control-label">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Your email" value="{{ $user->email }}">
+        <!-- Email Field -->
+        <div class="form-group clearfix">
+            <div class="col-sm-12 control-label">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Your email" value="{{ $user->email }}">
+            </div>
         </div>
-    </div>
-    <!-- Password Field -->
-    <div class="form-group clearfix">
-        <div class="col-sm-12 control-label">
-            <label for="password">New Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="New Password">
+        <!-- Password Field -->
+        <div class="form-group clearfix">
+            <div class="col-sm-12 control-label">
+                <label for="password">New Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="New Password">
+            </div>
         </div>
-    </div>
-    <!-- Password Confirmation Field -->
-    <div class="form-group clearfix">
-        <div class="col-sm-12">
-            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm New Password">
+        <!-- Password Confirmation Field -->
+        <div class="form-group clearfix">
+            <div class="col-sm-12">
+                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm New Password">
+            </div>
         </div>
-    </div>
-    <!-- Submit Button -->
-    <div class="form-btns clearfix">
-        <button type="submit" class="btn btn-primary">Save changes</button>
-    </div>
+        <!-- Image Upload Field -->
+        <div class="form-group clearfix">
+            <div class="col-sm-12 control-label">
+                <label for="profile_image">Profile Picture URL</label>
+                <input type="text" class="form-control" id="profile_image" name="profile_image" placeholder="Enter image URL" value="{{ $user->profile_image }}">
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-btns clearfix">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
     </form>
 </div>
 
@@ -64,6 +78,13 @@ body {
     margin: 0;
     padding: 20px;
     text-align: center;
+}
+.user-profile-image {
+    max-width: 100px;
+    border-radius: 50%; /* Circular image */
+    border: 3px solid #FFAAAA; /* Light red border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    margin-bottom: 20px; /* Space between the image and the form */
 }
 
 /* Form Container */
