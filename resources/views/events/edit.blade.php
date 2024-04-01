@@ -113,42 +113,50 @@ button:hover {
 </head>
 
 <body>
-    <form action="{{ route('events.update', $event) }}" method="POST">
-     	@csrf
+<form action="{{ route('events.update', $event) }}" method="POST">
+        @csrf
         @method('PUT')
-        <h1>Upadte | Events</h1>
+        <h1>Update | Events</h1>
         <div class="case">
             <h3>Power Gym</h3>
             <div class="grid">
 
-			<label for="title" id="ic">Title</label>
-            <input id="title" type="text" class="form-control" name="title" value="{{ $event->title }}" required autofocus>
+                <!-- Error messages display -->
+                @if ($errors->any())
+                    <div style="background-color: #FF4136; color: white; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-			<label for="description" id="ic">Description</label>
-            <textarea id="description" class="form-control" name="description" required>{{ $event->description }}</textarea>
+                <label for="title" id="ic">Title</label>
+                <input id="title" type="text" class="form-control" name="title" value="{{ old('title', $event->title) }}" required autofocus>
 
-			<label for="type" id="ic">Type:</label>
-            <select id="type" name="type" required>
-            @foreach($categories as $category)
-                <option value="{{ $category->name }}" {{ $category->name == $event->type ? 'selected' : '' }}>
-                    {{ $category->name }}
-                </option>
-            @endforeach
-            </select>
- 
-			<label for="start_date" id="ic">Start Date</label>
-            <input id="start_date" type="date" class="form-control" name="start_date" value="{{ $event->start_date }}" required>
+                <label for="description" id="ic">Description</label>
+                <textarea id="description" class="form-control" name="description" required>{{ old('description', $event->description) }}</textarea>
 
-		
-			<label for="end_date" id="ic">End Date</label>
-            <input id="end_date" type="date" class="form-control" name="end_date" value="{{ $event->end_date }}" required>
-		
-	
+                <label for="type" id="ic">Type:</label>
+                <select id="type" name="type" required>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->name }}" {{ $category->name == $event->type ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
+                    @endforeach
+                </select>
+     
+                <label for="start_date" id="ic">Start Date</label>
+                <input id="start_date" type="date" class="form-control" name="start_date" value="{{ old('start_date', $event->start_date) }}" required>
+            
+                <label for="end_date" id="ic">End Date</label>
+                <input id="end_date" type="date" class="form-control" name="end_date" value="{{ old('end_date', $event->end_date) }}" required>
+            
             </div>
-			<button type="submit" class="btn btn-primary">Update Event</button>
+            <button type="submit" class="btn btn-primary">Update Event</button>
         </div>
     </form>
-
 </body>
 
 </html>

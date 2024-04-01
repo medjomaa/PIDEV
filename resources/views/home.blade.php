@@ -4,7 +4,8 @@
 <!DOCTYPE html>
 <header>
 <title>Home</title>
-    <style>@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Roboto:wght@300;400;500;700&display=swap");
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Roboto:wght@300;400;500;700&display=swap");
   :root {
   --primary-light: #8abdff;
   --primary: #6d5dfc;
@@ -1132,20 +1133,43 @@ html {
   text-decoration: none;
   cursor: pointer;
 }
+.activities {
+    position: relative; /* To position the user-info absolutely within */
+    padding-top: 60px; /* Adjust based on your needs, to make space for user info */
+}
+
+.left-content {
+    position: relative; /* Ensures the user-info can be positioned absolutely within */
+    padding-top: 20px; /* Provides space for the user-info */
+}
+
+.user-info {
+    position: absolute;
+    top: 0;
+    left: 0; /* Align to the far left */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Spacing between image and text */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: for better visibility */
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px; /* Adjust as needed for spacing */
+}
+
 #user-name {
-    color: #808080; /* Grey color */
-    font-family: 'Arial', sans-serif; /* Default font, but you can choose any */
-    font-size: 16px; /* Example size, adjust as needed */
-    font-weight: bold; /* Makes the text bold */
-    
-        top: 0;
-        right: 0;
-        margin: 10px; /* Adjust as needed for spacing */
-        color: #FFF; /* Adjust the color as needed */
-        background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a background to the user name for better visibility */
-        padding: 5px;
-        border-radius: 5px;/* Example spacing, adjust as needed */
-  }
+    color: #FFF; /* Text color */
+    font-family: 'Arial', sans-serif; /* Font family */
+    font-size: 16px; /* Font size */
+    font-weight: bold; /* Bold text */
+}
+
+.user-profile-image {
+    width: 40px; /* Image width */
+    height: 40px; /* Image height to match width */
+    border-radius: 50%; /* Circular image */
+    vertical-align: middle; /* Aligns the image vertically to the middle */
+}
+
 
 /*  CLOCK  */
 .clock {
@@ -1268,6 +1292,83 @@ html {
   margin-top: 10px; /* Space between the analog clock and digital clock display */
   font-family: 'Nunito', sans-serif; /* Consistent font style */
 }
+/* Defining new color scheme with darker tones */
+:root {
+    --dark-red: red; /* Deep red for vibrant contrast */
+    --dark-grey: #282c34; /* A dark shade of grey for backgrounds */
+    --light-grey: #3c4049; /* A lighter shade of grey for containers */
+    --orange: rgba(2, 27, 50, 0.8); /* Bright orange for accents */
+    --black: #000000; /* Black for primary text and elements */
+}
+
+body {
+    background-color: var(--black); /* Set the body background to black */
+    color: var(--white); /* Set text color to white */
+    font-family: Arial, sans-serif; /* Change font for better readability */
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove default padding */
+}
+
+.user-info-section {
+    background: linear-gradient(to bottom right, rgba(2, 27, 50, 0.8), rgba(0, 0, 0, 0.8));
+    color: var(--white); /* Set text color to white */
+    border-radius: 10px; /* Add border radius for rounded corners */
+    padding: 20px; /* Add padding for spacing */
+    margin: 20px auto 40px; /* Adjust margins for spacing */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Add box shadow for depth */
+    max-width: 800px; /* Set maximum width for content */
+}
+
+.user-info-section h1, .user-info-section h2 {
+    color: white; /* Set titles to deep red */
+    font-weight: bold; /* Make titles bold */
+}
+
+.user-info-section p {
+    color: var(--white); /* Set paragraph text color to white */
+}
+
+/* Specific styles for BMI and recommendations sections */
+.user-bmi, .recommendations {
+    background-color: var(--light-grey); /* Set background color for specific sections */
+    padding: 15px; /* Add padding for spacing */
+    margin-bottom: 20px; /* Add margin for spacing */
+    border-left: 5px solid var(--orange); /* Add left border for accent */
+    border-radius: 5px; /* Add border radius for rounded corners */
+}
+
+/* Styling for added cool effects and interactive elements */
+.user-info-section p {
+    background-color: var(--black); /* Set background color for paragraphs */
+    padding: 10px; /* Add padding for spacing */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    margin-bottom: 10px; /* Add margin for spacing */
+    box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.1); /* Add inset box shadow for depth */
+}
+
+.user-info-section a {
+    display: inline-block; /* Set display to inline block */
+    background-color: var(--dark-red); /* Set background color for links */
+    color: var(--white); /* Set text color to white */
+    padding: 10px 20px; /* Add padding for spacing */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    text-decoration: none; /* Remove default underline */
+    font-weight: bold; /* Make text bold */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add box shadow for depth */
+    transition: background-color 0.3s ease; /* Add transition for smooth color change */
+}
+
+.user-info-section a:hover {
+    background-color: linear-gradient(to bottom right, rgba(2, 27, 50, 0.8), rgba(0, 0, 0, 0.8)); /* Change background color on hover */
+}
+
+/* Enhancing hover effects for sections */
+.user-bmi:hover, .recommendations:hover {
+    transform: scale(1.02); /* Scale up on hover */
+    box-shadow: 0 0 20px #8abdff; /* Add shadow on hover */
+    transition: all 0.3s ease-in-out; /* Add transition for smooth effect */
+}
+
 
        </style>
 </header>
@@ -1279,8 +1380,13 @@ html {
    <section class="content">
         <div class="left-content">
           <div class="activities">
-            <h1>Popular Activities</h1>
-            <span id="user-name">Welcome {{ Auth::user()->name }}</span>
+
+          <div class="user-info">
+        <img src="{{ Auth::user()->profile_image ?: 'https://w7.pngwing.com/pngs/981/645/png-transparent-default-profile-united-states-computer-icons-desktop-free-high-quality-person-icon-miscellaneous-silhouette-symbol-thumbnail.png' }}" alt="User Profile Image" class="user-profile-image">
+        <span id="user-name">Welcome {{ Auth::user()->name }}</span>
+    </div>
+</br>
+<h1> Popular Categories</h1>
 </br>
             <div class="activity-container">
               <div class="image-container img-one">
@@ -1326,78 +1432,48 @@ html {
               </div>
             </div>
           </div>
-
+          
           <div class="left-bottom">
-            <div class="weekly-schedule">
-              <h1>Weekly Schedule</h1>
-              <div class="calendar">
-                <div class="day-and-activity activity-one">
-                  <div class="day">
-                    <h1>13</h1>
-                    <p>mon</p>
-                  </div>
-                  <div class="activity">
-                    <h2>Swimming</h2>
-                    <div class="participants">
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/c61daa1c-5881-43f8-a50f-62be3d235daf" style="--i: 1" alt="" />
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/90affa88-8da0-40c8-abe7-f77ea355a9de" style="--i: 2" alt="" />
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/07d4fa6f-6559-4874-b912-3968fdfe4e5e" style="--i: 3" alt="" />
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/e082b965-bb88-4192-bce6-0eb8b0bf8e68" style="--i: 4" alt="" />
-                    </div>
-                  </div>
-                  <button class="btn">Join</button>
-                </div>
-
-                <div class="day-and-activity activity-two">
-                  <div class="day">
-                    <h1>15</h1>
-                    <p>wed</p>
-                  </div>
-                  <div class="activity">
-                    <h2>Yoga</h2>
-                    <div class="participants">
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/c61daa1c-5881-43f8-a50f-62be3d235daf" style="--i: 1" alt="" />
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/32037044-f076-433a-8a6e-9b80842f29c9" style="--i: 2" alt="" />
-                    </div>
-                  </div>
-                  <button class="btn">Join</button>
-                </div>
-
-                <div class="day-and-activity activity-three">
-                  <div class="day">
-                    <h1>17</h1>
-                    <p>fri</p>
-                  </div>
-                  <div class="activity">
-                    <h2>Tennis</h2>
-                    <div class="participants">
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/32037044-f076-433a-8a6e-9b80842f29c9" style="--i: 1" alt="" />
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/e082b965-bb88-4192-bce6-0eb8b0bf8e68" style="--i: 2" alt="" />
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/c61daa1c-5881-43f8-a50f-62be3d235daf" style="--i: 3" alt="" />
-                    </div>
-                  </div>
-                  <button class="btn">Join</button>
-                </div>
-
-                <div class="day-and-activity activity-four">
-                  <div class="day">
-                    <h1>18</h1>
-                    <p>sat</p>
-                  </div>
-                  <div class="activity">
-                    <h2>Hiking</h2>
-                    <div class="participants">
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/07d4fa6f-6559-4874-b912-3968fdfe4e5e" style="--i: 1" alt="" />
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/32037044-f076-433a-8a6e-9b80842f29c9" style="--i: 2" alt="" />
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/07d4fa6f-6559-4874-b912-3968fdfe4e5e" alt="" />
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/c61daa1c-5881-43f8-a50f-62be3d235daf" style="--i: 4" alt="" />
-                      <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/90affa88-8da0-40c8-abe7-f77ea355a9de" style="--i: 5" alt="" />
-                    </div>
-                  </div>
-                  <button class="btn">Join</button>
-                </div>
-              </div>
+          <div class="weekly-schedule">
+    <h1>Upcoming Events</h1>
+    <div class="calendar">
+        @foreach($events->sortByDesc('start_date')->take(4) as $event)
+        @php
+            // Example logic to determine the background gradient based on the event type
+            $gradient = '';
+            switch ($event->type) {
+                case 'Swimming':
+                    $gradient = 'linear-gradient(240deg, rgb(124, 136, 224) 0%, #c3f4fc 100%)';
+                    break;
+                case 'Yoga':
+                    $gradient = 'linear-gradient(240deg, #e5a243ab 0%, #f7f7aa 90%)';
+                    break;
+                case 'Tennis':
+                    $gradient = 'linear-gradient(240deg, #97e7d1 0%, #ecfcc3 100%)';
+                    break;
+                case 'Hiking':
+                    $gradient = 'linear-gradient(240deg, #fc8ebe 0%, #fce5c3 100%)';
+                    break;
+                default:
+                    $gradient = 'linear-gradient(240deg, #888 0%, #aaa 100%)'; // Default gradient
+            }
+        @endphp
+        <div class="day-and-activity" style="background-image: {{ $gradient }};">
+            <div class="day">
+                <h1>{{ \Carbon\Carbon::parse($event->start_date)->format('d') }}</h1>
+                <p>{{ \Carbon\Carbon::parse($event->start_date)->format('D') }}</p>
             </div>
+            <div class="activity">
+                <h2>{{ $event->title }}</h2>
+                <div class="participants">
+                    <p class="event-description">{{ $event->description }}</p>
+                </div>
+            </div>
+            <button class="btn">{{ $event->type }}</button>
+        </div>
+        @endforeach
+    </div>
+</div>
 
             <div class="personal-bests">
               <h1>Personal Bests</h1>
@@ -1417,6 +1493,8 @@ html {
               </div>
             </div>
           </div>
+
+          
         </div>
 
         <div class="right-content">
@@ -1453,23 +1531,20 @@ html {
           </div>
           <div id="digital-clock" class="digital-clock">00:00:00</div>
           <!-- events -->
-            <div class="event-section">
-            <h1 class="section-title">Upcoming Events</h1>
-            <div class="event-cards-container">
-                @foreach($events->sortByDesc('start_date')->take(-2) as $event)
-                <div class="event-card">
-                    <div class="event-card-header">
-                        <h2 class="event-title">{{ $event->title }}</h2>
-                        <p class="event-date">{{ \Carbon\Carbon::parse($event->start_date)->format('M d, Y') }} - {{ \Carbon\Carbon::parse($event->end_date)->format('M d, Y') }}</p>
-                    </div>
-                    <div class="event-card-body">
-                        <p class="event-description">{{ $event->description }}</p>
-                        <p class="event-type">Type: {{ $event->type }}</p>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
+          <div class="user-info-section">
+              <h1>User Fitness Information</h1>
+              <div class="user-bmi">
+                  <h2>BMI Information</h2>
+                  <p>Your BMI: {{ $userBMI }}</p>
+                  {{-- Display BMI-based tips here, assuming they are part of the user info --}}
+              </div>
+              <div class="recommendations">
+                  <h2>Exercise Recommendations</h2>
+                  <p>{{ $recommendations }}</p>
+                  {{-- Similarly, display diet recommendations if you have them --}}
+              </div>
+          </div>
+
 
 
           </div>

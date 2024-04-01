@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('type');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             // Add more columns as per your requirements
             $table->timestamps();
         });
@@ -27,6 +28,7 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
+
     public function down(): void
     {
         Schema::dropIfExists('events');

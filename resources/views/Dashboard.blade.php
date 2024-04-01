@@ -487,14 +487,14 @@
                     </li>
 
                     <li class="dropdown">
-                    <a href="/events" class="{{ request()->is('events') ? 'active' : '' }}">
-                        <i class='bx bx-calendar-event'></i>
+                    <a href="/events" class="{{ request()->is('events')  ? 'active' : '' }}">
+                        <i class='fas fa-dumbbell'></i>
                         <span class="links_name">events</span>
                       </a>
                       <span class="tooltip">Events</span>
                       <div class="dropdown-content">
-                        <a href="/events" class="{{ request()->is('events') ? 'active' : '' }}">
-                          <i class='bx bx-calendar-check'></i><span class="links_name">Events</span>
+                        <a href="/events" class="{{ request()->is('events')  ? 'active' : '' }}">
+                          <i class='fas fa-running'></i><span class="links_name">Events</span>
                         </a>
                         <a href="/calendar" class="{{ request()->is('calendar') ? 'active' : '' }}">
                           <i class='bx bx-calendar-event'></i><span class="links_name">Calendar</span>
@@ -504,20 +504,21 @@
                     </li>
 
 
+                    
+
+                    <li>
+                        <a href="/categories" class="{{ request()->is('categories') ? 'active' : '' }}">
+                            <i class="fas fa-trophy"></i>
+                            <span class="links_name">Category</span>
+                        </a>
+                        <span class="tooltip">Category</span>
+                    </li>
                     <li>
                         <a href="/produit" class="{{ request()->is('produit') ? 'active' : '' }}">
                             <i class="fas fa-shopping-cart"></i>
                             <span class="links_name">Produit</span>
                         </a>
                         <span class="tooltip">Produit</span>
-                    </li>
-
-                    <li>
-                        <a href="/categories" class="{{ request()->is('categories') ? 'active' : '' }}">
-                            <i class="fas fa-tags"></i>
-                            <span class="links_name">Category</span>
-                        </a>
-                        <span class="tooltip">Category</span>
                     </li>
 
                     <li class="dropdown" >
@@ -537,7 +538,8 @@
                     </li>
 
 
-                    
+                  
+
                     <li class="profile">
                     <div class="profile-details">
                           <!-- Display User Email -->

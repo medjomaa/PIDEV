@@ -134,3 +134,16 @@ Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('eve
 // Route::get('/recommendation', [RecommendationsController::class, 'showForm'])->name('recommendation.form');
 Route::get('/home', [EventsController::class, 'index'])->name('home');
 Route::get('/calendar', [Event2Controller::class, 'index'])->name('calendar.index');
+
+
+
+
+
+
+Route::get('/privacy-policy', function () {
+    return view('privacy-policy');
+})->name('privacy-policy');
+
+Route::get('/terms-of-use', function () {
+    return view('terms-of-use');
+})->name('terms-of-use');

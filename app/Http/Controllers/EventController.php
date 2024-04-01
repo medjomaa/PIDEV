@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Event;
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 class EventController extends Controller
 {
     public function index()
@@ -24,24 +25,27 @@ class EventController extends Controller
         return view('events.create', compact('categories'));
     }
 
-    public function store(Request $request)
-    {
-        // Validate the input
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'type' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
-        ]);
+    
+public function store(Request $request)
+{
+    // Validate the input
+    $validatedData = $request->validate([
+        'title' => 'required',
+        'description' => 'required',
+        'type' => 'required',
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after:start_date',
+    ]);
 
-        // Create a new event
-        Event::create($request->all());
+    // Add user_id to the validated data
+    $validatedData['user_id'] = Auth::id();
 
-        // Redirect to the index page with a success message
-        return redirect()->route('events.index')->with('success', 'Event created successfully.');
-    }
+    // Create a new event
+    Event::create($validatedData);
 
+    // Redirect to the index page with a success message
+    return redirect()->route('events.index')->with('success', 'Event created successfully.');
+}
     public function show(Event $event)
     {
         // Show a single event
@@ -58,21 +62,30 @@ class EventController extends Controller
 
     public function update(Request $request, Event $event)
     {
-        // Validate the input
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'type' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
-        ]);
-
-        // Update the event
-        $event->update($request->all());
-
-        // Redirect to the index page with a success message
-        return redirect()->route('events.index')->with('success', 'Event updated successfully.');
+        try {
+            // Validate the input
+            $validatedData = $request->validate([
+                'title' => 'required',
+                'description' => 'required',
+                'type' => 'required',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date|after:start_date',
+            ]);
+    
+            // Update the event with validated data
+            $event->update($validatedData);
+    
+            // Redirect to the index page with a success message
+            return redirect()->route('events.index')->with('success', 'Event updated successfully.');
+        } catch (\Exception $e) {
+            // Log the error message
+            Log::error('Event update failed: ' . $e->getMessage());
+    
+            // Redirect back with an error message
+            return back()->withInput()->withErrors(['updateError' => 'Failed to update the event. Please try again.']);
+        }
     }
+    
 
     public function destroy(Event $event)
     {

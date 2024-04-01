@@ -3,7 +3,7 @@
 @section('content')
 
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
+<link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
 <style>
 body {
     width: 100%;
@@ -30,6 +30,7 @@ body {
     margin: 30px 0;
     border-radius: 3px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    overflow: hidden; /* Ensures box shadow is visible */
 }
 
 .table-title {
@@ -39,6 +40,7 @@ body {
     padding: 16px 30px;
     margin: -20px -25px 10px;
     border-radius: 3px 3px 0 0;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .table-title h2 {
@@ -50,7 +52,8 @@ body {
     float: right;
 }
 
-.table-title .btn {
+.btn, input[type="submit"] {
+    cursor: pointer; /* Ensures the cursor indicates clickable items */
     background-color: rgba(0, 0, 0, 0.5);
     color: rgba(255, 0, 0, 0.7);
     font-size: 13px;
@@ -59,19 +62,40 @@ body {
     margin-left: 10px;
 }
 
-.table-title .btn:hover {
+.btn:hover, input[type="submit"]:hover {
     background-color: rgba(255, 0, 0, 0.7);
     color: #fff;
+}
+
+/* Additional button styles for primary and danger states */
+.btn-primary, .btn-danger {
+    opacity: 1; /* Ensure buttons are fully opaque by default */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #c82333;
 }
 
 table.table tr th, table.table tr td {
     border-color: #e9e9e9;
     padding: 12px 15px;
     color: rgb(192, 192, 192);
-}
-
-table.table tr th:first-child, table.table tr th:last-child {
-    width: auto;
 }
 
 table.table-striped tbody tr:nth-of-type(odd) {
@@ -86,102 +110,72 @@ table.table td a, table.table td a:hover {
     color: #FFC107;
 }
 
-table.table td a.edit {
-    color: #FFC107;
+.custom-checkbox label:before {
+    border-radius: 3px;
 }
 
-table.table td a.delete {
-    color: #F44336;
-}
-
-.pagination li a, .pagination li a:hover, .pagination li.active a, .pagination li.active a.page-link {
-    background: #03A9F4;
-    color: #fff;
-}
-
-.custom-checkbox input[type="checkbox"]:checked + label:before {
-    border-color: #03A9F4;
-    background: #03A9F4;
-}
-
-.modal .modal-content {
-    background: rgba(27, 27, 50, 0.85);
-    color: rgb(192, 192, 192);
-}
-
+/* Customizing form inputs to match the theme */
 input, textarea, select {
     background-color: #0a0a23;
     border: 1px solid #cc0000;
     color: #ffffff;
 }
-
-input[type="submit"] {
-    background-color: #cc0000;
-    color: white;
-}
-
-input[type="submit"]:hover {
-    background-color: #ff4d4d;
-}
-
 </style>
-
 <div class="container">
-  <div class="table-wrapper">
-    <div class="table-title">
-      <div class="row">
-        <div class="col-sm-6">
-          <h2>Manage <b>Category</b></h2>
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Manage <b>Categories</b></h2>
+                </div>
+                <div class="col-sm-6">
+                    <a href="{{ route('categories.create') }}" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus icon"></i><span>Add New Category</span></a>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-6">
-          <a href="{{ route('categories.create') }}" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus icon"></i><span>Add New Category</span></a>
-        </div>
-      </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        <span class="custom-checkbox">
+                            <input type="checkbox" id="selectAll">
+                            <label for="selectAll"></label>
+                        </span>
+                    </th>
+                    <th>Name</th>
+                    <th>Comment</th>
+                    <th>Created At</th>
+                    <th>Created By</th> <!-- Added Column Header for User Name -->
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach ($categories as $category)
+                <tr>
+                    <td>
+                        <span class="custom-checkbox">
+                            <input type="checkbox" id="checkbox{{$category->id}}" name="options[]" value="{{$category->id}}">
+                            <label for="checkbox{{$category->id}}"></label>
+                        </span>
+                    </td>
+                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->comment }}</td>
+                    <td>{{ $category->created_at->format('Y-m-d') }}</td>
+                    <td>{{ $category->user->name ?? 'N/A' }}</td> <!-- Display the User's Name -->
+                    <td>
+                        <a href="{{ route('categories.edit', $category) }}" class="edit-icon"><i class="fas fa-edit"></i></a>
+                        <form action="{{ route('categories.destroy', $category) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="delete-icon" style="background: none; border: none; color: inherit;"><i class='fas fa-trash'></i></button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>
-            <span class="custom-checkbox">
-                <input type="checkbox" id="selectAll">
-                <label for="selectAll"></label>
-              </span>
-          </th>
-            <th>Name</th>
-            <th>Comment</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-      @foreach ($categories as $category)
-        <tr>
-          <td>
-            <span class="custom-checkbox">
-                <input type="checkbox" id="checkbox{{$category->id}}" name="options[]" value="{{$category->id}}">
-                <label for="checkbox{{$category->id}}"></label>
-              </span>
-          </td>
-          <td>{{ $category->name }}</td>
-          <td>{{ $category->comment }}</td>
-          <td>
-              <form action="{{ route('categories.edit', $category) }}" method="GET">
-              @csrf
-              <button class="btn btn-primary" data-toggle="modal" type="submit"><i class='bx bx-plus icon'></i>Edit</button>
-              </form>
-          </td>
-          <td>
-              <form action="{{ route('categories.destroy', $category) }}" method="POST">
-              @csrf
-              @method('DELETE')
-              <button class="btn btn-primary" data-toggle="modal" type="submit"><i class='bx bx-trash icon'></i>Delete</button>
-              </form>
-          </td>
-          
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
-    
 </div>
+
 
 @endsection

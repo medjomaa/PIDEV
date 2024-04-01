@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Category; 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::with('user')->get();
 
         return view('categories.index', compact('categories'));
     }
+
+        public function user()
+    {
+        return $this->belongsTo(\App\Models\User::class, 'user_id');
+    }
+
 
     public function create()
     {
@@ -26,7 +33,10 @@ class CategoryController extends Controller
             'comment' => 'required|unique:categories',
         ]);
 
-        Category::create($request->all());
+        $requestData = $request->all();
+        $requestData['user_id'] = Auth::id(); // Adds the ID of the currently authenticated user
+
+        Category::create($requestData);
 
         return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
@@ -40,7 +50,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:categories,name,' . $category->id,
-            'commet' => 'required|unique:categories,name,' . $category->id,
+            'comment' => 'required',
         ]);
 
         $category->update($request->all());

@@ -2,7 +2,7 @@
 
 @section('content')
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
+<link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
 	<style>
     body {
         width: 100%;
@@ -142,18 +142,79 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #ff4d4d;
 }
-</style>
+/* Button Hover Effects */
+.btn-primary:hover, .btn-danger:hover {
+    opacity: 0.8;
+}
 
+/* Enhanced Button Styles */
+/* Button Styles for Editing (More intuitive editing color) */
+.btn-primary {
+    background-color: #17a2b8; /* Bootstrap info blue or a teal for editing */
+    border-color: #17a2b8;
+}
+
+.btn-primary:hover {
+    background-color: #138496; /* A slightly darker shade for hover */
+    border-color: #117a8b;
+}
+
+
+/* Custom styles for .btn-danger.btn-red */
+.btn-danger.btn-red {
+    background-color: #ffcccc; /* Light red background */
+    color: #ffffff; /* White text */
+    border: none; /* Removes any border */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and color */
+}
+
+.btn-danger.btn-red:hover {
+    background-color: #cc0000; /* Darker red on hover */
+    color: #dcdcdc; /* Light grey text */
+}
+
+
+/* Additional Styling for Consistency and Aesthetics */
+.table-title {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.table-wrapper {
+    overflow: hidden; /* Ensures box shadow is visible */
+}
+
+/* Icon Enhancements */
+i.icon {
+    margin-right: 5px; /* Space between icon and text */
+}
+
+/* Custom Checkbox Enhancements */
+.custom-checkbox label:before {
+    border-radius: 3px; /* Match the button border-radius */
+}
+
+</style>
 <div class="container">
-  <div class="table-wrapper">
-    <div class="table-title">
-      <div class="row">
-        <div class="col-sm-6">
-          <h2>Manage <b>Events</b></h2>
-        </div>
-        <div class="col-sm-6">
-		<a href="{{ route('events.create') }}" class="btn btn-success btn-green" data-toggle="modal"><i class="fas fa-plus icon"></i><span>Add New Event</span></a>        </div>
-      </div>
+    <div class="table-wrapper">
+        <!-- Add this section to display error messages -->
+        @if($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Manage <b>Events</b></h2>
+                </div>
+                <div class="col-sm-6">
+		            <a style="color:white; background-color: #cc0000;" href="{{ route('events.create') }}" class="btn btn-success btn-green" data-toggle="modal"><i class="fas fa-plus icon"></i><span>Add New Event</span></a>    
+             </div>
+          </div>
     </div>
     <table class="table table-striped table-hover">
       <thead>
@@ -164,12 +225,13 @@ input[type="submit"]:hover {
                 <label for="selectAll"></label>
               </span>
           </th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Start date</th>
-            <th>End date</th>
-          <th>Actions</th>
+          <th>Title</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Created By</th> <!-- New Column for User Name -->
+      <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -182,21 +244,25 @@ input[type="submit"]:hover {
               </span>
           </td>
           <td>{{ $event->title }}</td>
-          <td>{{ $event->description }}</td>
-          <td>{{ $event->type }}</td>
-          <td>{{ $event->start_date }}</td>
-          <td>{{ $event->end_date }}</td>
+        <td>{{ $event->description }}</td>
+        <td>{{ $event->type }}</td>
+        <td>{{ $event->start_date }}</td>
+        <td>{{ $event->end_date }}</td>
+        <td>{{ $event->user->name }}</td>
           <td>
-              <form action="{{ route('events.edit', $event) }}" method="GET">
-              @csrf
-			  <button class="btn btn-primary btn-blue" data-toggle="modal" type="submit"><i class='bx bx-plus icon'></i> Edit</button>              </form>
-          </td>
-          <td>
-              <form action="{{ route('events.destroy', $event) }}" method="POST">
-              @csrf
-              @method('DELETE')
-			  <button class="btn btn-danger btn-red" data-toggle="modal" type="submit"><i class='bx bx-trash icon'></i> Delete</button>              </form>
-          </td>
+                <a href="{{ route('events.edit', $event) }}" style="background: none; border: none; color: inherit;">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+            </td>
+            <td>
+                <form action="{{ route('events.destroy', $event) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit"   class="btn btn-danger btn-red"  style="background: none; border: none; color: inherit;">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                </form>
+            </td>
         </tr>
         @endforeach
       </tbody>

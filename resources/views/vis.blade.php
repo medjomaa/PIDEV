@@ -4,6 +4,7 @@
 @section('content')
 <title>Admin Dashboard</title>
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 .user-profile-image {
     font-size: 40px; /* This property won't affect the image but kept for consistency */
     color: #333; /* This won't affect the image but kept for consistency */
@@ -13,7 +14,7 @@
     border-radius: 50%; /* Make the image circular */
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
 body {
     background-image: url("https://tophinhanhdep.com/wp-content/uploads/2021/10/Rose-Gold-Marble-Wallpapers.jpg");
     color: #333;
@@ -866,12 +867,59 @@ header {
     height: 15px; /* Slightly larger for visibility */
     border-radius: 50%;
 }
+.custom-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Dim the background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other content */
+}
 
+.custom-alert {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 400px; /* Adjust based on your preference */
+}
+
+.custom-alert p {
+    margin: 0 0 20px 0;
+}
+
+.custom-alert button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.custom-alert button:hover {
+    background-color: #0056b3;
+}
 
 
 </style>
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+@if(session('error'))
+<div id="customAlert" class="custom-alert-overlay">
+    <div class="custom-alert">
+        <p>{{ session('error') }}</p>
+        <button onclick="closeCustomAlert()">Close</button>
+    </div>
+</div>
+@endif
+
 
 <div class="dashboard">
     <div class="dashboard-title">Gym Performance Dashboard</div>
@@ -1124,6 +1172,8 @@ header {
     })
     .catch(error => console.error('Error loading data:', error));
 }
-
+function closeCustomAlert() {
+    document.getElementById('customAlert').style.display = 'none';
+}
 </script>
 @endsection

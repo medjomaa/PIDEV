@@ -74,9 +74,15 @@ class DashboardController extends Controller
             'poorqp'=>$poorqp
             
         ]);
-    } else {
-        return redirect()->back()->with('error', 'You are not authorized to access this page.');
-    }
+    } // In your else condition where you check if the user is not an admin
+   // Inside your DashboardController
+else {
+    session()->flash('error', 'You are not authorized to access this page. This section is accessible to admins only.');
+    return redirect()->route('home'); // Example, change 'home' to a route that makes sense for your app
+}
+
+    
+    
 }
 
 

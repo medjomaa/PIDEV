@@ -11,39 +11,106 @@
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap" rel="stylesheet">
     <title>Training</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-      body {
-        font-family: 'Roboto', sans-serif;
-        margin: 0;
-        padding: 0;
-        color: #ffffff; /* White text color for readability */
-        background-image:url('https://wallpapercave.com/wp/wp9142703.jpg');
-        background-size: cover; /* Cover the entire page */
-        background-position: center; /* Center the background image */
-         background-repeat: no-repeat; /* Do not repeat the background */
-        background-size: cover;
-        background-position: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center; /* Center content vertically */
-        min-height: 100vh;
-        text-align: center; /* Center text */
-    }
-    .recommendation-action {
- /* Vibrant red background */
-    color: white; /* White text color */
-    padding: 15px 20px; /* Padding inside the div */
-    margin: 20px 0; /* Margin around the div */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Changes cursor to a pointer to indicate clickability */
-    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth background color and transform transition */
-    text-align: center; /* Centers the text */
-    display: inline-block; /* Allows the use of margin and text-align */
-    width: auto; /* Adjust width as needed */
-    max-width: 100%; /* Ensures the div does not overflow its container */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url(https://t4.ftcdn.net/jpg/03/36/45/65/360_F_336456579_K00FCLKIIbG6vtiWbnbqVcUuvVv35GSF.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff; /* Ensures text is white for visibility */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
 }
+
+.left-sections, .body-sections, .recommendation-section {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    color: #ffffff; /* Text color changed to white */
+    margin: 20px auto; /* Centered with auto margins */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Soft white shadow for depth */
+    width: 90%; /* Use a width that allows for a little space on the sides */
+    box-sizing: border-box;
+}
+
+.exercise-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjusts the spacing between items */
+    margin-top: 20px;
+}
+.exercise-guide {
+    text-align: center;
+    margin: 20px 0; /* Adjust as needed */
+}
+
+.exercise-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust space between items */
+    margin-top: 20px;
+}
+
+.body-part {
+    width: calc(33.333% - 20px); /* Adjusts for three items per row, subtracting margins */
+    margin: 10px; /* Provides space around items */
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    color: #FFFFFF; /* White text */
+}
+
+@media (max-width: 768px) {
+    .body-part {
+        width: 100%; /* Full width on smaller screens */
+        margin-bottom: 20px; /* Space between items vertically */
+    }
+}
+
+.body-part {
+    width: calc(33.333% - 20px); /* Sets width to a third minus some margin */
+    margin: 10px; /* Provides some space around each item */
+    text-align: center; /* Center-aligns the text within */
+}
+
+.body-part h3{
+color: #8B0000;
+} .body-part ul {
+    color: #FFFFFF; /* Ensures text is white for visibility */
+}
+
+.body-part ul {
+    list-style: none; /* Removes the default list styling */
+    padding: 0; /* Removes default padding */
+}
+
+.body-part ul li {
+    padding: 5px 0; /* Adds vertical padding to list items */
+}
+
+@media (max-width: 768px) {
+    .body-part {
+        width: 100%; /* Each body part takes full width on smaller screens */
+        margin: 10px 0; /* Adjusts margin for vertical spacing */
+    }
+}
+
+
+/* Ensures links within the .left-sections are also white */
+.left-sections a {
+    color: #FFFFFF;
+    text-decoration: underline; /* Optional: adds underlining to make links stand out */
+}
+
+/* Additional styles remain unchanged */
 
 .recommendation-action:hover {
 /* A darker shade of red on hover */
@@ -66,7 +133,12 @@
     box-sizing: border-box; /* Ensures padding and border are included in the width */
 }
 
-
+.body{
+  background-image:url('https://wallpapercave.com/wp/wp9142703.jpg');
+        background-size: cover; /* Cover the entire page */
+        background-position: center; /* Center the background image */
+         background-repeat: no-repeat; /* Do not repeat the background */
+}
 .content {
     position: relative; /* Keeps children positioned relative to this */
     text-align: center; /* Centers text and inline elements */
@@ -85,7 +157,7 @@
 
 
 .banner h1 {
-    color: red; /* Vibrant red */
+    color: white; /* Vibrant red */
     margin-bottom: 15px;
 }
 
@@ -11540,28 +11612,212 @@ body.has-skin .owl-item {
     display: none;
   }
 }
+.body-sections p {
+    color: white; /* Sets the text color to white */
+    text-align: center; /* Centers the text */
+    margin-top: 20px; /* Adds some space above the paragraph */
+    font-size: 18px; /* Adjusts the font size */
+}
 
     </style>
 </head>
 <body>
-<title>Training</title>
-<div class="container">
-<div class="content">
-    <div class="banner">
-        <h1>Body Part Workouts</h1>
-        <p>Balance Your Body and Mind - Select an Area to Focus On!</p>
-        @auth
-            <p>Welcome back, <strong>{{ Auth::user()->name }}</strong>! Ready for your next challenge?</p>
-        @else
-            @if(Auth::guest())
-                <p>Please <a href="{{ route('login') }}" class="login-link">login</a> or <a href="{{ route('register') }}" class="register-link">register</a> to see your dashboard and receive personalized recommendations.</p>
+<div class="left-sections">
+    <title>Training</title>
+    @auth
+                <p>Welcome back, <strong>{{ Auth::user()->name }}</strong>! Ready for your next challenge?</p>
             @else
-                <p>Welcome, <strong>guest</strong>! <a href="{{ route('register') }}" class="register-link">Register</a> to track your progress and receive personalized recommendations.</p>
+                @if(Auth::guest())
+                    <p>Please <a href="{{ route('login') }}" class="login-link">login</a> or <a href="{{ route('register') }}" class="register-link">register</a> to see your dashboard and receive personalized recommendations.</p>
+                @else
+                    <p>Welcome, <strong>guest</strong>! <a href="{{ route('register') }}" class="register-link">Register</a> to track your progress and receive personalized recommendations.</p>
+                @endif
+            @endauth
+            <div class="container">
+        <div class="welcome-section">
+            <h2>Welcome to Your Personal Fitness Journey</h2>
+            <p>Explore, learn, and grow with customized workouts designed for every part of your body. Ready to get started?</p>
+        </div>
+
+        <div class="exercise-section">
+
+        <h2>EXERCISE GUIDE</h2>
+    <div class="exercise-grid">
+            <!-- Biceps -->
+            <div class="body-part">
+                <h3>Biceps</h3>
+                <ul>
+                    <li>Barbell Curl</li>
+                    <li>Dumbbell Hammer Curl</li>
+                    <li>Concentration Curl</li>
+                </ul>
+            </div>
+            <!-- Triceps -->
+            <div class="body-part" >
+                <h3>Triceps</h3>
+                <ul>
+                    <li>Tricep Dips</li>
+                    <li>Skull Crushers</li>
+                    <li>Overhead Tricep Extension</li>
+                </ul>
+            </div>
+            <!-- Quads -->
+            <div class="body-part">
+                <h3>Quads</h3>
+                <ul>
+                    <li>Squats</li>
+                    <li>Leg Press</li>
+                    <li>Lunges</li>
+                </ul>
+            </div>
+            <!-- Shoulders -->
+            <div class="body-part">
+                <h3>Shoulders</h3>
+                <ul>
+                    <li>Shoulder Press</li>
+                    <li>Lateral Raise</li>
+                    <li>Front Raise</li>
+                </ul>
+            </div>
+            <!-- Chest -->
+            <div class="body-part">
+                <h3>Chest</h3>
+                <ul>
+                    <li>Bench Press</li>
+                    <li>Incline Bench Press</li>
+                    <li>Chest Fly</li>
+                </ul>
+            </div>
+            <!-- Forearms -->
+            <div class="body-part" >
+                <h3>Forearms</h3>
+                <ul>
+                    <li>Wrist Curls</li>
+                    <li>Reverse Wrist Curls</li>
+                    <li>Farmer's Walk</li>
+                </ul>
+            </div>
+            <!-- Abs -->
+            <div class="body-part">
+                <h3>Abs</h3>
+                <ul>
+                    <li>Planks</li>
+                    <li>Russian Twists</li>
+                    <li>Leg Raises</li>
+                </ul>
+            </div>
+            <!-- Calves -->
+            <div class="body-part" >
+                <h3>Calves</h3>
+                <ul>
+                    <li>Calf Raises</li>
+                    <li>Seated Calf Raises</li>
+                    <li>Jump Rope</li>
+                </ul>
+            </div>
+            <!-- Hamstring -->
+            <div class="body-part">
+                <h3>Hamstring</h3>
+                <ul>
+                    <li>Deadlifts</li>
+                    <li>Leg Curls</li>
+                    <li>Glute-Ham Raise</li>
+                </ul>
+            </div>
+            <!-- Glutes -->
+            <div class="body-part">
+                <h3>Glutes</h3>
+                <ul>
+                    <li>Hip Thrusts</li>
+                    <li>Squats</li>
+                    <li>Glute Bridges</li>
+                </ul>
+            </div>
+            <!-- Low Back -->
+            <div class="body-part" >
+                <h3>Low Back</h3>
+                <ul>
+                    <li>Deadlifts</li>
+                    <li>Supermans</li>
+                    <li>Lower Back Extensions</li>
+                </ul>
+            </div>
+            <!-- Mid Back -->
+            <div class="body-part">
+                <h3>Mid Back</h3>
+                <ul>
+                    <li>Bent Over Rows</li>
+                    <li>T-Bar Rows</li>
+                    <li>Seated Cable Rows</li>
+                </ul>
+            </div>
+            <!-- Lats -->
+            <div class="body-part">
+                <h3>Lats</h3>
+                <ul>
+                    <li>Pull-Ups</li>
+                    <li>Lat Pulldowns</li>
+                    <li>Straight-Arm Pulldown</li>
+                </ul>
+            </div>
+            <!-- Traps -->
+            <div class="body-part" >
+                <h3>Traps</h3>
+                <ul>
+                    <li>Shrugs</li>
+                    <li>Upright Rows</li>
+                    <li>Face Pulls</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <div class="content">
+    <div class="banner">
+        <h1>Your Customized Fitness Recommendations</h1>
+
+        <div id="getRecommendation" class="recommendation-action">
+            <p>Click here to receive your personalized workout recommendation.</p>
+        </div>
+
+        <div id="processing" class="processing" style="display: none;">
+</br></br></br></br>
+          <div id="load">
+              <div>G</div>
+              <div>N</div>
+              <div>I</div>
+              <div>D</div>
+              <div>A</div>
+              <div>O</div>
+              <div>L</div>
+            </div>
+          </div>
+
+        <div id="recommendationResult" style="display: none;">
+            @if(isset($recommendations['recommendations']))
+                @if(is_string($recommendations['recommendations']))
+                    <p>{{ $recommendations['recommendations'] }}</p>
+                @else
+                    @foreach($recommendations['recommendations'] as $recommendation)
+                        <p>{{ $recommendation }}</p>
+                    @endforeach
+                @endif
+
+                @if(isset($user_id))
+                    <a href="{{ url('/entrainement/' . $user_id) }}">View Your Training Plan</a>
+                @endif
+            @else
+                <p>Recommendations are not available at the moment.</p>
             @endif
-        @endauth
+        </div>
     </div>
 </div>
 
+
+
+</div>
+
+<div class="body-sections">
+<p>Choose what part to exercise and watch the YouTube video.</p>
 <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" viewBox="0 0 473.37009 493.9" id="Layer_1" xml:space="preserve">
   <defs id="defs2466"></defs>
   <path d="m 430.92433,492.3 c -6.9,0 -8,-4.9 -8.7,-8.5 l -0.1,-0.5 c -0.7,-3 1.1,-6.4 3,-10 1.2,-2.2 2.3,-4.4 3,-6.6 1.7,-5.5 0.5,-19.4 0,-24.6 v -0.4 c -0.2,-3.3 0.7,-4.6 1.6,-5.6 0.6,-0.7 0.7,-1 0.5,-2.2 -0.4,-1.6 -0.4,-4.2 -0.2,-7.5 0.1,-6.1 0.2,-14.4 -2.1,-19.4 -0.7,-1.7 -1.9,-4.4 -3.3,-7.8 -5,-11.7 -14.1,-33.3 -17.6,-37.4 -4.5,-5.5 -6.1,-9.5 -6.7,-17.9 -0.4,-4.1 -1.6,-5 -4.2,-6.8 -1.7,-1.2 -3.9,-2.7 -6.3,-5.3 -3.4,-3.6 -4,-6.2 -4.6,-8.1 -0.5,-1.9 -0.9,-3.2 -3.6,-5.2 -5.7,-4.2 -9.8,-14.3 -11.1,-17.6 -3.4,0 -11.7,0.1 -15.1,0.2 0,5.2 0.1,21.5 0,26.7 -0.1,3.2 1.1,7.9 2.8,13.7 1.3,5.1 3,11.5 4.5,19.1 2.3,12.4 -0.2,16.1 -2.2,18.9 -0.6,1 -1.1,1.6 -1.2,2.4 -0.6,2.9 1.5,32.9 3,53.3 0.5,0 1.1,0.1 1.6,0.4 1.5,0.5 2.4,1.8 3.6,3.4 0.6,0.7 1.2,1.5 1.8,2.2 2.7,2.8 9.1,9.8 11.2,14.1 2.5,5.2 -1.2,7.8 -6.9,11.5 l -0.9,0.6 c -1.7,1.2 -4.5,3.3 -7.6,5.8 -8.6,6.7 -19.2,15.1 -24.6,16 -1.3,0.2 -2.9,0.4 -4.5,0.4 -7.2,0 -14.9,-2.8 -15.7,-8.3 -1,-6.3 2.1,-11.5 7.2,-12.4 1.5,-0.2 2.4,-0.2 3.2,-0.2 0.1,0 0.1,0 0.2,0 0.1,-0.2 0.2,-0.7 0.4,-0.8 1.1,-2.8 2.9,-7 4,-9.1 0.4,-0.8 0.4,-1.1 0.4,-2.4 0,-1 -0.1,-2.5 0,-5 0.2,-4.6 2.1,-6.7 3.3,-7.5 -0.1,-1.2 -0.2,-3.6 -0.5,-6.7 -0.4,-4.1 -1.3,-10.4 -5.2,-26.7 -2.4,-10.2 -8.3,-35.2 -9,-46.7 -0.2,-3.6 0.1,-6.7 0.4,-9.2 0.5,-4.5 0.7,-7.8 -1.8,-12.3 -3.8,-6.6 -3.9,-13.4 -3.9,-19.3 0,-1.3 0,-2.5 -0.1,-3.8 -0.2,-6.3 -1.7,-11.5 -2.7,-12.5 -2.1,-0.1 -15.1,-1.3 -15.8,-5.7 -0.2,-1.6 0.4,-13.8 1.9,-39.8 0.9,-14.9 1.7,-30.4 1.9,-37.8 0.4,-11.2 2.4,-15.7 3.6,-18.6 0.7,-1.6 1.1,-2.5 1.1,-4 0,-2.9 0.6,-5 1.1,-6.6 0.2,-0.9 0.5,-1.8 0.4,-2.1 -0.2,-0.6 -0.7,-1.7 -1.3,-3 -2.1,6.8 -6.6,17.1 -9.6,22.1 -6.3,10.3 -14,23.4 -14.9,26.1 -1,2.5 -0.7,4.6 -0.5,6.6 0,0.4 0.1,0.7 0.1,1 0.2,2.4 0,7.8 -0.7,10.7 -0.4,1.5 -1.3,3.2 -2.2,4.7 -0.9,1.5 -1.7,3 -1.8,3.9 -0.1,1.2 -0.5,3.4 -0.9,5 -0.1,0.6 -0.2,1.3 -0.4,1.8 0.6,1 2.4,3.9 3.6,5.5 1.5,1.8 2.8,3.8 2.1,6 -0.4,1.1 -1.3,1.8 -2.6,2.1 -0.2,0.6 -0.7,1.2 -1.6,1.7 -0.6,0.4 -1.2,0.5 -1.9,0.5 -0.2,0 -0.4,0 -0.6,0 -0.4,0.5 -1.1,1 -2.2,1.3 -0.4,0.1 -0.6,0.1 -1,0.1 -0.9,0 -1.6,-0.4 -2.2,-0.6 -0.7,0.4 -1.7,0.6 -2.5,0.6 -0.9,0 -1.6,-0.2 -2.2,-0.5 -1.7,-1 -8.1,-7.8 -9,-10.3 -0.5,-1.5 -0.4,-4.1 -0.2,-7.9 0.1,-1.8 0.1,-3.6 0.1,-4.7 -0.2,-3.3 0,-4.2 0.5,-6.2 v -0.1 c 0.2,-1 1.2,-2.4 2.9,-5.3 2.1,-3.4 5.6,-9.1 5.7,-11.3 0.1,-3.5 0.7,-10.3 2.3,-16.4 0.4,-1.5 1,-2.8 1.6,-4.5 2.1,-5.3 5,-12.6 5.3,-27.6 0.4,-15.9 6.2,-28.8 8.9,-35 0.6,-1.2 1.1,-2.6 1.2,-2.9 0.2,-1.2 0.2,-4.9 0.2,-8.4 0,-2.4 0,-5.1 0.1,-7.2 0.2,-5 2.6,-12.8 3.2,-14.7 -0.2,-1 -1.1,-3.9 -3.2,-7.5 -2.8,-5 -6.7,-14.9 -1,-26.1 3.6,-7 9.6,-10.4 14,-12.9 2.2,-1.2 4,-2.3 4.7,-3.3 1.2,-1.8 2.4,-3.4 3.3,-4.4 -3.2,-2.1 -4.9,-6.7 -5.3,-9.8 -0.1,-0.7 -0.1,-1.5 -0.2,-2.2 -0.1,-2.2 -0.4,-3.9 -2.1,-6.8 -1.8,-2.9 -1,-5.2 -0.5,-6.3 -2.9,-1.3 -3.9,-3.8 -3,-7.4 0.7,-3.2 0.7,-3.4 0.9,-11.9 v -0.2 c 0.1,-7.3 2.9,-24.3 25.5,-24.3 0.9,0 1.7,0 2.5,0.1 19.9,1.1 22.5,14.5 22.1,22.2 -0.1,3 -0.5,6.2 -0.7,9.6 -0.5,5.3 -1.1,10.9 -0.9,16.4 0.4,7.9 5.8,11.2 18,15.5 10.2,3.6 13.7,10 14.9,12.4 0,0.1 0.1,0.1 0.1,0.2 2.8,0.9 11,3.9 14.6,13.5 1.9,5.2 3.2,7.3 4.7,10 1.6,2.6 3.3,5.5 6.1,11.8 5.2,11.9 4.5,22.8 4.2,25.4 0.9,1.5 3.3,6.3 3.8,10.8 0.1,1.6 0.2,2.9 0.2,4.2 0,3.2 0.1,6.1 2.3,11.2 3.8,8.4 3.3,25.7 1.6,39.2 -1.9,15.4 -1.9,30.2 -0.7,32.7 1.7,3.4 3.2,9.8 2.5,15.1 -0.1,1.3 -0.1,2.4 -0.1,3.4 0,2.4 0,4.4 -2.7,8.5 -1.5,2.2 -2.9,3.9 -4,5.2 -1.1,1.2 -2.2,2.5 -2.1,3 1.1,2.7 3.2,20.3 3.2,21.6 0,1.7 -1.2,2.3 -1.9,2.6 0.2,2.4 1.9,10 7.3,14.7 4.2,3.8 5.6,5.9 8.1,10.4 1.6,2.7 3.6,6.4 7.4,11.9 8.3,12.4 8.9,25.7 9.4,34.5 0.1,1.7 0.1,3.3 0.2,4.5 0.6,6.6 6.1,33.6 7.4,40.1 2.5,0 4.5,1.3 5.6,3.6 1.5,3.2 4.6,6.4 8.6,9 4.4,2.8 8.1,10 6.9,17.5 -0.5,3.2 -2.3,6 -4,8.7 -2.1,3.4 -4.2,6.8 -4.1,10.7 v 1.2 c 0.2,7 0.5,11.3 -7,18.9 -7.8,7.9 -16.4,9.3 -23.9,10.1 -0.6,-0.4 -1.1,-0.2 -1.7,-0.2 z m -48.7,-334.5 c -1.1,3.2 -2.7,8.3 -3.2,11.9 -0.9,5.3 1,12.4 1.6,13.2 0.1,0.1 0.4,0.4 0.7,0.5 1.1,0.7 2.7,1.7 3.9,4.5 0.2,0.6 0.9,1.6 1.5,2.8 2.7,5.2 7.2,13.8 8.3,21.4 0.6,4.2 1.2,9.6 1.7,13.8 0,-0.1 0,-0.2 0,-0.4 0,-1.1 0,-2.4 0.1,-3.9 0.1,-5.5 0.2,-13 -1.2,-18 -1.9,-6.4 -3.9,-13.5 -4,-23.1 -0.1,-7.8 -1.1,-11.8 -1.3,-12.8 l -8.1,-9.9 z" id="path3" style="fill:#ffffff"></path>
@@ -13354,46 +13610,8 @@ body.has-skin .owl-item {
   <path d="m 307.92433,35.6 c -0.4,-1 -0.1,-2.3 0.7,-3.2 0.5,-0.4 1,-0.6 1.6,-0.7 h 0.4 c 0.1,0 0.4,0 0.5,0.1 0.4,0.1 0.6,0.2 0.9,0.4 1,0.7 1.7,1.7 2.2,2.7 0.2,0.5 0.5,1 0.6,1.6 0.1,0.5 0.4,1.1 0.5,1.6 0.1,0.5 0.2,1.1 0.2,1.7 0,0.6 0.1,1.1 0,1.7 0,0.6 -0.1,1.1 -0.2,1.7 -0.1,0.6 -0.4,1 -0.5,1.6 -0.2,0.5 -0.4,1 -0.6,1.5 -0.2,0.5 -0.5,1 -0.9,1.5 -0.4,0.5 -0.7,0.9 -1.3,1.1 -0.5,0.2 -1.2,0.2 -1.7,0 l 0,0 0,0 c -0.2,-0.5 -0.6,-1.1 -0.9,-1.6 0.4,0.5 0.7,1 1.1,1.5 l 0,0 c 0.5,0.2 1,0.1 1.3,-0.1 0.4,-0.2 0.7,-0.6 1,-1.1 0.5,-0.9 0.9,-1.8 1.2,-2.8 0.1,-0.5 0.4,-1.1 0.4,-1.5 0.1,-0.5 0.1,-1 0.1,-1.5 0,-0.5 0,-1 0,-1.5 -0.1,-0.5 -0.1,-1 -0.2,-1.5 -0.1,-0.5 -0.2,-1 -0.4,-1.5 -0.1,-0.5 -0.4,-1 -0.6,-1.5 -0.5,-1 -1,-1.8 -1.7,-2.4 -0.2,-0.1 -0.4,-0.2 -0.6,-0.4 -0.1,0 -0.1,-0.1 -0.2,-0.1 h -0.4 c -0.4,0 -1,0.2 -1.3,0.5 -1,0 -1.3,1.2 -1.2,2.2 z" id="path2460" style="fill:#231f20"></path>
   <path d="m 319.72433,61.7 c 0,0 0.1,-0.4 0.2,-0.8 0.2,-0.6 0.4,-1.3 0.7,-2.3 0.2,-0.5 0.5,-1 0.7,-1.5 0.2,-0.5 0.5,-1.1 0.9,-1.6 0.7,-1.1 1.3,-2.3 2.2,-3.3 0.9,-1.1 1.6,-2.1 2.3,-3 0.2,-0.5 0.7,-1 0.9,-1.5 0.1,-0.2 0.2,-0.5 0.4,-0.7 0.1,-0.2 0.1,-0.5 0.2,-0.7 0.1,-0.5 0.2,-0.9 0.2,-1.2 0.1,-0.4 0.1,-0.7 0.1,-1 0,-0.6 0,-1 0,-1 0,0 0.1,0.4 0.2,0.9 0,0.2 0.1,0.6 0.1,1.1 0,0.4 0,0.9 -0.1,1.5 0,0.2 -0.1,0.5 -0.1,0.8 -0.1,0.2 -0.2,0.5 -0.2,0.9 -0.1,0.6 -0.5,1.1 -0.9,1.7 -0.4,0.5 -0.7,1.1 -1.1,1.6 -0.4,0.5 -0.9,1.1 -1.2,1.6 -0.5,0.5 -0.7,1.1 -1.1,1.6 -0.4,0.5 -0.7,1 -1.1,1.6 -0.4,0.5 -0.6,1 -1,1.5 -0.2,0.5 -0.6,1 -0.9,1.3 -0.5,0.9 -0.9,1.6 -1.2,2.1 0,0.1 -0.2,0.4 -0.2,0.4 z" id="path2462" style="fill:#231f20"></path>
 </svg>
-<div class="content">
-    <div class="banner">
-        <h1>Your Customized Fitness Recommendations</h1>
-
-        <div id="getRecommendation" class="recommendation-action">
-            <p>Click here to receive your personalized workout recommendation.</p>
-        </div>
-
-        <div id="processing" class="processing" style="display: none;">
-</br></br></br></br>
-          <div id="load">
-              <div>G</div>
-              <div>N</div>
-              <div>I</div>
-              <div>D</div>
-              <div>A</div>
-              <div>O</div>
-              <div>L</div>
-            </div>
-          </div>
-
-        <div id="recommendationResult" style="display: none;">
-            @if(isset($recommendations['recommendations']))
-                @if(is_string($recommendations['recommendations']))
-                    <p>{{ $recommendations['recommendations'] }}</p>
-                @else
-                    @foreach($recommendations['recommendations'] as $recommendation)
-                        <p>{{ $recommendation }}</p>
-                    @endforeach
-                @endif
-
-                @if(isset($user_id))
-                    <a href="{{ url('/entrainement/' . $user_id) }}">View Your Training Plan</a>
-                @endif
-            @else
-                <p>Recommendations are not available at the moment.</p>
-            @endif
-        </div>
-    </div>
 </div>
+
   </body>
 <script>
 function navigateToWorkout(bodyPart) {

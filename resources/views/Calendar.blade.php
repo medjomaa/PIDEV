@@ -13,15 +13,18 @@
   <div class="events-section">
     <h3>UPCOMING EVENTS</h3>
     <div class="upcoming-events" style="height: 300px; overflow-y: scroll;">
-      {{-- Loop through formatted events --}}
       @foreach($formattedEvents as $event)
-      <div class="upcoming-event">
+      @php
+        $isPast = \Carbon\Carbon::parse($event['start'])->isPast();
+      @endphp
+      <div class="upcoming-event {{ $isPast ? 'past-event' : '' }}">
         <div class="event-date">{{ \Carbon\Carbon::parse($event['start'])->format('M d') }}</div>
         <div class="event-title">{{ $event['title'] }}</div>
       </div>
       @endforeach
     </div>
   </div>
+
 </div>
 
 
@@ -167,6 +170,11 @@ color: #ccc;
     margin: 0 10px;
   }
 }
+.past-event {
+    text-decoration: line-through; /* Crosses out the event title */
+    opacity: 0.6; /* Optionally, make past events less prominent */
+}
+
 </style>
 
 
@@ -277,23 +285,24 @@ function formatDate(date) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  var calendarEl = document.getElementById('calendar');
-  var calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
-    eventContent: function(arg) { // Custom rendering function for events
-      let arrayOfDomNodes = []
-
-      // Standard event title
-      let title = document.createElement('div')
-      title.innerHTML = arg.event.title;
-      arrayOfDomNodes.push(title)
-
-      return { domNodes: arrayOfDomNodes }
-    },
-    events: @json($formattedEvents) // Your events data
-  });
-  calendar.render();
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        eventContent: function(arg) {
+            let isPast = new Date(arg.event.start) < new Date();
+            let title = document.createElement('div');
+            title.classList.add('fc-event-title');
+            if(isPast) {
+                title.classList.add('past-event'); // Add this class for past events
+            }
+            title.innerHTML = arg.event.title;
+            return { domNodes: [title] };
+        },
+        events: @json($formattedEvents),
+    });
+    calendar.render();
 });
+
 
 </script>
 
