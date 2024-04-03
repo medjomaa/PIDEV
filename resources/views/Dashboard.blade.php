@@ -497,7 +497,7 @@
                           <i class='fas fa-running'></i><span class="links_name">Events</span>
                         </a>
                         <a href="/calendar" class="{{ request()->is('calendar') ? 'active' : '' }}">
-                          <i class='bx bx-calendar-event'></i><span class="links_name">Calendar</span>
+                          <i fclass='bx bx-calendar-event'></i><span class="links_name">Calendar</span>
                         </a>
                         <!-- Add additional dropdown items here as needed -->
                       </div>

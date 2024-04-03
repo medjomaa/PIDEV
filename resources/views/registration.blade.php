@@ -107,7 +107,7 @@ body {
         <button type="submit" class="btn-custom">Submit</button>
     </form>
     <div class="footer-links">
-    <a href="{{ route('registration') }}">Sign Up</a> | <a href="{{ route('privacy-policy') }}">Privacy</a> | <a href="{{ route('terms-of-use') }}">Terms of Use</a>
+    <a href="{{ route('login') }}">Sign in</a> | <a href="{{ route('privacy-policy') }}">Privacy</a> | <a href="{{ route('terms-of-use') }}">Terms of Use</a>
     </div>
 </div>
 @endsection
