@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 
 use App\Models\Event;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+
 class EventController extends Controller
 {
     public function index()
@@ -17,6 +16,14 @@ class EventController extends Controller
         return view('events.index', compact('events'));
     }
 
+    public function eventshow()
+    {
+        // Retrieve all events
+        $events = Event::all();
+        
+        return view('events.eventshow', compact('events'));
+    }
+
     public function create()
     {    
         $categories = Category::all();
@@ -25,27 +32,24 @@ class EventController extends Controller
         return view('events.create', compact('categories'));
     }
 
-    
-public function store(Request $request)
-{
-    // Validate the input
-    $validatedData = $request->validate([
-        'title' => 'required',
-        'description' => 'required',
-        'type' => 'required',
-        'start_date' => 'required|date',
-        'end_date' => 'required|date|after:start_date',
-    ]);
+    public function store(Request $request)
+    {
+        // Validate the input
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'type' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+        ]);
 
-    // Add user_id to the validated data
-    $validatedData['user_id'] = Auth::id();
+        // Create a new event
+        Event::create($request->all());
 
-    // Create a new event
-    Event::create($validatedData);
+        // Redirect to the index page with a success message
+        return redirect()->route('events.index')->with('success', 'Event created successfully.');
+    }
 
-    // Redirect to the index page with a success message
-    return redirect()->route('events.index')->with('success', 'Event created successfully.');
-}
     public function show(Event $event)
     {
         // Show a single event
@@ -62,30 +66,21 @@ public function store(Request $request)
 
     public function update(Request $request, Event $event)
     {
-        try {
-            // Validate the input
-            $validatedData = $request->validate([
-                'title' => 'required',
-                'description' => 'required',
-                'type' => 'required',
-                'start_date' => 'required|date',
-                'end_date' => 'required|date|after:start_date',
-            ]);
-    
-            // Update the event with validated data
-            $event->update($validatedData);
-    
-            // Redirect to the index page with a success message
-            return redirect()->route('events.index')->with('success', 'Event updated successfully.');
-        } catch (\Exception $e) {
-            // Log the error message
-            Log::error('Event update failed: ' . $e->getMessage());
-    
-            // Redirect back with an error message
-            return back()->withInput()->withErrors(['updateError' => 'Failed to update the event. Please try again.']);
-        }
+        // Validate the input
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'type' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+        ]);
+
+        // Update the event
+        $event->update($request->all());
+
+        // Redirect to the index page with a success message
+        return redirect()->route('events.index')->with('success', 'Event updated successfully.');
     }
-    
 
     public function destroy(Event $event)
     {
@@ -95,5 +90,17 @@ public function store(Request $request)
         // Redirect to the index page with a success message
         return redirect()->route('events.index')->with('success', 'Event deleted successfully.');
     }
-    
+    public function searchE(Request $request)
+{
+    $searchTerm = $request->input('search');
+
+    $events = Event::where('title', 'like', '%' . $searchTerm . '%')
+                   ->orWhere('description', 'like', '%' . $searchTerm . '%')
+                   ->orWhere('type', 'like', '%' . $searchTerm . '%')
+                   ->orWhere('start_date', 'like', '%' . $searchTerm . '%')
+                   ->orWhere('end_date', 'like', '%' . $searchTerm . '%')
+                   ->get();
+
+    return view('events.eventshow', ['events' => $events]);
+}
 }

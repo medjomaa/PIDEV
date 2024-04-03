@@ -123,6 +123,8 @@ Route::get('/events/{event}', [EventController::class, 'show'])->name('events.sh
 Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
 Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
 Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+Route::get('/eventshow', [EventController::class, 'eventshow'])->name('events.eventshow');
+Route::get('/searchE', [EventController::class, 'searchE'])->name('events.searchE');
 
 
 // // Routes for feedback

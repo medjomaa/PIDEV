@@ -11,7 +11,7 @@
           <ul class="flex">
             <li><a class="smooth-scroll-link" href="/dashboard">Home</a></li>
             <li><a class="smooth-scroll-link" href="#">Training</a></li>
-            <li><a class="smooth-scroll-link" href="#">Events</a></li>
+            <li><a class="smooth-scroll-link" href="{{ route('events.eventshow') }}" class="{{ request()->is('events.eventshow') ? 'active' : '' }}">Evenement</a></li>
             <li id="header-logo" class="top-gym-logo">
               <a class="smooth-scroll-link" href="#">Power<br/>Gym</a>
             </li>
