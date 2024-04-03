@@ -487,7 +487,7 @@
                     </li>
 
                     <li class="dropdown">
-                    <a href="/events" class="{{ request()->is('events')  ? 'active' : '' }}">
+                    <a href="/events" class="{{ request()->is('events', 'events/create','calendar', 'events/*/edit') ? 'active' : '' }}">
                         <i class='fas fa-dumbbell'></i>
                         <span class="links_name">events</span>
                       </a>
@@ -497,7 +497,7 @@
                           <i class='fas fa-running'></i><span class="links_name">Events</span>
                         </a>
                         <a href="/calendar" class="{{ request()->is('calendar') ? 'active' : '' }}">
-                          <i fclass='bx bx-calendar-event'></i><span class="links_name">Calendar</span>
+                        <i class='bx bx-calendar'></i><span class="links_name">Calendar</span>
                         </a>
                         <!-- Add additional dropdown items here as needed -->
                       </div>
@@ -507,14 +507,15 @@
                     
 
                     <li>
-                        <a href="/categories" class="{{ request()->is('categories') ? 'active' : '' }}">
+                    <a href="/categories" class="{{ request()->is('categories', 'categories/create', 'categories/*/edit') ? 'active' : '' }}">
+
                             <i class="fas fa-trophy"></i>
                             <span class="links_name">Category</span>
                         </a>
                         <span class="tooltip">Category</span>
                     </li>
                     <li>
-                        <a href="/products" class="{{ request()->is('products') ? 'active' : '' }}">
+                    <a href="/products" class="{{ request()->is('products', 'products/create', 'products/*/edit', 'products/*') ? 'active' : '' }}">
                             <i class="fas fa-shopping-cart"></i>
                             <span class="links_name">Produit</span>
                         </a>
@@ -522,7 +523,7 @@
                     </li>
 
                     <li class="dropdown" >
-                    <a href="/recommendation" class="{{ request()->is('recommendation') ? 'active' : '' }}">
+                    <a href="/recommendation" class="{{ request()->is('recommendation', 'recommendations/*', 'feedback', 'feedback/*') ? 'active' : '' }}">
                             <i class="fas fa-heart"></i>
                             <span class="links_name">Services</span>
                         </a>

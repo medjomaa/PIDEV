@@ -1,70 +1,90 @@
 @extends('dashboard')
 
 @section('content')
-
-<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-<link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet">
-
 <style>
-body {
-    background-image: url('https://img.freepik.com/premium-photo/dark-gym-with-red-lights-black-bar-that-says-fitness_911201-3358.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
+    body, html {
+        margin: 0;
+        padding: 0;
+        background-image: url('https://img.freepik.com/premium-photo/dark-gym-with-red-lights-black-bar-that-says-fitness_911201-3358.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        font-family: "Nunito", sans-serif;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
 
-input, textarea {
-    background-color: #0a0a23;
-    border: 1px solid #cc0000;
-    color: #ffffff;
-    padding: 10px;
-    margin: 8px 0;
-    width: 100%;
-}
+    h2 {
+        font-size: 36px;
+        color: white;
+        text-align: center;
+        margin-top: 30px;
+    }
 
-input[type="submit"], button.btn-green {
-    background-color: #cc0000;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
+    .container {
+        width: 700px; /* Adjusted for wider form */
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+        border-radius: 10px;
+        box-shadow: 0px 0px 8px #FF4136; /* Red glow effect */
+        margin: 0 auto;
+        margin-top: 50px; /* Space from the top */
+        padding: 40px; /* Padding inside the container */
+        padding-bottom: 60px; /* Extra padding at the bottom */
+        color: white; /* Text color */
+    }
 
-input[type="submit"]:hover, button.btn-green:hover {
-    background-color: #ff4d4d;
-}
+    label, .error {
+        color: #FF4136; /* Error message and label color */
+        font-size: 16px; /* Label and error message font size */
+        margin-top: 5px; /* Spacing between the input field and label/error message */
+        display: block; /* Make label and error message take full width */
+    }
 
-.container {
-    padding: 20px;
-    background-color: rgba(27, 27, 50, 0.85);
-    color: rgb(192, 192, 192);
-    border-radius: 5px;
-    max-width: 500px;
-    margin: auto;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-}
+    input[type="text"], textarea {
+        background-color: #2C2C54; /* Dark blue background */
+        color: white; /* Text color */
+        width: 100%; /* Full width */
+        padding: 10px; /* Padding inside inputs */
+        border: 2px solid #FF4136; /* Red border */
+        border-radius: 5px; /* Rounded corners */
+        font-size: 16px; /* Font size */
+    }
+
+    button.btn-green {
+        background-color: #FF4136; /* Red background */
+        width: 100%; /* Full width */
+        padding: 15px 0; /* Padding top and bottom */
+        border: none; /* No border */
+        border-radius: 5px; /* Rounded corners */
+        color: white; /* Text color */
+        font-size: 20px; /* Font size */
+        cursor: pointer; /* Pointer cursor on hover */
+        transition: 0.3s; /* Smooth transition for hover effect */
+        display: block; /* Display as block to take full width */
+        margin: 20px auto; /* Center button and add spacing above and below */
+    }
+
+    button.btn-green:hover {
+        opacity: 0.7; /* Hover effect */
+    }
 </style>
 
 <div class="container">
+    <h2>Create <b>Category</b></h2>
     <form action="{{ route('categories.store') }}" method="POST">
         @csrf
-        <h2>Create <b>Category</b></h2>
-</br>
-        <div>
-            <label for="name" style="color: #ffffff;">Name:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
+        
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
 
-        <div>
-            <label for="comment" style="color: #ffffff;">Comment:</label>
-            <textarea id="comment" name="comment" required></textarea>
-        </div>
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" required></textarea>
 
-        <div>
-            <button type="submit" class="btn-green">Create Event</button>
-        </div>
+        <button type="submit" class="btn-green">Create Categories</button>
     </form>
 </div>
 
