@@ -10,24 +10,26 @@
       <div class="hero-slide-item" style="background-image:url('https://i0.wp.com/connectthewatts.com/wp-content/uploads/sites/11/2021/03/silofit-1-scaled-1.jpg');">
         <div class="hero-slider-marketing">
           <a href="#" class="youtube-button"><span class="fa fa-play"></span></a>
-          <h2>Be Fit. Power Gym</h2>
-          <button>More Info</button>
+          <h2>Get Strong. Power Gym.</h2>
+<a href="/registration" class="button">Explore</a>
+
         </div>
       </div>
 
       <div class="hero-slide-item" style="background-image:url('https://www.trainaway.fit/wp-content/uploads/2019/08/tartu6-1-e1566570527629.jpg');">
         <div class="hero-slider-marketing">
           <a href="#" class="youtube-button"><span class="fa fa-play"></span></a>
-          <h2>Be Fit. Top Trainer</h2>
-          <button >More Info</button>
+          <h2>Fit Starts Here.</h2>
+          <a href="/registration" class="button">Join Us </a>
         </div>
       </div>
 
       <div class="hero-slide-item" style="background-image:url('https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?cs=srgb&dl=pexels-leon-ardho-1552252.jpg&fm=jpg');">
         <div class="hero-slider-marketing">
           <a href="" class="youtube-button"><span class="fa fa-play"></span></a>
-          <h2>Be Fit. Top Body</h2>
-          <button>More Info</button>
+          <h2>Power Up!</h2>
+          <a href="/registration" class="button">See How</a>
+
         </div>
       </div>
     </div>
@@ -43,7 +45,8 @@
             <img src="https://onclickwebdesign.com/wp-content/uploads/icon-1.png" alt="Star Trophy Icon" />
           </div>
           <h4>Amazing Setting</h4>
-          <p>Pellentesque dictum nisl in nibh dictum volutpat nec a quam. Vivamus suscipit nisl quis nulla pretium, vitae ornare leo.</p>
+<p>Our gym features state-of-the-art equipment, spacious workout areas, and a motivating atmosphere to help you achieve your fitness goals. Whether you're looking to build muscle, increase endurance, or just stay active, our facilities cater to all levels of fitness enthusiasts.</p>
+
         </div>
       </div>
 
@@ -54,7 +57,8 @@
             <img src="https://onclickwebdesign.com/wp-content/uploads/icon-2.png" alt="Dumbbell Icon" />
           </div>
           <h4>Best Trainers</h4>
-          <p>Pellentesque dictum nisl in nibh dictum volutpat nec a quam. Vivamus suscipit nisl quis nulla pretium, vitae ornare leo.</p>
+<p>Our certified trainers are passionate about your success and dedicated to guiding you on your fitness journey. With personalized training plans, nutritional advice, and continuous support, they ensure you're equipped to meet and surpass your fitness goals.</p>
+
         </div>
       </div>
 
@@ -65,7 +69,8 @@
             <img src="https://onclickwebdesign.com/wp-content/uploads/icon-3.png" alt="Smoothie Icon" />
           </div>
           <h4>Diet Plans</h4>
-          <p>Pellentesque dictum nisl in nibh dictum volutpat nec a quam. Vivamus suscipit nisl quis nulla pretium, vitae ornare leo.</p>
+<p>Unlock your full potential with our tailored diet plans designed to fuel your fitness journey. Whether your goal is weight loss, muscle gain, or improved health, our expert nutritionists craft personalized meal strategies that complement your workout regime and dietary preferences.</p>
+
         </div>
       </div>
     </div>
@@ -174,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
 
-    <button>See All Services</button>
+    <a href="/registration" class="button">See All Services</a>
   </section>
 
   <section id="trainers" class="animated-section">
@@ -303,4 +308,40 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
   </div>
+  <section id="contact" class="animated-section">
+  <footer>
+    <div class="footer-container">
+      <div id="footer-logo" class="top-gym-logo">
+        <a href="#">Power<br/>Gym</a>
+      </div>
+
+      <nav>
+        <ul>
+            <li><a class="smooth-scroll-link" href="/">Home</a></li>
+            <li><a class="smooth-scroll-link" href="#features">Training</a></li>
+            <li><a class="smooth-scroll-link" href="{{ route('events.eventshow') }}" class="{{ request()->is('events.eventshow') ? 'active' : '' }}">Evenement</a></li>
+            <li><a class="smooth-scroll-link" href="#trainers">Products</a></li>
+            <li><a class="smooth-scroll-link" href="#footer">Contacts</a></li>
+            <li>
+        </ul>
+      </nav>
+
+      <div class="mailing-list">
+        <input type="text" placeholder="YOUR EMAIL" />
+        <button><a href="/registration">SIGN UP</a></button>
+      </div>
+
+
+      <ul class="social-icons">
+        <li><a href="#"><span class="fab fa-pinterest"></span></a></li>
+        <li><a href="#"><span class="fab fa-facebook"></span></a></li>
+        <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+        <li><a href="#"><span class="fab fa-youtube"></span></a></li>
+        <li><a href="#"><span class="fab fa-behance"></span></a></li>
+      </ul>
+
+      <img src="https://onclickwebdesign.com/wp-content/uploads/footer-icon.png" class="bicep" alt="Bicep flex icon" />
+    </div>
+  </footer>
+  </section>
 @endsection

@@ -9,14 +9,14 @@
     
         <nav>
           <ul class="flex">
-            <li><a class="smooth-scroll-link" href="/dashboard">Home</a></li>
-            <li><a class="smooth-scroll-link" href="#">Training</a></li>
+            <li><a class="smooth-scroll-link" href="/">Home</a></li>
+            <li><a class="smooth-scroll-link" href="#features">Training</a></li>
             <li><a class="smooth-scroll-link" href="{{ route('events.eventshow') }}" class="{{ request()->is('events.eventshow') ? 'active' : '' }}">Evenement</a></li>
             <li id="header-logo" class="top-gym-logo">
-              <a class="smooth-scroll-link" href="#">Power<br/>Gym</a>
+              <a class="smooth-scroll-link" href="#home">Power<br/>Gym</a>
             </li>
-            <li><a class="smooth-scroll-link" href="#">Products</a></li>
-            <li><a class="smooth-scroll-link" href="#">Feedback</a></li>
+            <li><a class="smooth-scroll-link" href="#trainers">Products</a></li>
+            <li><a class="smooth-scroll-link" href="#contact">Contacts</a></li>
             <li>
             <a href="registration"> Se connecter</a>
             </li>
@@ -1015,6 +1015,21 @@ body {
   border: 3px solid;
   border-color: #FF3D00 transparent;
 }
+.button {
+    display: inline-block;
+    background-color: #FF0000; /* Adjust color as needed */
+    color: #FFFFFF; /* Adjust text color as needed */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px; /* Adjust for rounded corners */
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #E60000; /* Slightly darker on hover */
+}
 
 @keyframes rotation {
   0% {
@@ -1175,38 +1190,6 @@ $(document).ready(function() {
     });
   </script>
 </body>
-<footer>
-    <div class="footer-container">
-      <div id="footer-logo" class="top-gym-logo">
-        <a href="#">Power<br/>Gym</a>
-      </div>
 
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Entrainement</a></li>
-          <li><a href="#">Evenement</a></li>
-          <li><a href="#">Produit</a></li>
-          <li><a href="#">Feedback</a></li>
-        </ul>
-      </nav>
-
-      <div class="mailing-list">
-        <input type="text" placeholder="YOUR EMAIL" />
-        <button><a href="/registration">SIGN UP</a></button>
-      </div>
-
-
-      <ul class="social-icons">
-        <li><a href="#"><span class="fab fa-pinterest"></span></a></li>
-        <li><a href="#"><span class="fab fa-facebook"></span></a></li>
-        <li><a href="#"><span class="fab fa-twitter"></span></a></li>
-        <li><a href="#"><span class="fab fa-youtube"></span></a></li>
-        <li><a href="#"><span class="fab fa-behance"></span></a></li>
-      </ul>
-
-      <img src="https://onclickwebdesign.com/wp-content/uploads/footer-icon.png" class="bicep" alt="Bicep flex icon" />
-    </div>
-  </footer>
 
 </html>
