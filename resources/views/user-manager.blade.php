@@ -1,7 +1,12 @@
 @extends('dashboard')
-@section('title', 'Power Gym - Feedback')
+@section('title','Profile')
 @section('content')
 @if(session('success'))
+<html>
+    <header>
+<title>Profile</title>
+</header>
+<body>
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
@@ -154,6 +159,6 @@ body {
 }
 </style>
 
-
-
+</body>
+</html>
 @endsection

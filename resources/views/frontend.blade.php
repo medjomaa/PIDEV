@@ -15,7 +15,7 @@
             <li id="header-logo" class="top-gym-logo">
               <a class="smooth-scroll-link" href="#home">Power<br/>Gym</a>
             </li>
-            <li><a class="smooth-scroll-link" href="#trainers">Products</a></li>
+            <li><a class="smooth-scroll-link" href="/productshow">Products</a></li>
             <li><a class="smooth-scroll-link" href="#contact">Contacts</a></li>
             <li>
             <a href="registration"> Se connecter</a>

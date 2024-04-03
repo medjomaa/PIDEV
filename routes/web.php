@@ -13,6 +13,7 @@ use App\Http\Controllers\EventsController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Event2Controller;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\ProductController;
 
 
 // Home route
@@ -149,3 +150,19 @@ Route::get('/privacy-policy', function () {
 Route::get('/terms-of-use', function () {
     return view('terms-of-use');
 })->name('terms-of-use');
+
+
+//Product
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+Route::post('/products', [ProductController::class, 'store'])->name('products.store');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::get('/productshow', [ProductController::class, 'productshow'])->name('products.productshow');
+Route::post('/purchase/{id}', [ProductController::class, 'purchase'])->name('purchase');
+// Adjusted to use explicit binding for product model
+
+
+

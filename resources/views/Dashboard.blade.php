@@ -514,7 +514,7 @@
                         <span class="tooltip">Category</span>
                     </li>
                     <li>
-                        <a href="/produit" class="{{ request()->is('produit') ? 'active' : '' }}">
+                        <a href="/products" class="{{ request()->is('products') ? 'active' : '' }}">
                             <i class="fas fa-shopping-cart"></i>
                             <span class="links_name">Produit</span>
                         </a>
