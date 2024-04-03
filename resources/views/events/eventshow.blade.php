@@ -23,18 +23,23 @@
             background-repeat: no-repeat;
         }
         .welcome {
-            margin: 40px auto;
-            width: 80%; /* Adjusted for better responsiveness */
-            border: 2px solid #ffffff; /* White border */
-            border-radius: 10px; /* Rounded corners */
-            padding: 20px;
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
-        }
-        .welcome h2 {
-            color: #ffffff; /* White color for better visibility */
-            margin-bottom: 10px; /* Spacing between title and text */
-        }
+        margin: 40px auto;
+        width: 80%;
+        border: 2px solid #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    .welcome h2 {
+        color: #ffffff;
+        margin-bottom: 10px;
+        font-size: 28px; /* Adjusted size */
+    }
+    .welcome p {
+        font-size: 14px; /* Adjusted size */
+        /* Additional paragraph styles if needed */
+    }
         .search {
             display: flex;
             justify-content: center;
