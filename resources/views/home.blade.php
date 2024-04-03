@@ -1369,6 +1369,76 @@ body {
     transition: all 0.3s ease-in-out; /* Add transition for smooth effect */
 }
 
+.featured-products .box-one {
+    background: linear-gradient(135deg, #FFD194, #D1913C); /* Warm gradient for box-one */
+}
+
+.featured-products .box-two {
+    background: linear-gradient(135deg, #89F7FE, #66A6FF); /* Cool gradient for box-two */
+}
+
+.featured-products .box-three {
+    background: linear-gradient(135deg, #FF9A8B, #FF6A88); /* Pink gradient for box-three */
+}
+
+.featured-products .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    color: #333; /* Dark text for contrast */
+    padding: 15px;
+    border-radius: 0 0 15px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.featured-products .overlay h2, .featured-products .overlay p {
+    margin: 5px 0;
+    color: #8B0000;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Shadow for text readability */
+}
+
+.featured-products .best-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.featured-products .price-tag {
+    background-color: #FF6347;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    width: fit-content;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.featured-products .best-item:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.featured-products .best-item:hover .overlay {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+
 
        </style>
 </header>
@@ -1475,23 +1545,29 @@ body {
     </div>
 </div>
 
-            <div class="personal-bests">
-              <h1>Personal Bests</h1>
-              <div class="personal-bests-container">
-                <div class="best-item box-one">
-                  <p>Fastest 5K Run: 22min</p>
-                  <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/242bbd8c-aaf8-4aee-a3e4-e0df62d1ab27" alt="" />
+<div class="personal-bests featured-products">
+    <h1>Featured Products</h1>
+    <div class="personal-bests-container">
+        @foreach($products as $index => $product)
+            @php
+                $boxClass = 'box-' . match($index) {
+                    0 => 'one',
+                    1 => 'two',
+                    2 => 'three',
+                    default => 'additional', // Fallback class if more than three products
+                };
+            @endphp
+            <div class="best-item {{ $boxClass }}" style="background-image: url('{{ $product->image }}'); background-size: cover;">
+                <div class="overlay">
+                    <p>{{ $product->name }}</p>
+                    <p>{{ $product->description }}</p>
+                    <div class="price-tag">${{ $product->price }}</div>
                 </div>
-                <div class="best-item box-two">
-                  <p>Longest Distance Cycling: 4 miles</p>
-                  <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/a3b3cb3a-5127-498b-91cc-a1d39499164a" alt="" />
-                </div>
-                <div class="best-item box-three">
-                  <p>Longest Roller-Skating: 2 hours</p>
-                  <img src="https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/e0ee8ffb-faa8-462a-b44d-0a18c1d9604c" alt="" />
-                </div>
-              </div>
             </div>
+        @endforeach
+    </div>
+</div>
+
           </div>
 
           

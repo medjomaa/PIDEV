@@ -99,6 +99,7 @@
 
         .event p {
             margin: 10px 0;
+            color: #ffffff;
         }
 
         .event .Join-button {
@@ -117,6 +118,15 @@
         .event .Join-button:hover {
             background-color: #ff4d4d; /* Rouge plus foncé */
         }
+        .event-date {
+    font-weight: bold;
+    color: #FFC107; /* Gold color for emphasis */
+    background-color: rgba(255, 255, 255, 0.2); /* Slight white background */
+    padding: 2px 5px; /* Padding around dates */
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
     </style>
 </head>
 <body>
@@ -137,7 +147,11 @@
                     <h2>{{ $event->title }}</h2>
                     <p>{{ $event->description }}</p>
                     <p>Type: {{ $event->type }}</p>
-                    <p>From {{ $event->start_date }} To {{ $event->end_date }}</p>
+                    <p>
+                    From <span class="event-date">{{ \Carbon\Carbon::parse($event->start_date)->format("F j, Y") }}</span> 
+                        To <span class="event-date">{{ \Carbon\Carbon::parse($event->end_date)->format("F j, Y") }}</span>
+                    </p>
+
                     <button class="Join-button">Join</button>
                 </div>
             @endforeach

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use App\Models\Event;
+use App\Models\Product;
 class EventsController extends Controller
 {
     protected $client;
@@ -15,6 +16,7 @@ class EventsController extends Controller
     public function index()
     {
         $events = Event::all(); // Retrieve all events
+        $products = Product::all(); 
         $userId = 1; // You should dynamically determine the user ID based on your application's context
 
                 // Fetch user information and BMI
@@ -25,7 +27,7 @@ class EventsController extends Controller
         $userBMI = $recommendationsData['bmi']; // Now fetching BMI from the same endpoint
 
         // Pass the fetched data to your view
-        return view('home', compact('userBMI', 'recommendations','events'));
+        return view('home', compact('userBMI', 'recommendations','events','products'));
 
     }
 }
