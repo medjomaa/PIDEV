@@ -11,9 +11,23 @@ class RecommendationsController extends Controller
 {
     public function __construct()
     {
+        $userName = Auth::user()->name;
         $this->middleware('auth')->except(['index']); // Require users to be authenticated for all actions except viewing recommendations
     }
+    public function myMethod()
+    {
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            // The user is logged in
+            $userName = Auth::user()->name;
+            // Continue with your logic, now safely using $userName
+        } else {
+            // User is not authenticated, redirect with a message
+            return redirect('/registration')->with('error', 'You need to create an account or log in.');
+        }
+    }
 
+    
     public function index()
     {
         // If you need to pass any additional data to your form, you can query it here

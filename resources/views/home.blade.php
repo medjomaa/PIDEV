@@ -279,7 +279,7 @@ html {
           border-radius: 10px;
           object-fit: cover;
         }
-        
+     
         .overlay {
           position: absolute;
           display: flex;
@@ -1437,7 +1437,44 @@ body {
 .featured-products .best-item:hover .overlay {
     background: rgba(255, 255, 255, 0.6);
 }
+/* Add hover effects for product cards */
+.product-card:hover .overlay {
+    background-color: rgba(0, 0, 0, 0.8); /* Darken on hover */
+    transition: background-color 0.3s ease;
+}
 
+.product-actions {
+    display: none; /* Initially hidden */
+    text-align: center;
+}
+
+.product-card:hover .product-actions {
+    display: block; /* Show on hover */
+}
+
+/* Add more CSS based on the enhancements above */
+
+/* Styles for Add to Cart button */
+.add-to-cart-btn {
+  background-color: var(--primary); /* Use your primary color variable */
+  color: var(--white);
+  transition: background-color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--primary-dark); /* A darker shade for hover effect */
+}
+
+/* Styles for View Details button */
+.view-details-btn {
+  background-color: var(--primary-light);
+  color: var(--white);
+  transition: background-color 0.3s;
+}
+
+.view-details-btn:hover {
+  background-color: var(--primary); /* Return to primary color on hover */
+}
 
 
        </style>
@@ -1548,23 +1585,20 @@ body {
 <div class="personal-bests featured-products">
     <h1>Featured Products</h1>
     <div class="personal-bests-container">
-        @foreach($products as $index => $product)
-            @php
-                $boxClass = 'box-' . match($index) {
-                    0 => 'one',
-                    1 => 'two',
-                    2 => 'three',
-                    default => 'additional', // Fallback class if more than three products
-                };
-            @endphp
-            <div class="best-item {{ $boxClass }}" style="background-image: url('{{ $product->image }}'); background-size: cover;">
-                <div class="overlay">
-                    <p>{{ $product->name }}</p>
-                    <p>{{ $product->description }}</p>
-                    <div class="price-tag">${{ $product->price }}</div>
-                </div>
-            </div>
-        @endforeach
+    @foreach($products as $index => $product)
+      <div class="best-item product-card" style="background-image: url('{{ $product->image }}');">
+          <div class="overlay">
+              <p class="product-name">{{ $product->name }}</p>
+              <p class="product-description">{{ $product->description }}</p>
+              <div class="product-actions">
+                  <!-- Assign unique IDs based on the product's ID -->
+                  <a href="/productshow"  class="btn add-to-cart-btn" id="add-to-cart-{{ $product->id }}">Add to Cart</a>
+                  <a href="/products/{{ $product->id }}" class="btn view-details-btn" id="view-details-{{ $product->id }}">View Details</a>
+              </div>
+              <div class="price-tag">${{ $product->price }}</div>
+          </div>
+      </div>
+      @endforeach
     </div>
 </div>
 

@@ -116,6 +116,8 @@ Route::get('/categories/{category}/edit', [CategoryController::class, 'edit'])->
 Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 Route::get('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+
+
 /* events routes*/ 
 Route::get('/events', [EventController::class, 'index'])->name('events.index');
 Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
@@ -137,6 +139,7 @@ Route::get('/searchE', [EventController::class, 'searchE'])->name('events.search
 // Route::get('/recommendation', [RecommendationsController::class, 'showForm'])->name('recommendation.form');
 Route::get('/home', [EventsController::class, 'index'])->name('home');
 Route::get('/calendar', [Event2Controller::class, 'index'])->name('calendar.index');
+
 
 
 

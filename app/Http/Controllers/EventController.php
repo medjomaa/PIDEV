@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -23,7 +24,23 @@ class EventController extends Controller
         
         return view('events.eventshow', compact('events'));
     }
-
+    public function myMethod()
+    {
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            // The user is logged in
+            $userName = Auth::user()->name;
+            // Continue with your logic, now safely using $userName
+        } else {
+            // User is not authenticated, redirect with a message
+            return redirect('/registration')->with('error', 'You need to create an account or log in.');
+        }
+    }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function create()
     {    
         $categories = Category::all();

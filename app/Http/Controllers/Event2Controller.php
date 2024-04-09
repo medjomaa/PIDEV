@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event; // Ensure you have the Event model created
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Auth;
 class Event2Controller extends Controller
 {
     public function index()
@@ -31,4 +31,22 @@ class Event2Controller extends Controller
 
         return view('calendar', compact('events', 'formattedEvents'));
     }
+
+public function myMethod()
+{
+    // Check if the user is authenticated
+    if (Auth::check()) {
+        // The user is logged in
+        $userName = Auth::user()->name;
+        // Continue with your logic, now safely using $userName
+    } else {
+        // User is not authenticated, redirect with a message
+        return redirect('/registration')->with('error', 'You need to create an account or log in.');
+    }
+}
+public function __construct()
+{
+    $this->middleware('auth');
+}
+
 }

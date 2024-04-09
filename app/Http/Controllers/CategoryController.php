@@ -21,6 +21,20 @@ class CategoryController extends Controller
     }
 
 
+
+public function myMethod()
+{
+    // Check if the user is authenticated
+    if (Auth::check()) {
+        // The user is logged in
+        $userName = Auth::user()->name;
+        // Continue with your logic, now safely using $userName
+    } else {
+        // User is not authenticated, redirect with a message
+        return redirect('/registration')->with('error', 'You need to create an account or log in.');
+    }
+}
+
     public function create()
     {
         return view('categories.create');

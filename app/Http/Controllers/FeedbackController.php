@@ -11,6 +11,7 @@ class FeedbackController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth');
         // Require users to be authenticated for all actions except viewing the feedback form
         $this->middleware('auth')->except(['index']);
     }
@@ -20,7 +21,19 @@ class FeedbackController extends Controller
         // Display the feedback form, passing an existing feedback instance if available
         return view('feedback_form', compact('feedback'));
     }
-
+    public function myMethod()
+    {
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            // The user is logged in
+            $userName = Auth::user()->name;
+            // Continue with your logic, now safely using $userName
+        } else {
+            // User is not authenticated, redirect with a message
+            return redirect('/registration')->with('error', 'You need to create an account or log in.');
+        }
+    }
+    
     public function submitFeedback(Request $request)
 {
     // Validate the request data

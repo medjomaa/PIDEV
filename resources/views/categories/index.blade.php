@@ -121,6 +121,12 @@ input, textarea, select {
     color: #ffffff;
 }
 </style>
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
 <div class="container">
     <div class="table-wrapper">
         <div class="table-title">

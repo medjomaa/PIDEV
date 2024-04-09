@@ -17,7 +17,7 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url(https://t4.ftcdn.net/jpg/03/36/45/65/360_F_336456579_K00FCLKIIbG6vtiWbnbqVcUuvVv35GSF.jpg);
+    background-image: url('https://images.pexels.com/photos/3207527/pexels-photo-3207527.jpeg?cs=srgb&dl=pexels-%C5%82ukasz-martenka-3207527.jpg&fm=jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -36,8 +36,16 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Soft white shadow for depth */
-    width: 90%; /* Use a width that allows for a little space on the sides */
+    width: 95%; /* Increased width for a wider layout */
     box-sizing: border-box;
+}
+.left-sections li, .body-sections li, .recommendation-section li {
+    cursor: pointer; /* Changes the cursor to a pointer to indicate the item is clickable */
+}
+
+.left-sections li:hover, .body-sections li:hover, .recommendation-section li:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Optional: adds a slight highlight to the item on hover */
+    color: #FFF; /* Optional: changes text color to white on hover */
 }
 
 .exercise-section {
@@ -82,9 +90,9 @@ body {
 }
 
 .body-part h3{
-color: #8B0000;
+color: #DC143C;
 } .body-part ul {
-    color: #FFFFFF; /* Ensures text is white for visibility */
+    color: #87CEEB; /* Ensures text is white for visibility */
 }
 
 .body-part ul {
@@ -124,73 +132,82 @@ color: #8B0000;
 
 .container {
     padding: 20px;
-    max-width: 1200px; /* Adjust based on your preference */
-    width: 100%; /* Adjusted to ensure it fits within its parent container */
-    background-color: rgba(255, 255, 255, 0.01); /* Semi-transparent background */
-    border-radius: 8px; /* Smaller rounded edges */
-    box-shadow: 0 0 200px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
-    margin: 20px auto; /* Centers the container horizontally */
-    box-sizing: border-box; /* Ensures padding and border are included in the width */
+    max-width: 1200px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* Darker background for more emphasis on black */
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* More intense red shadow for a striking effect */
+    margin: 20px auto;
+    box-sizing: border-box;
 }
 
-.body{
-  background-image:url('https://wallpapercave.com/wp/wp9142703.jpg');
-        background-size: cover; /* Cover the entire page */
-        background-position: center; /* Center the background image */
-         background-repeat: no-repeat; /* Do not repeat the background */
+.body {
+    background-image: url('https://wallpapercave.com/wp/wp9142703.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
 .content {
-    position: relative; /* Keeps children positioned relative to this */
-    text-align: center; /* Centers text and inline elements */
-    width: 100%; /* Expands to match the page width */
-    margin: 20px auto; /* Centers the div horizontally with some vertical margin */
-    padding: 20px; /* Inner spacing around content */
-
-    
-    
+    position: relative;
+    text-align: center;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Align items in the center for a neater layout */
-    overflow-y: auto; /* Allows vertical scrolling if the content overflows */
+    align-items: center;
+    overflow-y: auto;
 }
 
-
-
 .banner h1 {
-    color: white; /* Vibrant red */
+    color: #FFD700; /* Darker yellow for a richer appearance */
     margin-bottom: 15px;
 }
 
 .banner p {
     margin-bottom: 10px;
-    
-    color: white; /* Light grey for contrast */
+    color: #FF4500; /* A darker red for better harmony with the theme */
     font-size: 16px;
 }
 
+.body-sections p {
+    color: #FF6347; /* A shade of red that leans towards the theme's color palette */
+}
+
 .login-link {
-  background-color: red; /* Gold color for the login link */
+    background-color: #2B2B2B; /* Even darker gray to blend with the black/red theme */
+    color: #B22222; /* A deeper red to maintain the contrast but stay within theme */
     font-weight: bold;
 }
 
-.btn {
+.banner p {
     display: inline-block;
-    background-color: red; /* Vibrant red */
-    color: white;
+    background-color: #202020; /* Near black for a deeper contrast */
+    color: #FFA500; /* A darker shade of yellow for text */
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease; /* Smooth transition for all changes */
+    text-decoration: none;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.7); /* Darker shadow for text */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Deeper shadow for more depth */
+    border: none;
+    font-weight: bold;
 }
 
-.btn:hover {
-    background-color: red; /* Darker shade of button color */
+.banner p:hover, .banner p:hover {
+    background-color: #202020; /* Slightly brighter red for hover effect */
+    color: #FF4500; /* Darker yellow for text, providing strong contrast on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Even more pronounced shadow for a "pop" effect */
+    transform: translateY(-2px); /* Slight upward movement for interactivity */
 }
+
 
 .processing p, .recommendation-action p {
-
     text-align: center;
     cursor: pointer;
+    color: #E6E6FA; /* Soft gray for text, providing contrast without stark white */
 }
 
 #load {
@@ -7256,6 +7273,25 @@ q {
 .ami-slideshow-separate-container {
   position: relative;
 }
+.container h2 {
+    color: #FF2400; /* Scarlet red for attention-grabbing titles */
+    font-size: 1.2em; /* Larger font size for headers */
+    font-weight: bold; /* Bold for emphasis */
+    margin-bottom: 0.5em; /* Space below the header before the paragraph text starts */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+    text-transform: uppercase; /* UPPERCASE letters for added impact */
+    letter-spacing: 1.5px; /* Slightly more space between letters */
+}
+
+.container p {
+    color: #D3D3D3; /* Light gray for readability against dark backgrounds */
+    font-size: 1em; /* Standard size for paragraph text */
+    line-height: 1.6; /* Enhanced line height for better readability */
+    margin-top: 0; /* Aligns closely with the bottom of the h2 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Softer shadow for subtle depth */
+    padding: 0 1em; /* Padding on the sides for better text alignment */
+}
+
 .ami-slideshow-separate-item {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
@@ -11613,162 +11649,185 @@ body.has-skin .owl-item {
   }
 }
 .body-sections p {
-    color: white; /* Sets the text color to white */
-    text-align: center; /* Centers the text */
+    text-align: center; /* Keeps the text centered */
     margin-top: 20px; /* Adds some space above the paragraph */
-    font-size: 18px; /* Adjusts the font size */
+    font-size: 22px; /* Increases the font size for greater visibility */
+    font-weight: bold; /* Makes the text bolder for emphasis */
+    font-family: 'Arial Black', Gadget, sans-serif; /* Uses a strong, impactful font */
+    color: #FFD700; /* Bright gold color */
+    text-transform: uppercase; /* Transforms the text to uppercase for more impact */
+    letter-spacing: 1px; /* Increases spacing between letters for better readability */
+    line-height: 1.5; /* Adjusts line height for better readability */
+    text-shadow: 0px 0px 3px #FFD700, /* Horizontal and vertical shadow with gold color */
+                 0px 0px 7px #FFD700, /* Larger blur radius for a glow effect */
+                 0px 0px 7px #FFA500, /* Slightly darker shade for depth */
+                 0px 0px 7px #FFA500; /* Even larger blur radius for extended glow */
+}
+
+
+
+#exerciseModal {
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.5); /* Transparent background */
+    display: flex; /* Center vertically and horizontally */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Shadow */
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
     </style>
 </head>
 <body>
 <div class="left-sections">
-    <title>Training</title>
     @auth
-                <p>Welcome back, <strong>{{ Auth::user()->name }}</strong>! Ready for your next challenge?</p>
-            @else
-                @if(Auth::guest())
-                    <p>Please <a href="{{ route('login') }}" class="login-link">login</a> or <a href="{{ route('register') }}" class="register-link">register</a> to see your dashboard and receive personalized recommendations.</p>
-                @else
-                    <p>Welcome, <strong>guest</strong>! <a href="{{ route('register') }}" class="register-link">Register</a> to track your progress and receive personalized recommendations.</p>
-                @endif
-            @endauth
-            <div class="container">
+        <p>Welcome back, <strong>{{ Auth::user()->name }}</strong>! Your next challenge awaits.</p>
+    @else
+        @if(Auth::guest())
+            <p>Please <a href="{{ route('login') }}" class="login-link">login</a> or <a href="{{ route('register') }}" class="register-link">register</a> to see your dashboard and receive personalized recommendations.</p>
+        @else
+            <p>Welcome, <strong>guest</strong>! <a href="{{ route('register') }}" class="register-link">Register</a> to track your progress and receive personalized recommendations.</p>
+        @endif
+    @endauth
+    <div class="container">
         <div class="welcome-section">
-            <h2>Welcome to Your Personal Fitness Journey</h2>
-            <p>Explore, learn, and grow with customized workouts designed for every part of your body. Ready to get started?</p>
+            <h2>🌟 Embark on Your Personal Fitness Odyssey</h2>
+            <p>Dive deep into a world where fitness meets personalization. Each workout, meticulously crafted, targets every inch of your body, paving the way for growth, learning, and an exhilarating journey. Are you geared up to embark?</p>
         </div>
-
         <div class="exercise-section">
+            <h2>🏋️ Ultimate Exercise Compendium</h2>
+            <div class="exercise-grid">
+                <!-- Biceps -->
+                <div class="body-part">
+                    <h3>Biceps - Sculpt your arms to perfection:</h3>
+                    <ul>
+                    <li data-exercise-img="{{ asset('exercices/Barbell-Curl-06.jpg') }}">Barbell Curl - The classic arm builder.</li>
+                    <li data-exercise-img="{{ asset('exercices/Dumbbell-Hammer-Curl.jpg') }}">Dumbbell Hammer Curl - For a stronger, more resilient bicep.</li>
+                    <li data-exercise-img="{{ asset('exercices/Concentration-Curl.jpg') }}">Concentration Curl - Zero in on muscle growth.</li>
+                    </ul>
+                </div>
+                <!-- Triceps -->
+                <div class="body-part">
+        <h3>Triceps - Carve out your back arms:</h3>
+        <ul>
+            <li data-exercise-img="{{ asset('exercices/Tricep-Dips.jpg') }}">Tricep Dips - Elevate your arm strength.</li>
+            <li data-exercise-img="{{ asset('exercices/Skull-Crushers.jpg') }}">Skull Crushers - A skull-braving path to power.</li>
+            <li data-exercise-img="{{ asset('exercices/Overhead-Tricep-Extension.jpg') }}">Overhead Tricep Extension - Reach for the stars, and tone those triceps.</li>
+        </ul>
+    </div>
+    <!-- Quads -->
+    <div class="body-part">
+        <h3>Quads - The pillars of strength:</h3>
+        <ul>
+            <li data-exercise-img="{{ asset('exercices/Squats.jpg') }}">Squats - The foundation of lower body power.</li>
+            <li data-exercise-img="{{ asset('exercices/Leg-Press.jpg') }}">Leg Press - Push your limits.</li>
+            <li data-exercise-img="{{ asset('exercices/Lunges.jpg') }}">Lunges - Step into stronger legs.</li>
+        </ul>
+    </div>
+    <!-- Shoulders -->
+    <div class="body-part">
+        <h3>Shoulders - Broaden your horizons:</h3>
+        <ul>
+            <li data-exercise-img="{{ asset('exercices/Shoulder-Press.jpg') }}">Shoulder Press - Push the world away.</li>
+            <li data-exercise-img="{{ asset('exercices/Lateral-Raise.jpg') }}">Lateral Raise - Broaden and build.</li>
+            <li data-exercise-img="{{ asset('exercices/Front-Raise.jpg') }}">Front Raise - Lift and sculpt.</li>
+        </ul>
+    </div>
+    <!-- Chest -->
+    <div class="body-part">
+        <h3>Chest - Build a shield of strength:</h3>
+        <ul>
+            <li data-exercise-img="{{ asset('exercices/Bench-Press.jpg') }}">Bench Press - The cornerstone of chest development.</li>
+            <li data-exercise-img="{{ asset('exercices/decline-Bench-Press.jpg') }}">Decline Bench Press - Aim higher with each press.</li>
+            <li data-exercise-img="{{ asset('exercices/Chest-Fly.jpg') }}">Chest Fly - Spread your wings.</li>
+        </ul>
+    </div>
+    <!-- Forearms -->
+    <div class="body-part">
+        <h3>Forearms - Grip the force:</h3>
+        <ul>
+            <li data-exercise-img="{{ asset('exercices/Wrist-Curls.jpg') }}">Wrist Curls - Curl towards strength.</li>
+            <li data-exercise-img="{{ asset('exercices/Reverse-Wrist-Curls.jpg') }}">Reverse Wrist Curls - Defy the ordinary.</li>
+            <li data-exercise-img="{{ asset('exercices/Farmers-Walk.jpg') }}">Farmer's Walk - Carry your way to grit.</li>
+        </ul>
+    </div>
+    <!-- Abs -->
+    <div class="body-part">
+        <h3>Abs - Core strength for a solid foundation:</h3>
+        <ul>
+            <li data-exercise-img="{{ asset('exercices/sits.jpg') }}">Sit Ups - The ultimate test of endurance.</li>
+            <li data-exercise-img="{{ asset('exercices/Russian-Twists.jpg') }}">Abdominal Twist - Twist into a stronger core.</li>
+            <li data-exercise-img="{{ asset('exercices/Leg-Raises.jpg') }}">Hanging Knee Raise - Elevate your core strength.</li>
+        </ul>
+    </div>
+    <!-- Calves -->
+    <div class="body-part">
+        <h3>Calves - Leap higher and stand stronger:</h3>
+        <ul>
+            <li data-exercise-img="{{ asset('exercices/Calf-Raises.jpg') }}">Calf Raises - Rise up on strength.</li>
+            <li data-exercise-img="{{ asset('exercices/Seated-Calf-Raises.jpg') }}">Seated Calf Raises - Sit into your strength.</li>
+            <li data-exercise-img="{{ asset('exercices/Jump-Rope.jpg') }}">Standing Barbell Calf Raise - Bounce into endurance.</li>
+        </ul>
+    </div>
+             <!-- Hamstrings -->
+<div class="body-part">
+    <h3>Hamstring - Power in every step:</h3>
+    <ul>
+        <li data-exercise-img="{{ asset('exercices/Deadlifts.jpg') }}">Deadlifts - Lift your way to power.</li>
+        <li data-exercise-img="{{ asset('exercices/Leg-Curls.jpg') }}">Leg Curls - Curl into stronger hamstrings.</li>
+        <li data-exercise-img="{{ asset('exercices/Glute-Ham-Raise.jpg') }}">Glute-Ham Raise - Raise into resilience.</li>
+    </ul>
+</div>
+<!-- Back -->
+<div class="body-part">
+    <h3>Back - Your pillar of strength:</h3>
+    <ul>
+        <li data-exercise-img="{{ asset('exercices/Barbell-Row.jpg') }}">Barbell Row - Perfect for overall back development.</li>
+        <li data-exercise-img="{{ asset('exercices/Incline-Dumbbell-Row.jpg') }}">Incline Dumbbell Row - Focus on the upper back and traps.</li>
+        <li data-exercise-img="{{ asset('exercices/Wide-Grip-Pull-Ups.jpg') }}">Wide Grip Pull-Ups - Enhance back width and strength.</li>
+    </ul>
+</div>
 
-        <h2>EXERCISE GUIDE</h2>
-    <div class="exercise-grid">
-            <!-- Biceps -->
-            <div class="body-part">
-                <h3>Biceps</h3>
-                <ul>
-                    <li>Barbell Curl</li>
-                    <li>Dumbbell Hammer Curl</li>
-                    <li>Concentration Curl</li>
-                </ul>
-            </div>
-            <!-- Triceps -->
-            <div class="body-part" >
-                <h3>Triceps</h3>
-                <ul>
-                    <li>Tricep Dips</li>
-                    <li>Skull Crushers</li>
-                    <li>Overhead Tricep Extension</li>
-                </ul>
-            </div>
-            <!-- Quads -->
-            <div class="body-part">
-                <h3>Quads</h3>
-                <ul>
-                    <li>Squats</li>
-                    <li>Leg Press</li>
-                    <li>Lunges</li>
-                </ul>
-            </div>
-            <!-- Shoulders -->
-            <div class="body-part">
-                <h3>Shoulders</h3>
-                <ul>
-                    <li>Shoulder Press</li>
-                    <li>Lateral Raise</li>
-                    <li>Front Raise</li>
-                </ul>
-            </div>
-            <!-- Chest -->
-            <div class="body-part">
-                <h3>Chest</h3>
-                <ul>
-                    <li>Bench Press</li>
-                    <li>Incline Bench Press</li>
-                    <li>Chest Fly</li>
-                </ul>
-            </div>
-            <!-- Forearms -->
-            <div class="body-part" >
-                <h3>Forearms</h3>
-                <ul>
-                    <li>Wrist Curls</li>
-                    <li>Reverse Wrist Curls</li>
-                    <li>Farmer's Walk</li>
-                </ul>
-            </div>
-            <!-- Abs -->
-            <div class="body-part">
-                <h3>Abs</h3>
-                <ul>
-                    <li>Planks</li>
-                    <li>Russian Twists</li>
-                    <li>Leg Raises</li>
-                </ul>
-            </div>
-            <!-- Calves -->
-            <div class="body-part" >
-                <h3>Calves</h3>
-                <ul>
-                    <li>Calf Raises</li>
-                    <li>Seated Calf Raises</li>
-                    <li>Jump Rope</li>
-                </ul>
-            </div>
-            <!-- Hamstring -->
-            <div class="body-part">
-                <h3>Hamstring</h3>
-                <ul>
-                    <li>Deadlifts</li>
-                    <li>Leg Curls</li>
-                    <li>Glute-Ham Raise</li>
-                </ul>
-            </div>
-            <!-- Glutes -->
-            <div class="body-part">
-                <h3>Glutes</h3>
-                <ul>
-                    <li>Hip Thrusts</li>
-                    <li>Squats</li>
-                    <li>Glute Bridges</li>
-                </ul>
-            </div>
-            <!-- Low Back -->
-            <div class="body-part" >
-                <h3>Low Back</h3>
-                <ul>
-                    <li>Deadlifts</li>
-                    <li>Supermans</li>
-                    <li>Lower Back Extensions</li>
-                </ul>
-            </div>
-            <!-- Mid Back -->
-            <div class="body-part">
-                <h3>Mid Back</h3>
-                <ul>
-                    <li>Bent Over Rows</li>
-                    <li>T-Bar Rows</li>
-                    <li>Seated Cable Rows</li>
-                </ul>
-            </div>
-            <!-- Lats -->
-            <div class="body-part">
-                <h3>Lats</h3>
-                <ul>
-                    <li>Pull-Ups</li>
-                    <li>Lat Pulldowns</li>
-                    <li>Straight-Arm Pulldown</li>
-                </ul>
-            </div>
-            <!-- Traps -->
-            <div class="body-part" >
-                <h3>Traps</h3>
-                <ul>
-                    <li>Shrugs</li>
-                    <li>Upright Rows</li>
-                    <li>Face Pulls</li>
-                </ul>
-            </div>
+
+<!-- Lats -->
+<div class="body-part">
+    <h3>Glutes - Foundation of power:</h3>
+    <ul>
+        <li data-exercise-img="{{ asset('exercices/Step-Ups.jpg') }}">Step Ups - Elevate your glute training.</li>
+        <li data-exercise-img="{{ asset('exercices/Squats.jpg') }}">Squats - Deepen your strength foundation.</li>
+        <li data-exercise-img="{{ asset('exercices/Dumbbell-Lunges.jpg') }}">Dumbbell Lunges - Step into a stronger lower body.</li>
+    </ul>
+</div>
+<!-- Traps -->
+<div class="body-part">
+    <h3>Traps - The mountain of might:</h3>
+    <ul>
+        <li data-exercise-img="{{ asset('exercices/Shrugs.jpg') }}">Shrugs - Shrug into sheer power.</li>
+        <li data-exercise-img="{{ asset('exercices/Upright-Rows.jpg') }}">Upright Rows - Lift into strength.</li>
+        <li data-exercise-img="{{ asset('exercices/Cable.jpg') }}">Cable Row - Pull into posture and power.</li>
+    </ul>
+</div>
             </div>
         </div>
         <div class="content">
@@ -11811,7 +11870,10 @@ body.has-skin .owl-item {
         </div>
     </div>
 </div>
-
+<div id="exerciseModal" style="display:none;">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="exerciseImg">
+</div>
 
 
 </div>
@@ -13649,6 +13711,27 @@ document.getElementById('getRecommendation').addEventListener('click', function(
         document.getElementById('recommendationResult').style.display = 'block';
     }, 4000); // Simulate processing for 4 seconds
 });
+// Open modal when clicking on an exercise image
+document.querySelectorAll('[data-exercise-img]').forEach(item => {
+    item.addEventListener('click', function() {
+        const imgUrl = this.getAttribute('data-exercise-img');
+        document.getElementById('exerciseImg').src = imgUrl;
+        document.getElementById('exerciseModal').style.display = 'flex'; // Display as flex to center
+    });
+});
+
+// Close modal when clicking outside of the image
+document.getElementById('exerciseModal').addEventListener('click', function(event) {
+    if (event.target === this) {
+        this.style.display = 'none';
+    }
+});
+
+// Close the modal when the close span is clicked
+document.querySelector('.close').addEventListener('click', function() {
+    document.getElementById('exerciseModal').style.display = 'none';
+});
+
 </script>
 
 </html>

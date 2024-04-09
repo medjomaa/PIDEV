@@ -8,10 +8,10 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
-use App\Models\User; // Assuming you have a User model
-use App\Models\Feedback; // Assuming you have a Feedback model
+use App\Models\User;
+use App\Models\Feedback;
 use App\Models\Recommendation;
-use DB;
+
 
 class DashboardController extends Controller
 {

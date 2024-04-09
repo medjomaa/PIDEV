@@ -95,28 +95,40 @@ body {
 </style>
 <div class="registration-box">
     <div class="logo">PowerGym</div>
-    <div class="registration-text">Register</div> <!-- Adjusted to "Register" -->
+    <div class="registration-text">Register</div>
     <form action="{{route('registration.post')}}" method="POST">
         @csrf
         <div>
-
             <input type="text" class="form-control" name="name" placeholder="Fullname">
+            @if($errors->has('name'))
+                <div class="alert alert-danger mt-2">
+                    {{$errors->first('name')}}
+                </div>
+            @endif
         </div>
 
         <div>
-
             <input type="email" class="form-control" name="email" placeholder="Email address">
+            @if($errors->has('email'))
+                <div class="alert alert-danger mt-2">
+                    {{$errors->first('email')}}
+                </div>
+            @endif
         </div>
 
         <div>
-
             <input type="password" class="form-control" name="password" placeholder="Password">
+            @if($errors->has('password'))
+                <div class="alert alert-danger mt-2">
+                    {{$errors->first('password')}}
+                </div>
+            @endif
         </div>
 
         <button type="submit" class="btn-custom">Submit</button>
     </form>
     <div class="footer-links">
-    <a href="{{ route('login') }}">Sign in</a> | <a href="{{ route('privacy-policy') }}">Privacy</a> | <a href="{{ route('terms-of-use') }}">Terms of Use</a>
+        <a href="{{ route('login') }}">Sign in</a> | <a href="{{ route('privacy-policy') }}">Privacy</a> | <a href="{{ route('terms-of-use') }}">Terms of Use</a>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

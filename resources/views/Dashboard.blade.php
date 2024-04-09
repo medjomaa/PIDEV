@@ -445,6 +445,51 @@
   --more-list-shadow: #1f1c2e;
   --message-btn: #1f1c2e;
 }
+.alert {
+        position: relative;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+        font-family: Arial, sans-serif;
+        font-size: 1rem;
+        display: block;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        opacity: 1;
+        transition: opacity 0.5s ease-out;
+    }
+    .alert-success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+    }
+
+    .alert-danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+    }
+
+    .alert-warning {
+        color: #856404;
+        background-color: #fff3cd;
+        border-color: #ffeeba;
+    }
+
+    .alert-info {
+        color: #0c5460;
+        background-color: #d1ecf1;
+        border-color: #bee5eb;
+    }
+
+    @keyframes fadein {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+    @keyframes fadeout {
+        from {opacity: 1;}
+        to {opacity: 0;}
+    }
 </style>
 
 <div class="layout">
@@ -517,9 +562,9 @@
                     <li>
                     <a href="/products" class="{{ request()->is('products', 'products/create', 'products/*/edit', 'products/*') ? 'active' : '' }}">
                             <i class="fas fa-shopping-cart"></i>
-                            <span class="links_name">Produit</span>
+                            <span class="links_name">Product</span>
                         </a>
-                        <span class="tooltip">Produit</span>
+                        <span class="tooltip">Product</span>
                     </li>
 
                     <li class="dropdown" >
@@ -558,7 +603,33 @@
             </div>
         </div>
     </div>
+
         <div class="home-section">
+        {{-- resources/views/components/flash-messages.blade.php --}}
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
+@if (session('warning'))
+    <div class="alert alert-warning">
+        {{ session('warning') }}
+    </div>
+@endif
+
+@if (session('info'))
+    <div class="alert alert-info">
+        {{ session('info') }}
+    </div>
+@endif
+
             @yield('content')
           </div>
        
@@ -610,6 +681,17 @@ document.addEventListener("DOMContentLoaded", function() {
         dropdownContent.style.display = dropdownContent.style.display === 'flex' ? 'none' : 'flex';
     });
 });
+document.addEventListener('DOMContentLoaded', (event) => {
+        // Select all elements with class 'alert' and loop through them
+        document.querySelectorAll('.alert').forEach((element) => {
+            // Set a timeout to fade out the alert
+            setTimeout(() => {
+                element.style.opacity = '0';
+                // Optional: Remove the element from DOM after fading out
+                setTimeout(() => element.remove(), 300); // Adjust timing if needed
+            }, 5000); // Adjust the timing for how long before the alert starts to fade
+        });
+    });
 document.addEventListener("DOMContentLoaded", function() {
     // Get the current URL path
     const path = window.location.pathname;

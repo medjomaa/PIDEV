@@ -6,7 +6,7 @@ use App\Models\Feedback;
 use App\Models\Recommendation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-
+use Illuminate\Support\Facades\Auth;
 class FormSubmissionController extends Controller
 {
     public function showForm()
@@ -14,7 +14,23 @@ class FormSubmissionController extends Controller
         // Assuming you have a single view that toggles between feedback and recommendation forms
         return view('form_submission');
     }
-
+    public function myMethod()
+    {
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            // The user is logged in
+            $userName = Auth::user()->name;
+            // Continue with your logic, now safely using $userName
+        } else {
+            // User is not authenticated, redirect with a message
+            return redirect('/registration')->with('error', 'You need to create an account or log in.');
+        }
+    }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function handleSubmit(Request $request)
     {
         $formType = $request->input('form_type');
