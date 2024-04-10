@@ -525,7 +525,7 @@
                     </li>
                     <li>
                     <a href="/entrainement" class="{{ request()->is('entrainement') || request()->is('entrainement/*') ? 'active' : '' }}">
-                            <i class='bx bx-bar-chart-alt-2'></i>
+                            <i class='fas fa-dumbbell'></i>
                             <span class="links_name">Entrainement</span>
                         </a>
                         <span class="tooltip">Entrainement</span>
@@ -533,7 +533,7 @@
 
                     <li class="dropdown">
                     <a href="/events" class="{{ request()->is('events', 'events/create','calendar', 'events/*/edit') ? 'active' : '' }}">
-                        <i class='fas fa-dumbbell'></i>
+                        <i class='bx bx-bar-chart-alt-2'></i>
                         <span class="links_name">events</span>
                       </a>
                       <span class="tooltip">Events</span>

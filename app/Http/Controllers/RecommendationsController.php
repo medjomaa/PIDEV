@@ -11,7 +11,7 @@ class RecommendationsController extends Controller
 {
     public function __construct()
     {
-        $userName = Auth::user()->name;
+
         $this->middleware('auth')->except(['index']); // Require users to be authenticated for all actions except viewing recommendations
     }
     public function myMethod()

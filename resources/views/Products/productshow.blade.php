@@ -99,6 +99,7 @@
         .buy-button:hover {
             background-color: #ff4d4d;
         }
+        
     </style>
 </head>
 <body>

@@ -130,7 +130,9 @@
     </style>
 </head>
 <body>
+    
     <div class="welcome">
+        
         <h2>Welcome to Our Gym Events</h2>
         <p>Discover the latest events happening at Power Gym. Join us to get the most out of your fitness journey!</p>
     </div>

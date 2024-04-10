@@ -1150,28 +1150,33 @@ header {
             event.target.style.display = 'none';
         }
     }
-    function loadDataForSelectedDate() {
+ function loadDataForSelectedDate() {
     var selectedDate = document.getElementById('datePicker').value;
     
     // Fetch data for the selected date
     fetch(`/api/visualizations?date=${selectedDate}`)
     .then(response => response.json())
     .then(data => {
-        // Assuming 'data' is an array of graphs JSON as per your backend logic
         const graphsContainer = document.getElementById('graphsContainer');
         graphsContainer.innerHTML = ''; // Clear existing graphs
 
-        // Dynamically create and append graphs based on the data received
-        data.forEach((graphData, index) => {
-            var graphDiv = document.createElement('div');
-            graphDiv.id = 'graph-' + index;
-            graphsContainer.appendChild(graphDiv);
+        if (data.message) {
+            // If the response contains a 'message' key, display it
+            graphsContainer.innerHTML = `<p>${data.message}</p>`;
+        } else {
+            // Otherwise, proceed to create and append graphs based on the data received
+            data.forEach((graphData, index) => {
+                var graphDiv = document.createElement('div');
+                graphDiv.id = 'graph-' + index;
+                graphsContainer.appendChild(graphDiv);
 
-            Plotly.newPlot('graph-' + index, graphData.data, graphData.layout);
-        });
+                Plotly.newPlot('graph-' + index, graphData.data, graphData.layout);
+            });
+        }
     })
     .catch(error => console.error('Error loading data:', error));
 }
+
 function closeCustomAlert() {
     document.getElementById('customAlert').style.display = 'none';
 }

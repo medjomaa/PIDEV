@@ -6,7 +6,8 @@ import plotly.utils
 import mysql.connector
 import plotly.graph_objects as go
 import numpy as np
-
+from datetime import datetime, timedelta
+from sklearn.linear_model import LinearRegression
 app = Flask(__name__)
 custom_theme = {
     'template': 'plotly_white',
@@ -71,7 +72,6 @@ def home():
             cursor.execute(query, (selected_date,))
         else:
             cursor.execute(base_query)
-
         rows = cursor.fetchall()
     except mysql.connector.Error as err:
         cursor.close()
@@ -118,89 +118,153 @@ def home():
 
         return fig
 
-
-
-
-    # Equipment Quality Distribution as a Pie Chart
-    if set(['user_tenure_at_feedback', 'equipment_quality', 'sentiment']).issubset(df.columns):
-        tenure_quality_scatter_fig = px.scatter(df, x='user_tenure_at_feedback', y='equipment_quality', color='sentiment', title="User Tenure vs Equipment Quality")
-        # Apply layout customizations after figure creation
-        tenure_quality_scatter_fig.update_layout(
-             template='plotly_white',  # Use the Plotly white theme
-            title_font_size=22,
-            title_x=0.5,
-            legend_title_font_color="black",  # Change to black for visibility on white background
-            legend_title_font_size=14,
-            legend_x=1,
-            legend_y=1,
-            font=dict(family="Arial, sans-serif", size=12, color="black"),  # Change text color to black
-            paper_bgcolor='rgba(255,255,255,1)',  # Change to white background
-            plot_bgcolor='rgba(255,255,255,1)',  # Change to white background
-            xaxis={'color': 'black'},  # Change axes color to black for visibility
-            yaxis={'color': 'black'}  # Change axes color to black for visibility
-        )
-        # Apply color sequence customizations
-        tenure_quality_scatter_fig.update_traces(marker=dict(color=custom_theme['color_discrete_sequence']))
-        visualizations.append({"figure": tenure_quality_scatter_fig, "description": "Scatter plot analyzing user tenure against equipment quality ratings, colored by sentiment."})
+    # 1. Sentiment Distribution Pie Chart
     if 'sentiment' in df.columns:
-        # Example for applying theme to a pie chart
-        sentiment_fig = px.pie(df, names='sentiment', title="Feedback Sentiment Distribution")
-        visualizations.append({"figure": apply_custom_theme(sentiment_fig), "description": "Pie chart showing the distribution of feedback sentiments among gym users."})
+        sentiment_distribution_fig = px.pie(df, names='sentiment', title="Sentiment Distribution", color_discrete_sequence=px.colors.qualitative.Bold)
+        visualizations.append({"figure": apply_custom_theme(sentiment_distribution_fig), "description": "Distribution of user sentiment in feedback."})
 
-    # Age Distribution Box Plot
+    df['created_at'] = pd.to_datetime(df['created_at'])
+    # Daily aggregation of feedback counts
+    feedback_daily = df.set_index('created_at').resample('D').size().reset_index(name='count')
+
+    # Prepare data for ML model
+    X = np.arange(len(feedback_daily)).reshape(-1, 1)  # Days as integers for X-axis
+    y = feedback_daily['count'].values  # Feedback count for Y-axis
+
+    # Fit linear regression model
+    model = LinearRegression()
+    model.fit(X, y)
+
+    # Predict future feedback counts
+    future_days = 365 * 5  # Predict for next 5 years
+    X_future = np.arange(len(feedback_daily), len(feedback_daily) + future_days).reshape(-1, 1)
+    y_future = model.predict(X_future)
+
+    # Create DataFrame for predictions
+    future_dates = pd.date_range(start=feedback_daily['created_at'].max() + pd.Timedelta(days=1), periods=future_days)
+    feedback_future = pd.DataFrame({'created_at': future_dates, 'count': y_future})
+
+    # Combine actual data with predictions
+    feedback_combined = pd.concat([feedback_daily, feedback_future])
+
+    # Visualizations list
+    visualizations = []
+
+    # Sentiment Distribution Pie Chart
+    if 'sentiment' in df.columns:
+        sentiment_distribution_fig = px.pie(df, names='sentiment', title="Sentiment Distribution", color_discrete_sequence=px.colors.qualitative.Bold)
+        visualizations.append({"figure": apply_custom_theme(sentiment_distribution_fig), "description": "Distribution of user sentiment in feedback."})
+
+    # Feedback Over Time Line Graph with Predictions
+    feedback_over_time_fig = go.Figure()
+
+    # Actual feedback over time
+    feedback_over_time_fig.add_trace(go.Scatter(x=feedback_daily['created_at'], y=feedback_daily['count'], mode='markers', name='Actual Feedback'))
+
+    # Predicted feedback over time
+    feedback_over_time_fig.add_trace(go.Scatter(x=feedback_future['created_at'], y=feedback_future['count'], mode='lines', name='Predicted Feedback', line=dict(dash='dash')))
+
+    # Layout and range slider
+    feedback_over_time_fig.update_layout(title='Feedback Over Time with Predictions',
+                                        xaxis=dict(title='Date', rangeselector=dict(buttons=[
+                                            dict(count=1, label="Next 4 Years", step="year", stepmode="todate"),
+                                            dict(count=5, label="Next 5 Years", step="year", stepmode="todate"),
+                                            dict(step="all")]), 
+                                                    rangeslider=dict(visible=True)),
+                                        yaxis=dict(title='Feedback Count'))
+
+    # Apply custom theme
+    feedback_over_time_fig = apply_custom_theme(feedback_over_time_fig)
+
+    visualizations.append({"figure": feedback_over_time_fig, "description": "Trend of feedback count over time with future predictions."})
+
+    # Function to apply the custom theme (as defined earlier)
+    def apply_custom_theme(fig):
+        # Apply your custom theme adjustments here
+        return fig
+
+    # Function to visualize the data
+    def visualize_data(visualizations):
+        # This function would visualize each figure in the 'visualizations' list
+        pass
+
+    # Example call to visualize the data
+    visualize_data(visualizations)
+        # 3. Age Distribution Histogram
     if 'age' in df.columns:
-        age_fig = px.box(df, y='age', title="Age Distribution of Gym Users")
-        visualizations.append({"figure": apply_custom_theme(age_fig), "description": "Box plot showing the distribution of ages among gym users, highlighting median and variability."})
+        age_distribution_fig = px.histogram(df, x='age', title="Age Distribution of Users", color_discrete_sequence=['#1f77b4'])
+        visualizations.append({"figure": apply_custom_theme(age_distribution_fig), "description": "Histogram showing the distribution of user ages."})
 
-    # Equipment Quality Ratings by Sentiment
+    # 4. Exercise Frequency Bar Chart
+    if 'exercise_frequency' in df.columns:
+        exercise_frequency_fig = px.bar(df, x='exercise_frequency', title="Exercise Frequency of Users", color_discrete_sequence=px.colors.qualitative.Pastel)
+        visualizations.append({"figure": apply_custom_theme(exercise_frequency_fig), "description": "Bar chart showing the exercise frequency of users."})
+
+    # 5. Fitness Goals Pie Chart
+    if 'fitness_goal' in df.columns:
+        fitness_goals_fig = px.pie(df, names='fitness_goal', title="Fitness Goals Distribution", color_discrete_sequence=px.colors.sequential.Viridis)
+        visualizations.append({"figure": apply_custom_theme(fitness_goals_fig), "description": "Distribution of fitness goals among users."})
+
+    # 6. Time Availability Distribution Bar Chart
+    if 'time_availability' in df.columns:
+        time_availability_fig = px.bar(df, x='time_availability', title="Time Availability of Users", color_discrete_sequence=px.colors.qualitative.Safe)
+        visualizations.append({"figure": apply_custom_theme(time_availability_fig), "description": "Bar chart showing the time availability of users for exercise."})
     if 'equipment_quality' in df.columns and 'sentiment' in df.columns:
         equipment_quality_fig = px.bar(df, x='equipment_quality', color='sentiment', title="Equipment Quality Ratings by Sentiment", barmode='group')
         visualizations.append({"figure": apply_custom_theme(equipment_quality_fig), "description": "Bar chart showing the distribution of equipment quality ratings, grouped by user sentiment."})
 
-    # User Tenure Scatter Plot Colored by Age
-    if 'user_tenure_at_feedback' in df.columns and 'age' in df.columns:
-        tenure_age_fig = px.scatter(df, x='user_tenure_at_feedback', y='age', color='age', title="User Tenure and Age", color_continuous_scale=px.colors.sequential.Inferno)
-        visualizations.append({"figure": apply_custom_theme(tenure_age_fig), "description": "Scatter plot analyzing the relationship between user tenure and age, with points colored by age."})
-    if 'created_at' in df.columns:
-        feedback_df['created_at'] = pd.to_datetime(feedback_df['created_at']).dt.date
-        recommendations_df['created_at'] = pd.to_datetime(recommendations_df['created_at']).dt.date
+    # Assuming 'df' has 'available_equipment' and 'current_exercise_types' columns
+    # For demonstration, let's create a sample DataFrame
+    available_equipment = ['Treadmill', 'Dumbbell', 'Barbell']
+    current_exercise_types = ['Cardio', 'Strength', 'Flexibility']
 
-        # Group by 'created_at' and count
-        feedback_counts = feedback_df.groupby('created_at').size().reset_index(name='feedback_count')
-        recommendation_counts = recommendations_df.groupby('created_at').size().reset_index(name='recommendation_count')
+    # Creating a mock correlation matrix for demonstration
+    equipment_exercise_correlation = pd.DataFrame(np.random.rand(len(available_equipment), len(current_exercise_types)),
+                                                index=available_equipment, columns=current_exercise_types)
 
-        # Merge the counts on 'created_at'
-        merged_counts = pd.merge(feedback_counts, recommendation_counts, on='created_at', how='outer').fillna(0)
+    # Plotting the heatmap
+    equipment_exercise_heatmap_fig = px.imshow(equipment_exercise_correlation,
+                                            labels=dict(x="Exercise Types", y="Available Equipment", color="Correlation"),
+                                            x=current_exercise_types,
+                                            y=available_equipment,
+                                            title="Available Equipment vs. Exercise Types")
+    visualizations.append({"figure": apply_custom_theme(equipment_exercise_heatmap_fig), "description": "Heatmap showing the correlation between available equipment and preferred exercise types."})
+    # Assuming 'df' has 'cleanliness', 'equipment_quality', 'staff', etc., columns with ratings
+    # First, we melt the DataFrame to long format for easier plotting with Plotly
+    feedback_ratings = df.melt(value_vars=['cleanliness', 'equipment_quality', 'staff'],
+                            var_name='Category', value_name='Rating')
 
-        # Visualization
-        fig = go.Figure()
+    # Plotting the grouped bar chart for feedback ratings
+    feedback_ratings_fig = px.bar(feedback_ratings, x='Category', y='Rating', color='Category', 
+                                title="Feedback Category Ratings",
+                                labels={'Rating': 'Average Rating'})
+    feedback_ratings_fig.update_layout(showlegend=False)  # Since color distinguishes categories, legend is unnecessary
+    visualizations.append({"figure": apply_custom_theme(feedback_ratings_fig), "description": "Grouped bar chart visualizing average ratings for different feedback categories."})
 
-        # Adding feedback counts
-        fig.add_trace(go.Scatter(x=merged_counts['created_at'], y=merged_counts['feedback_count'],
-                                mode='lines+markers', name='Feedback Counts'))
+    # Example: Customizing the Equipment vs. Exercise Types Heatmap further
+    equipment_exercise_heatmap_fig.update_traces(hoverinfo='all', hovertemplate='Equipment: %{y}<br>Exercise Type: %{x}<br>Correlation: %{z}')
 
-        # Adding recommendation counts
-        fig.add_trace(go.Scatter(x=merged_counts['created_at'], y=merged_counts['recommendation_count'],
-                                mode='lines+markers', name='Recommendation Counts'))
+    # Example: Adding annotations to Feedback Category Ratings
+    annotations = []
+    for i, rating in enumerate(feedback_ratings['Rating']):
+        annotations.append(dict(x=feedback_ratings['Category'][i], y=rating, text=str(rating), showarrow=False))
+    feedback_ratings_fig.update_layout(annotations=annotations)
 
-        fig.update_layout(title='Feedback and Recommendation Counts Over Time',
-                        xaxis_title='Date', yaxis_title='Counts',
-                        template='plotly_white')
+    # Applying these customizations
+    visualizations[-1]["figure"] = apply_custom_theme(equipment_exercise_heatmap_fig)  # Reapply theme after updates
+    visualizations[-2]["figure"] = apply_custom_theme(feedback_ratings_fig)  # Reapply theme after updates
 
-        # Assuming you're running in a Jupyter Notebook or similar; otherwise, adjust accordingly.
-
-
-        visualizations.append({"figure": fig, "description": "Line plot showing the counts of feedbacks and recommendations added over time."})
-
-    # Convert visualizations to JSON
-    graphJSON = []
-    for viz in visualizations:
-        graphJSON.append({
+   # Iterate over the visualizations list, convert each figure to JSON, and append to graphJSON list
+    graphJSON = [
+        {
             "data": json.loads(json.dumps(viz["figure"].data, cls=plotly.utils.PlotlyJSONEncoder)),
             "layout": json.loads(json.dumps(viz["figure"].layout, cls=plotly.utils.PlotlyJSONEncoder)),
             "description": viz["description"]
-        })
+        } 
+        for viz in visualizations
+    ]
 
     return jsonify(graphJSON)
+
 if __name__ == '__main__':
     app.run(debug=True, port=334, host='0.0.0.0')

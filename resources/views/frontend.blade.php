@@ -2,18 +2,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <header>
-      <div class="container">
+
+      <div class="containe2r">
         <div id="header-logo-mobile" class="top-gym-logo">
           <a class="smooth-scroll-link" href="#home">Power<br/>Gym</a>
         </div>
     
         <nav>
           <ul class="flex">
-            <li><a class="smooth-scroll-link" href="/">Home</a></li>
+            <li><a class="smooth-scroll-link" href="/home">Home</a></li>
             <li><a class="smooth-scroll-link" href="#features">Training</a></li>
             <li><a class="smooth-scroll-link" href="{{ route('events.eventshow') }}" class="{{ request()->is('events.eventshow') ? 'active' : '' }}">Evenement</a></li>
             <li id="header-logo" class="top-gym-logo">
-              <a class="smooth-scroll-link" href="#home">Power<br/>Gym</a>
+              <a class="smooth-scroll-link" href="/">Power<br/>Gym</a>
             </li>
             <li><a class="smooth-scroll-link" href="/productshow">Products</a></li>
             <li><a class="smooth-scroll-link" href="#contact">Contacts</a></li>
@@ -862,6 +863,12 @@ footer small a {
       margin-top: 1rem;
     }
   }
+}
+#bmi-calculator {
+  background-image: url('https://i.pinimg.com/originals/e8/67/e6/e867e6e6394c3b60d379dc9ed2a81f51.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .animated-section {
     opacity: 0;
