@@ -106,6 +106,12 @@
             @if ($errors->has('image'))
                 <span class="error">{{ $errors->first('image') }}</span>
             @endif
+
+            <label for="image_file" id="ic">Upload Image</label>
+            <input type="file" id="image_file" name="image_file" class="input">
+            @if ($errors->has('image_file'))
+                <span class="error">{{ $errors->first('image_file') }}</span>
+            @endif
         </div>
         <button type="submit" class="btn-green">Create Product</button>
     </form>

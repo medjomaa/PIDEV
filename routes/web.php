@@ -63,6 +63,14 @@ Route::delete('/recommendation/{id}', [RecommendationsController::class, 'destro
 Route::delete('/recommendation/{id}', [RecommendationsController::class, 'destroy'])->name('recommendation.destroy');
 Route::get('/recommendations/{recommendation}/edit',[RecommendationsController::class, 'edit'])->name('recommendations.edit');
 Route::put('/recommendations/{recommendation}', [RecommendationsController::class, 'update'])->name('recommendations.update');
+// Web.php (Route definitions)
+Route::get('/recommendation', [RecommendationsController::class, 'index'])->name('recommendations.index');
+Route::post('/recommendation', [RecommendationsController::class, 'store'])->name('recommendation.submit');
+Route::put('/recommendation/{id}', [RecommendationsController::class, 'store'])->name('recommendation.update');
+Route::get('/recommendation/view', [RecommendationsController::class, 'view'])->name('recommendations.view');
+
+
+
 
 
 
@@ -71,6 +79,10 @@ Route::get('/visualizations', [DashboardController::class, 'index'])->name('dash
 
 
 // routes/web.php
+Route::group(['middleware' => ['auth', 'admin']], function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    // Other admin routes...
+});
 
 
 // Route::get('/entrainement/{user_id}', [FlaskAPIController::class, 'fetchRecommendations'])->name('entrainement');

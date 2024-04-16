@@ -148,11 +148,18 @@ button:hover {
                 </select>
      
                 <label for="start_date" id="ic">Start Date</label>
-                <input id="start_date" type="date" class="form-control" name="start_date" value="{{ old('start_date', $event->start_date) }}" required>
-            
+                <input id="start_date" type="date" class="form-control" name="start_date" value="{{ old('start_date', $event->start_date->format('Y-m-d')) }}" required>
+
                 <label for="end_date" id="ic">End Date</label>
-                <input id="end_date" type="date" class="form-control" name="end_date" value="{{ old('end_date', $event->end_date) }}" required>
-            
+                <input id="end_date" type="date" class="form-control" name="end_date" value="{{ old('end_date', $event->end_date->format('Y-m-d')) }}" required>
+                @if ($errors->has('start_date'))
+    <span class="error">{{ $errors->first('start_date') }}</span>
+@endif
+
+@if ($errors->has('end_date'))
+    <span class="error">{{ $errors->first('end_date') }}</span>
+@endif
+
             </div>
             <button type="submit" class="btn btn-primary">Update Event</button>
         </div>

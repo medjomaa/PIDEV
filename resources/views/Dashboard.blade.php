@@ -502,13 +502,18 @@
                     <i class='bx bx-menu' id="btn"></i>
                 </div>
                 <ul class="nav-list">
-                    <li>
-                        <a href="/dashboard" class="{{ request()->is('dashboard') || request()->is('visualizations') ? 'active' : '' }}">
-                            <i class='bx bx-tachometer'></i>
-                            <span class="links_name">Admin Dashboard</span>
-                        </a>
-                        <span class="tooltip">Admin Dashboard</span>
-                    </li>
+                @auth
+                  @if (Auth::user()->isAdmin()) <!-- Assuming there's an 'is_admin' attribute or a method to check admin status -->
+                        <li>
+                            <a href="/dashboard" class="{{ request()->is('dashboard') || request()->is('visualizations') ? 'active' : '' }}">
+                                <i class='bx bx-tachometer'></i>
+                                <span class="links_name">Admin Dashboard</span>
+                            </a>
+                            <span class="tooltip">Admin Dashboard</span>
+                        </li>
+                    @endif
+                @endauth
+
                     <li>
                         <a href="/home" class="{{ request()->is('home') ? 'active' : '' }}">
                             <i class='bx bx-home'></i>

@@ -126,14 +126,11 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <a href="{{ route('products.create') }}" class="btn btn-success">Create New Product</a>
-                    @if (session('success'))
-                        <div id="success-message" class="success-message">{{ session('success') }}</div>
+                    {{-- Only show this button if the user is an admin --}}
+                    @if (Auth::user()->isAdmin())
+                        <a href="{{ route('products.create') }}" class="btn btn-success">Create New Product</a>
                     @endif
 
-                    @if (session('error'))
-                        <div id="error-message" class="error-message">{{ session('error') }}</div>
-                    @endif
                     <table>
                         <thead>
                             <tr>
@@ -159,12 +156,15 @@
                                     <td>{{ $product->price }}</td>
                                     <td>
                                         <a href="#" class="view-product" data-product-id="{{ $product->id }}">View</a>
-                                        <a href="{{ route('products.edit', $product) }}">Edit</a>
-                                        <form action="{{ route('products.destroy', $product) }}" method="post" style="display: inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit">Delete</button>
-                                        </form>
+                                        {{-- Only show edit and delete buttons if the user is an admin --}}
+                                        @if (Auth::user()->isAdmin())
+                                            <a href="{{ route('products.edit', $product) }}">Edit</a>
+                                            <form action="{{ route('products.destroy', $product) }}" method="post" style="display: inline;">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit">Delete</button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -175,6 +175,7 @@
         </div>
     </div>
 </div>
+
 <div id="productModal" class="modal" style="display:none;">
     <div class="modal-content">
         <!-- Product details will be loaded here -->

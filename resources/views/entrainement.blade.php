@@ -11696,10 +11696,50 @@ body.has-skin .owl-item {
     font-weight: bold;
     cursor: pointer;
 }
+.scroll-arrow {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    background: linear-gradient(135deg, #ff0000, white); /* Gradient from red to black */
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.scroll-arrow:hover {
+    background-color: #b20000; /* Darker red on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+.video-instruction-section {
+    background-color: #f8f9fa; /* Light background for better readability */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-top: 20px; /* Adds space between sections */
+    text-align: center; /* Centers the text for better focus */
+}
+
+.video-instruction-section h2 {
+    color: #333; /* Dark color for headline */
+    margin-bottom: 10px;
+}
+
+.video-instruction-section p {
+    color: #666; /* Lighter text color for instructions */
+    font-size: 16px; /* Adequate font size for readability */
+    line-height: 1.6; /* Improved line height for better readability */
+}
 
     </style>
 </head>
 <body>
+<div id="scrollArrow" class="scroll-arrow" onclick="toggleScroll()">&#8595;</div> <!-- Initially showing the down arrow -->
+
 <div class="left-sections">
     @auth
         <p>Welcome back, <strong>{{ Auth::user()->name }}</strong>! Your next challenge awaits.</p>
@@ -11879,7 +11919,9 @@ body.has-skin .owl-item {
 </div>
 
 <div class="body-sections">
-<p>Choose what part to exercise and watch the YouTube video.</p>
+<div class="video-instruction-section">
+    <h2>Interactive Exercise Tutorials</h2>
+    <p>Select a muscle group from the list below to view a dedicated video tutorial. Each tutorial provides expert guidance to help you perform exercises correctly and safely.</p></div>
 <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" viewBox="0 0 473.37009 493.9" id="Layer_1" xml:space="preserve">
   <defs id="defs2466"></defs>
   <path d="m 430.92433,492.3 c -6.9,0 -8,-4.9 -8.7,-8.5 l -0.1,-0.5 c -0.7,-3 1.1,-6.4 3,-10 1.2,-2.2 2.3,-4.4 3,-6.6 1.7,-5.5 0.5,-19.4 0,-24.6 v -0.4 c -0.2,-3.3 0.7,-4.6 1.6,-5.6 0.6,-0.7 0.7,-1 0.5,-2.2 -0.4,-1.6 -0.4,-4.2 -0.2,-7.5 0.1,-6.1 0.2,-14.4 -2.1,-19.4 -0.7,-1.7 -1.9,-4.4 -3.3,-7.8 -5,-11.7 -14.1,-33.3 -17.6,-37.4 -4.5,-5.5 -6.1,-9.5 -6.7,-17.9 -0.4,-4.1 -1.6,-5 -4.2,-6.8 -1.7,-1.2 -3.9,-2.7 -6.3,-5.3 -3.4,-3.6 -4,-6.2 -4.6,-8.1 -0.5,-1.9 -0.9,-3.2 -3.6,-5.2 -5.7,-4.2 -9.8,-14.3 -11.1,-17.6 -3.4,0 -11.7,0.1 -15.1,0.2 0,5.2 0.1,21.5 0,26.7 -0.1,3.2 1.1,7.9 2.8,13.7 1.3,5.1 3,11.5 4.5,19.1 2.3,12.4 -0.2,16.1 -2.2,18.9 -0.6,1 -1.1,1.6 -1.2,2.4 -0.6,2.9 1.5,32.9 3,53.3 0.5,0 1.1,0.1 1.6,0.4 1.5,0.5 2.4,1.8 3.6,3.4 0.6,0.7 1.2,1.5 1.8,2.2 2.7,2.8 9.1,9.8 11.2,14.1 2.5,5.2 -1.2,7.8 -6.9,11.5 l -0.9,0.6 c -1.7,1.2 -4.5,3.3 -7.6,5.8 -8.6,6.7 -19.2,15.1 -24.6,16 -1.3,0.2 -2.9,0.4 -4.5,0.4 -7.2,0 -14.9,-2.8 -15.7,-8.3 -1,-6.3 2.1,-11.5 7.2,-12.4 1.5,-0.2 2.4,-0.2 3.2,-0.2 0.1,0 0.1,0 0.2,0 0.1,-0.2 0.2,-0.7 0.4,-0.8 1.1,-2.8 2.9,-7 4,-9.1 0.4,-0.8 0.4,-1.1 0.4,-2.4 0,-1 -0.1,-2.5 0,-5 0.2,-4.6 2.1,-6.7 3.3,-7.5 -0.1,-1.2 -0.2,-3.6 -0.5,-6.7 -0.4,-4.1 -1.3,-10.4 -5.2,-26.7 -2.4,-10.2 -8.3,-35.2 -9,-46.7 -0.2,-3.6 0.1,-6.7 0.4,-9.2 0.5,-4.5 0.7,-7.8 -1.8,-12.3 -3.8,-6.6 -3.9,-13.4 -3.9,-19.3 0,-1.3 0,-2.5 -0.1,-3.8 -0.2,-6.3 -1.7,-11.5 -2.7,-12.5 -2.1,-0.1 -15.1,-1.3 -15.8,-5.7 -0.2,-1.6 0.4,-13.8 1.9,-39.8 0.9,-14.9 1.7,-30.4 1.9,-37.8 0.4,-11.2 2.4,-15.7 3.6,-18.6 0.7,-1.6 1.1,-2.5 1.1,-4 0,-2.9 0.6,-5 1.1,-6.6 0.2,-0.9 0.5,-1.8 0.4,-2.1 -0.2,-0.6 -0.7,-1.7 -1.3,-3 -2.1,6.8 -6.6,17.1 -9.6,22.1 -6.3,10.3 -14,23.4 -14.9,26.1 -1,2.5 -0.7,4.6 -0.5,6.6 0,0.4 0.1,0.7 0.1,1 0.2,2.4 0,7.8 -0.7,10.7 -0.4,1.5 -1.3,3.2 -2.2,4.7 -0.9,1.5 -1.7,3 -1.8,3.9 -0.1,1.2 -0.5,3.4 -0.9,5 -0.1,0.6 -0.2,1.3 -0.4,1.8 0.6,1 2.4,3.9 3.6,5.5 1.5,1.8 2.8,3.8 2.1,6 -0.4,1.1 -1.3,1.8 -2.6,2.1 -0.2,0.6 -0.7,1.2 -1.6,1.7 -0.6,0.4 -1.2,0.5 -1.9,0.5 -0.2,0 -0.4,0 -0.6,0 -0.4,0.5 -1.1,1 -2.2,1.3 -0.4,0.1 -0.6,0.1 -1,0.1 -0.9,0 -1.6,-0.4 -2.2,-0.6 -0.7,0.4 -1.7,0.6 -2.5,0.6 -0.9,0 -1.6,-0.2 -2.2,-0.5 -1.7,-1 -8.1,-7.8 -9,-10.3 -0.5,-1.5 -0.4,-4.1 -0.2,-7.9 0.1,-1.8 0.1,-3.6 0.1,-4.7 -0.2,-3.3 0,-4.2 0.5,-6.2 v -0.1 c 0.2,-1 1.2,-2.4 2.9,-5.3 2.1,-3.4 5.6,-9.1 5.7,-11.3 0.1,-3.5 0.7,-10.3 2.3,-16.4 0.4,-1.5 1,-2.8 1.6,-4.5 2.1,-5.3 5,-12.6 5.3,-27.6 0.4,-15.9 6.2,-28.8 8.9,-35 0.6,-1.2 1.1,-2.6 1.2,-2.9 0.2,-1.2 0.2,-4.9 0.2,-8.4 0,-2.4 0,-5.1 0.1,-7.2 0.2,-5 2.6,-12.8 3.2,-14.7 -0.2,-1 -1.1,-3.9 -3.2,-7.5 -2.8,-5 -6.7,-14.9 -1,-26.1 3.6,-7 9.6,-10.4 14,-12.9 2.2,-1.2 4,-2.3 4.7,-3.3 1.2,-1.8 2.4,-3.4 3.3,-4.4 -3.2,-2.1 -4.9,-6.7 -5.3,-9.8 -0.1,-0.7 -0.1,-1.5 -0.2,-2.2 -0.1,-2.2 -0.4,-3.9 -2.1,-6.8 -1.8,-2.9 -1,-5.2 -0.5,-6.3 -2.9,-1.3 -3.9,-3.8 -3,-7.4 0.7,-3.2 0.7,-3.4 0.9,-11.9 v -0.2 c 0.1,-7.3 2.9,-24.3 25.5,-24.3 0.9,0 1.7,0 2.5,0.1 19.9,1.1 22.5,14.5 22.1,22.2 -0.1,3 -0.5,6.2 -0.7,9.6 -0.5,5.3 -1.1,10.9 -0.9,16.4 0.4,7.9 5.8,11.2 18,15.5 10.2,3.6 13.7,10 14.9,12.4 0,0.1 0.1,0.1 0.1,0.2 2.8,0.9 11,3.9 14.6,13.5 1.9,5.2 3.2,7.3 4.7,10 1.6,2.6 3.3,5.5 6.1,11.8 5.2,11.9 4.5,22.8 4.2,25.4 0.9,1.5 3.3,6.3 3.8,10.8 0.1,1.6 0.2,2.9 0.2,4.2 0,3.2 0.1,6.1 2.3,11.2 3.8,8.4 3.3,25.7 1.6,39.2 -1.9,15.4 -1.9,30.2 -0.7,32.7 1.7,3.4 3.2,9.8 2.5,15.1 -0.1,1.3 -0.1,2.4 -0.1,3.4 0,2.4 0,4.4 -2.7,8.5 -1.5,2.2 -2.9,3.9 -4,5.2 -1.1,1.2 -2.2,2.5 -2.1,3 1.1,2.7 3.2,20.3 3.2,21.6 0,1.7 -1.2,2.3 -1.9,2.6 0.2,2.4 1.9,10 7.3,14.7 4.2,3.8 5.6,5.9 8.1,10.4 1.6,2.7 3.6,6.4 7.4,11.9 8.3,12.4 8.9,25.7 9.4,34.5 0.1,1.7 0.1,3.3 0.2,4.5 0.6,6.6 6.1,33.6 7.4,40.1 2.5,0 4.5,1.3 5.6,3.6 1.5,3.2 4.6,6.4 8.6,9 4.4,2.8 8.1,10 6.9,17.5 -0.5,3.2 -2.3,6 -4,8.7 -2.1,3.4 -4.2,6.8 -4.1,10.7 v 1.2 c 0.2,7 0.5,11.3 -7,18.9 -7.8,7.9 -16.4,9.3 -23.9,10.1 -0.6,-0.4 -1.1,-0.2 -1.7,-0.2 z m -48.7,-334.5 c -1.1,3.2 -2.7,8.3 -3.2,11.9 -0.9,5.3 1,12.4 1.6,13.2 0.1,0.1 0.4,0.4 0.7,0.5 1.1,0.7 2.7,1.7 3.9,4.5 0.2,0.6 0.9,1.6 1.5,2.8 2.7,5.2 7.2,13.8 8.3,21.4 0.6,4.2 1.2,9.6 1.7,13.8 0,-0.1 0,-0.2 0,-0.4 0,-1.1 0,-2.4 0.1,-3.9 0.1,-5.5 0.2,-13 -1.2,-18 -1.9,-6.4 -3.9,-13.5 -4,-23.1 -0.1,-7.8 -1.1,-11.8 -1.3,-12.8 l -8.1,-9.9 z" id="path3" style="fill:#ffffff"></path>
@@ -13703,6 +13745,30 @@ function navigateToWorkout(bodyPart) {
     console.error('No workout video found for', bodyPart);
   }
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const scrollArrow = document.getElementById('scrollArrow');
+
+    // Toggle scroll to top or bottom
+    window.toggleScroll = function() {
+        if (window.pageYOffset > 0) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            scrollArrow.innerHTML = '&#8595;'; // Change to down arrow after scrolling up
+        } else {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            scrollArrow.innerHTML = '&#8593;'; // Change to up arrow
+        }
+    };
+
+    // Change arrow direction based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 0) {
+            scrollArrow.innerHTML = '&#8593;'; // Show up arrow when not at the top
+        } else {
+            scrollArrow.innerHTML = '&#8595;'; // Show down arrow when at the top
+        }
+    });
+});
+
 document.getElementById('getRecommendation').addEventListener('click', function() {
     this.style.display = 'none';
     document.getElementById('processing').style.display = 'block';

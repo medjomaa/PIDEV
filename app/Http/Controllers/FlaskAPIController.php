@@ -39,7 +39,7 @@ class FlaskAPIController extends Controller
         } catch (\Exception $e) {
             Log::error("Error fetching data for user ID {$user_id}: " . $e->getMessage());
             // Return to the previous page with an error message
-            return back()->with('error', 'Could not fetch data. Please try again later.');
+            return redirect('/recommendation')->with('error', 'Please try filling the recommendation forum ');
         }
     }
 }

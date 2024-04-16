@@ -11,7 +11,11 @@ class Event extends Model // Adjust the class name to follow the naming conventi
     
     // Assuming you've added a 'user_id' column to your events table
     protected $fillable = ['title', 'description', 'type', 'start_date', 'end_date', 'user_id'];
-
+    protected $casts = [
+        'start_date' => 'datetime:Y-m-d',
+        'end_date' => 'datetime:Y-m-d',
+    ];
+    
     /**
      * Get the user that created the event.
      */

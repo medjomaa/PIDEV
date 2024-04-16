@@ -8,15 +8,13 @@ class ProductController extends Controller
 {
 
 
-        public function __construct()
+    public function __construct()
     {
-        // $this->middleware('auth'); // Ensure user is authenticated
-        
         // Apply additional middleware only to create, update, and delete methods.
         $this->middleware(function ($request, $next) {
             $user = Auth::user();
-            // Check if the authenticated user is an admin
-            if ($user->name == 'admin' && $user->email == 'admin@gmail.com') {
+            // Check if the authenticated user is an admin based on email
+            if ($user->email == 'admin@gmail.com') {
                 return $next($request);
             } else {
                 // Redirect if the user is not an admin and flash a message to the session
@@ -24,6 +22,7 @@ class ProductController extends Controller
             }
         })->only(['create', 'store', 'edit', 'update', 'destroy']);
     }
+    
     public function details($id)
     {
         $product = Product::findOrFail($id);
@@ -54,21 +53,30 @@ class ProductController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'description' => 'nullable',
-            'image' => 'nullable|url', // Ensure it's a valid URL
-            'price' => 'required|numeric',
-        ]);
-    
-        // Directly use the image URL from the request
-        $validatedData['image'] = $request->image;
-    
-        Product::create($validatedData);
-    
-        return redirect(route('products.index'))->with('success', 'Product created successfully.');
+{
+    $validatedData = $request->validate([
+        'name' => 'required',
+        'description' => 'nullable',
+        'image' => 'nullable|url', // Ensure it's a valid URL
+        'image_file' => 'nullable|image|max:2048', // Accept only images up to 2MB
+        'price' => 'required|numeric',
+    ]);
+
+    if ($request->hasFile('image_file')) {
+        $fileName = time() . '.' . $request->image_file->extension();
+        $request->image_file->move(public_path('uploads'), $fileName);
+        $imagePath = url('uploads/' . $fileName);
+    } else {
+        $imagePath = $request->image; // Use the image URL provided
     }
+
+    $validatedData['image'] = $imagePath; // Save the image path, whether it's a URL or a file path
+
+    Product::create($validatedData);
+
+    return redirect(route('products.index'))->with('success', 'Product created successfully.');
+}
+
     
     public function show($id)
     {
@@ -88,8 +96,19 @@ class ProductController extends Controller
             'name' => 'required',
             'description' => 'nullable',
             'price' => 'required|numeric',
-            'image' => 'nullable|url', // Ensure it's a valid URL
+            'image' => 'nullable|url',
+            'image_file' => 'nullable|image|max:2048', // Accept only images up to 2MB
         ]);
+    
+        if ($request->hasFile('image_file')) {
+            $fileName = time() . '.' . $request->image_file->extension();
+            $request->image_file->move(public_path('uploads'), $fileName);
+            $validatedData['image'] = url('uploads/' . $fileName);
+        } elseif ($request->input('image')) {
+            $validatedData['image'] = $request->image;
+        } else {
+            $validatedData['image'] = $product->image; // If no new image is provided, keep the old one
+        }
     
         $product->update($validatedData);
     
@@ -103,7 +122,13 @@ class ProductController extends Controller
 
         return redirect(route('products.index'))->with('success', 'Product deleted successfully.');
     }
+// In User.php model
+        public function isAdmin() {
+            $user = Auth::user();
+            return $user->email == 'admin@gmail.com';  // Check if the user is an admin by email
+        }
 
+    
     public function purchase($id)
     {
         // Logic to handle the purchase action

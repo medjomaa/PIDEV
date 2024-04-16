@@ -15,6 +15,7 @@ use App\Models\Recommendation;
 
 class DashboardController extends Controller
 {
+
     public function index(Request $request)
 {
     $userImage = Auth::user()->profile_image; // Get the authenticated user's profile image.
@@ -85,6 +86,9 @@ else {
     
 }
 
+public function isAdmin() {
+    return Auth::user()->email == 'admin@gmail.com'; // Assuming 'role' is a field that determines user roles
+}
 
 
     protected function getVisualizationData($date = null)

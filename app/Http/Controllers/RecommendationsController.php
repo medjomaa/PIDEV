@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Log;
 class RecommendationsController extends Controller
 {
     public function __construct()
-    {
+{
+    $this->middleware('auth');
+}
 
-        $this->middleware('auth')->except(['index']); // Require users to be authenticated for all actions except viewing recommendations
-    }
     public function myMethod()
     {
         // Check if the user is authenticated
@@ -27,7 +27,22 @@ class RecommendationsController extends Controller
         }
     }
 
+    public function view() {
+        $userId = Auth::id();
+        $recommendation = Recommendation::where('user_id', $userId)->first();
     
+        // Check if a recommendation exists for the user
+        if (!$recommendation) {
+            // No recommendation found, redirect to the index page with an error message
+            return redirect()->route('recommendations.index')->with('error', 'No recommendation found.');
+        }
+        
+        // If a recommendation is found, redirect to the '/entrainement' page
+        return redirect()->to('/entrainement');
+    }
+    
+    
+
     public function index()
     {
         // If you need to pass any additional data to your form, you can query it here
@@ -67,11 +82,11 @@ class RecommendationsController extends Controller
             ['user_id' => $userId], // Conditions to match an existing record
             $validatedData // Data to update or create
         );
-
+    
         if ($recommendation->wasRecentlyCreated) {
-            return redirect()->route('recommendations.index')->with('success', 'Recommendation submitted successfully.');
+            return redirect()->route('recommendations.view')->with('success', 'Recommendation submitted successfully.');
         } else {
-            return redirect()->route('recommendations.index')->with('success', 'Recommendation updated successfully.');
+            return redirect()->route('recommendations.view')->with('success', 'Recommendation updated successfully.');
         }
     }
 }

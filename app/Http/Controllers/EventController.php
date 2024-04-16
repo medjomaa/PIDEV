@@ -24,23 +24,7 @@ class EventController extends Controller
         
         return view('events.eventshow', compact('events'));
     }
-    public function myMethod()
-    {
-        // Check if the user is authenticated
-        if (Auth::check()) {
-            // The user is logged in
-            $userName = Auth::user()->name;
-            // Continue with your logic, now safely using $userName
-        } else {
-            // User is not authenticated, redirect with a message
-            return redirect('/registration')->with('error', 'You need to create an account or log in.');
-        }
-    }
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
+
     public function create()
     {    
         $categories = Category::all();
@@ -50,22 +34,30 @@ class EventController extends Controller
     }
 
     public function store(Request $request)
-    {
-        // Validate the input
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'type' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
-        ]);
+{
+    // Validate the input
+    $request->validate([
+        'title' => 'required',
+        'description' => 'required',
+        'type' => 'required',
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after:start_date',
+    ]);
 
-        // Create a new event
-        Event::create($request->all());
+    // Create a new event including the user_id
+    Event::create([
+        'title' => $request->title,
+        'description' => $request->description,
+        'type' => $request->type,
+        'start_date' => $request->start_date,
+        'end_date' => $request->end_date,
+        'user_id' => Auth::id(),  // Assuming you're using default Laravel Auth
+    ]);
 
-        // Redirect to the index page with a success message
-        return redirect()->route('events.index')->with('success', 'Event created successfully.');
-    }
+    // Redirect to the index page with a success message
+    return redirect()->route('events.index')->with('success', 'Event created successfully.');
+}
+
 
     public function show(Event $event)
     {

@@ -190,10 +190,12 @@ def home():
 
     # Example call to visualize the data
     visualize_data(visualizations)
-        # 3. Age Distribution Histogram
+    # 3. Age Distribution Histogram
     if 'age' in df.columns:
-        age_distribution_fig = px.histogram(df, x='age', title="Age Distribution of Users", color_discrete_sequence=['#1f77b4'])
+        age_distribution_fig = px.histogram(df, x='age', title="Age Distribution of Users", 
+                                            color_discrete_sequence=px.colors.qualitative.Set1)  # More vibrant colors
         visualizations.append({"figure": apply_custom_theme(age_distribution_fig), "description": "Histogram showing the distribution of user ages."})
+
 
     # 4. Exercise Frequency Bar Chart
     if 'exercise_frequency' in df.columns:
