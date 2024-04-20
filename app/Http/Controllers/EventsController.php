@@ -40,7 +40,7 @@ class EventsController extends Controller
         } catch (RequestException $e) {
             // Handle potential errors like network issues or incorrect URLs
             $userBMI = 'Not available';
-            $recommendations = 'Failed to fetch recommendations. Please try again later.';
+            $recommendations = 'Please try fill the recommendation forum first.';
         }
     
         // Pass the fetched data to your view

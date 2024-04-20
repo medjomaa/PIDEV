@@ -468,72 +468,91 @@ html {
         }
         
         .personal-bests-container {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          grid-template-rows: repeat(2, 150px);
-          gap: 10px;
-          margin-top: 10px;
-        }
-        
-        .best-item {
-          display: flex;
-          gap: 20px;
-          width: 100%;
-          height: 100%;
-          border-radius: 15px;
-          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px;
-        }
-        
-        .box-one {
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-          grid-area: 1 / 1 / 2 / 3;
-          background-color: rgba(185, 159, 237, 0.6);
-          padding: 15px;
-          font-size: 1rem;
-          font-weight: 700;
-        }
-        
-        .box-one img {
-          max-width: 100px;
-          aspect-ratio: 4/3;
-        }
-        
-        .box-two {
-          flex-direction: column;
-          align-items: center;
-          justify-content: flex-start;
-          font-size: 0.9rem;
-          font-weight: 700;
-          padding: 10px;
-          grid-area: 2 / 1 / 3 / 2;
-          background-color: rgba(238, 184, 114, 0.6);
-        }
-        
-        .box-two img {
-          max-width: 90px;
-          aspect-ratio: 3/2;
-          align-self: flex-end;
-        }
-        
-        .box-three {
-          flex-direction: column;
-          align-items: center;
-          justify-content: flex-start;
-          font-size: 0.9rem;
-          font-weight: 700;
-          padding: 10px;
-          grid-area: 2 / 2 / 3 / 3;
-          background-color: rgba(184, 224, 192, 0.6);
-        }
-        
-        .box-three img {
-          max-width: 70px;
-          aspect-ratio: 1/1;
-          align-self: flex-end;
-        }
-        
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 150px);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.best-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px;
+    background-size: cover; /* Ensure the background image covers the entire element */
+    overflow: hidden; /* Prevents any overflow from the background */
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.); /* Optional: darkens the background image for better readability */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.product-name, .product-description, .product-actions, .price-tag {
+    z-index: 2;
+    color:white;
+}
+.product-name {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+.product-description {
+    font-size: 0.8rem;
+    color: white;
+    z-index: 2;
+}
+
+.product-actions {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+.price-tag {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+/* Add styles for the images to maintain aspect ratio and fit within the boxes */
+.box-one img, .box-two img, .box-three img {
+    width: 100%; /* makes the image fill the width of the box */
+    height: auto; /* maintains the aspect ratio */
+    object-fit: cover; /* cover the box without breaking aspect ratio */
+}
+
+/* Specific styles for different boxes if needed */
+.box-one {
+    background-color: rgba(185, 159, 237, 0.6);
+}
+
+.box-two {
+    background-color: rgba(238, 184, 114, 0.6);
+}
+
+.box-three {
+    background-color: rgba(184, 224, 192, 0.6);
+}
+
         /* RIGHT CONTENT */
         
         .right-content {
@@ -1398,7 +1417,7 @@ body {
 
 .featured-products .overlay h2, .featured-products .overlay p {
     margin: 5px 0;
-    color: #8B0000;
+    color: red;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Shadow for text readability */
 }
 

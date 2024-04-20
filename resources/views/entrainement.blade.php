@@ -11691,30 +11691,52 @@ body.has-skin .owl-item {
     position: absolute;
     top: 15px;
     right: 35px;
-    color: #f1f1f1;
+    color: white;
     font-size: 40px;
     font-weight: bold;
     cursor: pointer;
 }
-.scroll-arrow {
+
+.container-arrow {
     position: fixed;
-    right: 20px;
     bottom: 20px;
-    font-size: 24px;
+    right: 20px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 40px;
+    z-index: 10;
     cursor: pointer;
-    z-index: 1000;
-    background: linear-gradient(135deg, #ff0000, white); /* Gradient from red to black */
-    color: #fff;
-    padding: 10px;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-    transition: transform 0.3s, background-color 0.3s;
+    font-size: 12px; 
 }
 
-.scroll-arrow:hover {
-    background-color: #b20000; /* Darker red on hover */
-    transform: scale(1.1); /* Slightly enlarge on hover */
+.container-arrow:hover,
+.container-arrow:focus {
+    text-decoration: none;
+    color: red;
 }
+
+/* Arrow Bouncing */
+.container-arrow span {
+    display: inline-block;
+    font-size: 80px;
+    animation: .7s down infinite alternate;
+    -webkit-animation: .7s down infinite alternate;
+}
+
+/*** Animation Arrow down ***/
+@keyframes down {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(20px); }
+}
+
+@-webkit-keyframes down {
+    0% { -webkit-transform: translateY(0px); }
+    100% { -webkit-transform: translateY(20px); }
+}
+	
+
 .video-instruction-section {
     background-color: #f8f9fa; /* Light background for better readability */
     padding: 20px;
@@ -11738,7 +11760,12 @@ body.has-skin .owl-item {
     </style>
 </head>
 <body>
-<div id="scrollArrow" class="scroll-arrow" onclick="toggleScroll()">&#8595;</div> <!-- Initially showing the down arrow -->
+<a class="container-arrow scroll-to" href="#cards">
+    <span>
+        <i class="fa fa-angle-down" aria-hidden="true"></i>
+    </span>
+</a>
+
 
 <div class="left-sections">
     @auth
@@ -13796,6 +13823,21 @@ document.getElementById('exerciseModal').addEventListener('click', function(even
 // Close the modal when the close span is clicked
 document.querySelector('.close').addEventListener('click', function() {
     document.getElementById('exerciseModal').style.display = 'none';
+});
+document.addEventListener('DOMContentLoaded', function() {
+    var arrow = document.querySelector('.container-arrow');
+    var isAtTop = true;
+
+    arrow.addEventListener('click', function() {
+        if (isAtTop) {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            arrow.querySelector('i').className = 'fa fa-angle-up';
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            arrow.querySelector('i').className = 'fa fa-angle-down';
+        }
+        isAtTop = !isAtTop;
+    });
 });
 
 </script>
