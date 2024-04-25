@@ -5,126 +5,119 @@
 <title>Admin Dashboard</title>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
-.user-profile-image {
-    font-size: 40px; /* This property won't affect the image but kept for consistency */
-    color: #333; /* This won't affect the image but kept for consistency */
-    width: 40px; /* Set the width of the image */
-    height: 40px; /* Set the height of the image */
-    object-fit: cover; /* Ensure the image covers the area without distorting aspect ratio */
-    border-radius: 50%; /* Make the image circular */
-}
-
 
 body {
-    background-image: url("https://tophinhanhdep.com/wp-content/uploads/2021/10/Rose-Gold-Marble-Wallpapers.jpg");
-    color: #333;
-    font-family: 'Roboto', sans-serif;
-}
+    background-image: url("https://www.teahub.io/photos/full/36-364691_wallpaper-of-abstract-red-line-light-background-digital.jpg");
+    color: #fff; /* Keep text color for better contrast */
+    font-family: 'Roboto', sans-serif; /* Ensures typography consistency */
 
-header, .dashboard-title, .graph-description {
-    text-shadow: none;
-}
-.date-picker-container input[type="date"], .date-picker-container button {
-    transition: all 0.3s;
-    outline: none;
-}
-.date-picker-container input[type="date"]:focus, .date-picker-container button:focus {
-    box-shadow: 0 0 0 2px #007bff;
-}
-.graph-box {
-    transition: transform 0.3s ease-in-out;
-}
-.graph-box:hover {
-    transform: translateY(-5px);
-}
-.modal-content {
-    border-radius: 15px;
-}
-.close {
-    font-size: 24px;
-    color: #333;
-    transition: color 0.3s;
-}
-.close:hover {
-    color: #dc3545;
-}
-header {
-    text-align: center;
-    padding: 20px 0;
-    font-size: 24px;
-    font-weight: bold;
-    color: #007bff;
-}
-.date-picker-container {
+    /* Background properties for full coverage */
+    background-size: cover; /* Scale the background to be as large as possible */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background */
+    background-attachment: fixed; /* Optional: Makes the background fixed during scroll */
+
+    /* Ensures the background covers the entire viewport */
+    min-height: 100vh; /* Minimum height is 100% of the viewport height */
+    width: 100vw; /* Width is 100% of the viewport width */
+    position: relative; /* Relative positioning for layered elements */
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0;
-    font-family: 'Roboto', sans-serif;
+    align-items: center; /* Centers content vertically */
+    justify-content: center; /* Centers content horizontally */
 }
 
-.date-picker-container label {
-    margin-right: 10px;
-    font-size: 16px;
-    color: #333;
-}
 
-.date-picker-container input[type="date"] {
-    border: 2px solid #007bff;
-    border-radius: 5px;
-    padding: 8px;
-    font-size: 14px;
-    background-color: #e9ecef;
-    color: #495057;
-    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.4);
-}
-
-.date-picker-container button {
-    margin-left: 10px;
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
-    transition: background-color 0.3s ease;
-}
-
-.date-picker-container button:hover {
-    background-color: #0069d9;
-}
-
-.dashboard {
-    background: rgba(255, 255, 255, 0.85);
-    padding: 20px;
+.dashboard-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    color: #333;
+    padding: 20px;
+    background: rgba(27, 27, 50, 0.85); /* Dark theme for header */
+    border-bottom: 2px solid #007bff;
 }
-.dashboard-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #007bff;
-}
+
 .user-info {
     display: flex;
     align-items: center;
 }
-.user-name {
-    margin-right: 10px;
-    color: #007bff;
-}
-.user-image {
+
+.user-profile-image {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     object-fit: cover;
+    margin-right: 10px;
 }
+
+.user-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.date-picker-container {
+    display: flex;
+    align-items: center;
+}
+
+.date-picker-container form {
+    display: flex;
+    background: #495057;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.date-picker-container label {
+    color: #fff;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.date-picker-container input[type="date"] {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.date-picker-container button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.date-picker-container button:hover {
+    background-color: #0056b3;
+}
+
+.content-header {
+    text-align: center;
+    padding: 20px;
+    background: rgba(27, 27, 50, 0.85);
+    margin-top: 20px;
+    font-size: 24px;
+}
+
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .date-picker-container form {
+        flex-direction: column;
+    }
+    .date-picker-container button {
+        margin-top: 10px;
+    }
+}
+
 .graph-description{
-    color: #333;
+    color: #ffe5e5;
 }
 .graph-container {
     display: flex;
@@ -141,7 +134,7 @@ header {
     flex: 100%;
 }
 .graph-box {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(27, 27, 50, 0.85);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     padding: 20px;
@@ -158,11 +151,11 @@ header {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background: rgba(255, 255, 255, 0.85); /* Light background for modal */
+    background: rgba(27, 27, 50, 0.85); /* Light background for modal */
 }
 
 .modal-content {
-    background-color: #fff;
+  background: rgba(27, 27, 50, 0.85); 
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -907,6 +900,9 @@ header {
     background-color: #0056b3;
 }
 
+/* New Styles */
+
+
 
 </style>
 
@@ -919,34 +915,29 @@ header {
     </div>
 </div>
 @endif
-
-
-<div class="dashboard">
-    <div class="dashboard-title">Gym Performance Dashboard</div>
-    <div class="user-info">
-    <div class="user-name">{{ $userName }}</div>
-    <header>
-    @if($userImage)
-        <img src="{{ $userImage }}" alt="User Profile Image" class="user-profile-image">
-    @else
-        <i class="fas fa-user" style="font-size: 40px; color: #333;"></i>
-    @endif
-</header>
-
-
-
+<div class="content-header">
+    <h1>Welcome to the Gym Performance Dashboard</h1>
 </div>
-
-
+<div class="dashboard-header">
+    <div class="user-info">
+        @if($userImage)
+            <img src="{{ $userImage }}" alt="User Profile Image" class="user-profile-image">
+        @else
+            <i class="fas fa-user-circle" style="font-size: 40px; color: #fff;"></i>
+        @endif
+        <div class="user-name">{{ $userName }}</div>
+    </div>
     <div class="date-picker-container">
         <form action="{{ route('dashboard') }}" method="get">
             <label for="datePicker">Select Date:</label>
             <input type="date" id="datePicker" name="date" value="{{ $selectedDate ?? '' }}">
             <button type="submit">Load Data</button>
         </form>
+    </div>
+</div>
 
-</div>
-</div>
+
+
 <div class="chart-row three"> <!-- Updated class to accommodate all charts -->
     <!-- Male vs Total Users Percentage -->
     <div class="chart-container-wrapper">
@@ -1123,6 +1114,12 @@ header {
         </div>
     </div>
     @endforeach
+    <div class="footer-text">
+    © 2024 Gym Dashboard. All rights reserved.
+</div>
+
+
+
 </div>
 
 <script>

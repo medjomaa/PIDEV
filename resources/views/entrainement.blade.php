@@ -11932,7 +11932,9 @@ body.has-skin .owl-item {
                     <a href="{{ url('/entrainement/' . $user_id) }}">View Your Training Plan</a>
                 @endif
             @else
-                <p>Recommendations are not available at the moment.</p>
+            <div id="getRecommendation" class="recommendation-action">
+                    <button onclick="window.location.href='{{ url('/recommendation') }}'" class="btn btn-primary">Get Recommendations</button>
+                </div>
             @endif
         </div>
     </div>

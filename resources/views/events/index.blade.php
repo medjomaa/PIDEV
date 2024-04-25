@@ -211,9 +211,12 @@ i.icon {
                 <div class="col-sm-6">
                     <h2>Manage <b>Events</b></h2>
                 </div>
+                <td> 
+                    @if (Auth::user()->isAdmin())
                 <div class="col-sm-6">
 		            <a style="color:white; background-color: #cc0000;" href="{{ route('events.create') }}" class="btn btn-success btn-green" data-toggle="modal"><i class="fas fa-plus icon"></i><span>Add New Event</span></a>    
              </div>
+             @endif
           </div>
     </div>
     <table class="table table-striped table-hover">
@@ -249,12 +252,14 @@ i.icon {
         <td>{{ $event->start_date }}</td>
         <td>{{ $event->end_date }}</td>
         <td>{{ $event->user->name }}</td>
-          <td>
+          <td> @if (Auth::user()->isAdmin())
                 <a href="{{ route('events.edit', $event) }}" style="background: none; border: none; color: inherit;">
                     <i class="fas fa-edit"></i> Edit
                 </a>
+                @endif
             </td>
             <td>
+            @if (Auth::user()->isAdmin())
                 <form action="{{ route('events.destroy', $event) }}" method="POST">
                     @csrf
                     @method('DELETE')
@@ -262,6 +267,7 @@ i.icon {
                         <i class="fas fa-trash-alt"></i> Delete
                     </button>
                 </form>
+                @endif
             </td>
         </tr>
         @endforeach

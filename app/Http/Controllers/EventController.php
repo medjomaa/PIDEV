@@ -58,7 +58,10 @@ class EventController extends Controller
     return redirect()->route('events.index')->with('success', 'Event created successfully.');
 }
 
-
+public function isAdmin() {
+    $user = Auth::user();
+    return $user->email == 'admin@gmail.com';  // Check if the user is an admin by email
+}
     public function show(Event $event)
     {
         // Show a single event

@@ -93,7 +93,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
 
 // Route for authenticated users to fetch and view their recommendations
-Route::get('/entrainement', [FlaskAPIController::class, 'fetchRecommendations'])
+Route::get('/entrainement', [FlaskAPIController::class, 'entrainementPage'])
      ->middleware('auth')
      ->name('entrainement');
 

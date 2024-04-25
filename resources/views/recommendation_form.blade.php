@@ -168,6 +168,12 @@ input[type="submit"]:hover {
         margin-right: 0;
     }
 }
+.footer-text {
+    text-align: center;
+    color: #aaa;
+    font-size: 12px;
+    padding: 20px;
+}
 </style>
 </head>
 <body>
@@ -398,17 +404,13 @@ input[type="submit"]:hover {
         <br><br>
         <input type="submit" value="{{ isset($recommendation) ? 'Update' : 'Submit' }}">
     </form>
-    @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+    
+    
+<div class="footer-text">
+    © 2024 Gym Dashboard. All rights reserved.
+</div>
 
-@if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+
 
 </div>
 </body>

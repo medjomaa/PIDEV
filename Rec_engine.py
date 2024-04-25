@@ -142,13 +142,11 @@ def generate_recommendations(user_id):
 
     # Constructing the personalized recommendation paragraph with final recommendations
     personalized_recommendation_paragraph = (
-        f"Based on your profile, which includes goals such as {user_fitness_goal.lower()} and specific targets like {', '.join(specific_targets)}, "
-        f"your BMI is {bmi:.2f}, suggesting you {', '.join(bmi_adjustments)}. "
-        f"We've tailored the following exercise recommendations for you: {'; '.join(final_recommendations)}. "
-        "Your exercise frequency and current exercise types have been considered to ensure these recommendations complement your existing routine. "
-        f"With {time_availability} available for workouts and considering your dietary preferences, including {dietary_preferences}, "
-        "these exercises are suggested to maximize your progress towards your fitness goals. "
-        "Remember to consult with a healthcare professional before starting any new exercise program, especially considering any past injuries or medical conditions you've mentioned."
+        f"🎯 Based on your fitness goals, such as {user_fitness_goal.lower()}, and specific targets like {', '.join(specific_targets)}, here's what we suggest:\n"
+        f"📊 Your BMI is {bmi:.2f}, which indicates you should {', '.join(bmi_adjustments)}."
+        f"🏋️‍♂️ We've tailored these exercise recommendations specifically for you: {'; '.join(final_recommendations)}. These are designed to enhance your current routine, considering your usual exercise frequency and types."
+        f"⏰ With {time_availability} available for workouts and taking into account your dietary preferences, including {dietary_preferences}, these exercises aim to maximize your progress towards achieving your fitness goals."
+        f"👩‍⚕️ Remember to consult with a healthcare professional before starting any new exercise program, especially if you have any past injuries or medical conditions."
     )
     
     return personalized_recommendation_paragraph

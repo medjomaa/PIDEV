@@ -171,6 +171,12 @@ input[type="submit"]:hover {
         margin-right: 0;
     }
 }
+.footer-text {
+    text-align: center;
+    color: #aaa;
+    font-size: 12px;
+    padding: 20px;
+}
 </style>
 </head>
 <body>
@@ -302,7 +308,10 @@ input[type="submit"]:hover {
     @endif
     </div>
 
-   
+    <div class="footer-text">
+    © 2024 Gym Dashboard. All rights reserved.
+</div>
+
 </body>
 </html>
 @endsection

@@ -14,32 +14,28 @@ class FlaskAPIController extends Controller
         // Require users to be authenticated for all actions in this controller
         $this->middleware('auth');
     }
-
-    public function fetchRecommendations()
+    public function entrainementPage()
     {
-        $user_id = Auth::id(); // Obtain the authenticated user's ID
+        $user_id = Auth::id();
         Log::info("Fetching recommendations for user ID: {$user_id}");
 
         $client = new Client([
-            'base_uri' => 'http://localhost:5001/api/', // Specify the base URI for API requests
-            'timeout'  => 2.0, // Set a timeout for requests
+            'base_uri' => 'http://localhost:5001/api/',
+            'timeout'  => 2.0,
         ]);
 
         try {
-            // Attempt to fetch recommendations for the authenticated user
             $recResponse = $client->request('GET', "recommendations/{$user_id}");
             $recommendations = json_decode($recResponse->getBody()->getContents(), true);
 
-            // Attempt to fetch additional user info for the authenticated user
             $userInfoResponse = $client->request('GET', "userinfo/{$user_id}");
             $userInfo = json_decode($userInfoResponse->getBody()->getContents(), true);
 
-            // Pass the fetched data to the 'entrainement' view
             return view('entrainement', compact('recommendations', 'userInfo'));
         } catch (\Exception $e) {
             Log::error("Error fetching data for user ID {$user_id}: " . $e->getMessage());
-            // Return to the previous page with an error message
-            return redirect('/recommendation')->with('error', 'Please try filling the recommendation forum ');
+            // Fallback if recommendations cannot be fetched
+            return view('entrainement')->with('error', 'Please try filling the recommendation forum');
         }
     }
 }
