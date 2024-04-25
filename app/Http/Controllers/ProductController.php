@@ -29,14 +29,40 @@ class ProductController extends Controller
         return view('products.details', compact('product'));
     }
     
-    public function index()
+    public function index(Request $request)
     {
-        // Retrieve all products
-        $products = Product::all();
-        
-        return view('products.index', compact('products'));
-       
+        $query = Product::query();
+    
+        // Handle search functionality
+        if ($request->has('search') && $request->search != '') {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+    
+        // Handle sorting functionality
+        switch ($request->input('sort')) {
+            case 'asc':
+                $query->orderBy('price', 'asc');
+                break;
+            case 'desc':
+                $query->orderBy('price', 'desc');
+                break;
+            case 'name_asc':
+                $query->orderBy('name', 'asc');
+                break;
+            case 'name_desc':
+                $query->orderBy('name', 'desc');
+                break;
+            default:
+                $query->orderBy('name', 'asc'); // Default sorting
+        }
+    
+        $products = $query->get();
+    
+        return view('products.productshow', compact('products')); // Ensure you are rendering the correct view
     }
+    
+    
+
 
     public function productshow()
     {
@@ -128,6 +154,7 @@ public function isAdmin() {
     return  $this->$user->role == 'admin';  // Check if the user is an admin by email
 }
 
+    
     
     public function purchase($id)
     {

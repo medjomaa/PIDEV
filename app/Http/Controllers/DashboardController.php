@@ -29,7 +29,7 @@ class DashboardController extends Controller
         $userName = Auth::user()->name;
     
         // Fetch user and feedback statistics
-        $totalUsers = User::count();
+        $totalUsers = Recommendation::count();
         $maleUsers = Recommendation::where('sex', 'male')->count(); // Assuming there's a gender column
         $femaleUsers = Recommendation::where('sex', 'female')->count();
         $totalFeedbacks = Feedback::count();

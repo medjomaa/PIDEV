@@ -23,13 +23,35 @@
             background-repeat: no-repeat;
         }
         .welcome {
-        margin: 20px auto; /* Reduced top and bottom margin */
-        width: 70%; /* Narrower width for a smaller banner */
-        border: 2px solid #ffffff; /* White border */
-        border-radius: 10px; /* Rounded corners */
-        padding: 10px; /* Reduced padding */
+        margin: 20px auto;
+        width: 70%;
+        border: 2px solid #ffffff;
+        border-radius: 10px;
+        padding: 20px;
         text-align: center;
-        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+        background-color: rgba(0, 0, 0, 0.7);
+        color: #e0e0e0; /* Lighter grey for better readability */
+    }
+
+    .welcome p {
+        color: #f8f8f8; /* Even lighter color specifically for paragraphs */
+    }
+
+
+        .search {
+            margin-top: 20px; /* Space between text and search form */
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+
+    .content-section {
+        text-align: justify;
+        padding: 0 20px; /* Padding for text content */
+        margin-top: 20px; /* Space below the welcome banner */
+        color: #ffffff;
+        font-size: 18px; /* Slightly larger text for readability */
     }
 
     .welcome h2 {
@@ -100,23 +122,83 @@
             background-color: #ff4d4d;
         }
         
+        .search {
+            margin-top: 20px; /* Space between text and search form */
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .search input[type="text"], .search select {
+            width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #ffffff;
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #000000;
+        }
+
+        .search button {
+    width: auto; /* Make the button width auto to match the content width */
+    padding: 10px 20px; /* Adjust padding to fit the text */
+    margin-top: 10px; /* Optional: Add some margin at the top */
+    background: linear-gradient(to left, black 50%, red 50%); /* Gradient from black to red */
+    border: none; /* No border */
+    border-radius: 10px; /* Uniformly rounded corners */
+    color: #ffffff; /* White text for better visibility */
+    font-size: 18px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effects */
+    align-self: center; /* Center the button horizontally within its container */
+}
+
+.search button:hover {
+    transform: scale(1.05); /* Slightly increase the size of the button */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for depth */
+}
+
+
+        .products-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <div class="welcome">
+<div class="welcome">
         <h2>Welcome to Power Gym Boutique</h2>
         <p>Explore our top-quality training equipment and gear up for your fitness journey!</p>
+        <p>At Power Gym Boutique, we are committed to providing you with the best fitness gear and equipment to support your wellness journey. Our carefully selected products range from professional gym machines to comfortable athletic wear, ensuring that you have everything you need for effective workouts. Explore our collection and find the perfect fit for your fitness goals!</p>
+        
+        <div class="search">
+            <form action="{{ route('products.index') }}" method="GET">
+                <input type="text" name="search" placeholder="Search products..." value="{{ request('search') }}">
+                <select name="sort">
+                    <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Price low to high</option>
+                    <option value="desc" {{ request('sort') == 'desc' ? 'selected' : '' }}>Price high to low</option>
+                    <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>Name A-Z</option>
+                    <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>Name Z-A</option>
+                </select>
+                <button type="submit">Update</button>
+            </form>
+        </div>
     </div>
+
+   
+
     <div class="products-container">
         @foreach($products as $product)
             <div class="product">
                 <img src="{{ $product->image }}" alt="{{ $product->name }}">
                 <h2>{{ $product->name }}</h2>
                 <p>{{ $product->description }}</p>
-                <p>Prix : ${{ $product->price }}</p>
+                <p>Price: ${{ $product->price }}</p>
                 <form action="{{ route('purchase', ['id' => $product->id]) }}" method="POST">
                     @csrf
-                    <button type="submit" class="buy-button">buy</button>
+                    <button type="submit" class="buy-button">Buy</button>
                 </form>
             </div>
         @endforeach
@@ -124,3 +206,4 @@
 </body>
 </html>
 @endsection
+
