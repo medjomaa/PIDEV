@@ -123,10 +123,10 @@ class ProductController extends Controller
         return redirect(route('products.index'))->with('success', 'Product deleted successfully.');
     }
 // In User.php model
-        public function isAdmin() {
-            $user = Auth::user();
-            return $user->email == 'admin@gmail.com';  // Check if the user is an admin by email
-        }
+public function isAdmin() {
+    $user = Auth::user();
+    return  $this->$user->role == 'admin';  // Check if the user is an admin by email
+}
 
     
     public function purchase($id)

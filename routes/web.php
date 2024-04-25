@@ -181,3 +181,15 @@ Route::post('/purchase/{id}', [ProductController::class, 'purchase'])->name('pur
 
 
 
+
+
+
+
+
+use App\Http\Controllers\UserManagementController;
+
+
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/users', [UserManagementController::class, 'index'])->name('users.index');
+    Route::post('/users/{user}/role', [UserManagementController::class, 'updateRole'])->name('users.updateRole');
+});

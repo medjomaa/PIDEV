@@ -212,7 +212,7 @@ i.icon {
                     <h2>Manage <b>Events</b></h2>
                 </div>
                 <td> 
-                    @if (Auth::user()->isAdmin())
+                @if (Auth::user()->isAdmin() || Auth::user()->isTrainer())
                 <div class="col-sm-6">
 		            <a style="color:white; background-color: #cc0000;" href="{{ route('events.create') }}" class="btn btn-success btn-green" data-toggle="modal"><i class="fas fa-plus icon"></i><span>Add New Event</span></a>    
              </div>
@@ -252,20 +252,21 @@ i.icon {
         <td>{{ $event->start_date }}</td>
         <td>{{ $event->end_date }}</td>
         <td>{{ $event->user->name }}</td>
-          <td> @if (Auth::user()->isAdmin())
+          <td>   @if (Auth::user()->isAdmin() || Auth::user()->isTrainer())
                 <a href="{{ route('events.edit', $event) }}" style="background: none; border: none; color: inherit;">
                     <i class="fas fa-edit"></i> Edit
                 </a>
-                @endif
+
             </td>
             <td>
-            @if (Auth::user()->isAdmin())
+
                 <form action="{{ route('events.destroy', $event) }}" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit"   class="btn btn-danger btn-red"  style="background: none; border: none; color: inherit;">
-                        <i class="fas fa-trash-alt"></i> Delete
+                    <button type="submit" onclick="confirmDeletion(event)" class="btn btn-danger btn-red" style="background: none; border: none; color: inherit;">
+                       <i class="fas fa-trash-alt"></i> Delete
                     </button>
+
                 </form>
                 @endif
             </td>
@@ -275,5 +276,28 @@ i.icon {
     </table>
     </div>
 </div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDeletion(event) {
+    event.preventDefault();
+    const form = event.target.form; // Access the form
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33', // Dark red for the confirm button
+        cancelButtonColor: '#444', // Dark grey (or blackish) for the cancel button
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+}
+
+</script>
+
 
 @endsection

@@ -134,9 +134,11 @@ input, textarea, select {
                 <div class="col-sm-6">
                     <h2>Manage <b>Categories</b></h2>
                 </div>
+                @if (Auth::user()->isAdmin() || Auth::user()->isTrainer())
                 <div class="col-sm-6">
                     <a href="{{ route('categories.create') }}" class="btn btn-success" data-toggle="modal"><i class="fas fa-plus icon"></i><span>Add New Category</span></a>
                 </div>
+                @endif
             </div>
         </div>
         <table class="table table-striped table-hover">
@@ -169,12 +171,15 @@ input, textarea, select {
                     <td>{{ $category->created_at->format('Y-m-d') }}</td>
                     <td>{{ $category->user->name ?? 'N/A' }}</td> <!-- Display the User's Name -->
                     <td>
+                    @if (Auth::user()->isAdmin() || Auth::user()->isTrainer())
                         <a href="{{ route('categories.edit', $category) }}" class="edit-icon"><i class="fas fa-edit"></i></a>
+                       
                         <form action="{{ route('categories.destroy', $category) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="delete-icon" style="background: none; border: none; color: inherit;"><i class='fas fa-trash'></i></button>
+                            <button type="submit"onclick="confirmDeletion(event)"  class="delete-icon" style="background: none; border: none; color: inherit;"><i class='fas fa-trash'></i></button>
                         </form>
+                        @endif
                     </td>
                 </tr>
             @endforeach
@@ -182,6 +187,27 @@ input, textarea, select {
         </table>
     </div>
 </div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDeletion(event) {
+    event.preventDefault();
+    const form = event.target.form; // Access the form
 
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33', // Dark red for the confirm button
+        cancelButtonColor: '#444', // Dark grey (or blackish) for the cancel button
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+}
+
+</script>
 
 @endsection

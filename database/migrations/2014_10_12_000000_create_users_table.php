@@ -1,14 +1,10 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
@@ -17,23 +13,18 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('profile_image')->nullable();
+            $table->string('role')->default('user'); // Add role column with default value
             $table->rememberToken();
             $table->timestamps();
-            $table->string('profile_image')->nullable(); // Removed ->after('password')
-
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        
         Schema::table('users', function (Blueprint $table) {
-            // Remove the profile_image column if the migration is rolled back
             $table->dropColumn('profile_image');
+            $table->dropColumn('role'); // Also remove the role column
         });
-        
     }
 };

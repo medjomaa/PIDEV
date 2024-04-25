@@ -901,6 +901,27 @@ body {
 }
 
 /* New Styles */
+/* CSS for aligning the Manage Users button */
+.admin-users-button {
+    margin-left: auto; /* Aligns the button to the right within its container */
+    padding: 10px; /* Provides padding around the button */
+}
+
+/* Style modifications for the button for a consistent look and feel */
+.admin-users-button a.btn {
+    background-color: #007bff; /* Primary blue for the button */
+    color: white; /* White text color */
+    padding: 10px 15px; /* Padding inside the button */
+    text-decoration: none; /* Removes underline from links */
+    border-radius: 5px; /* Rounded corners for the button */
+    font-weight: bold; /* Makes the button text bold */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25); /* Subtle shadow for 3D effect */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.admin-users-button a.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
 
 
 
@@ -915,9 +936,11 @@ body {
     </div>
 </div>
 @endif
+
 <div class="content-header">
     <h1>Welcome to the Gym Performance Dashboard</h1>
 </div>
+
 <div class="dashboard-header">
     <div class="user-info">
         @if($userImage)
@@ -927,6 +950,12 @@ body {
         @endif
         <div class="user-name">{{ $userName }}</div>
     </div>
+     <!-- Button to go to Admin Users Page -->
+     @if (Auth::user()->isAdmin1())
+     <div class="admin-users-button">
+        <a href="{{ route('admin.users.index') }}" class="btn btn-primary">Manage Users</a>
+    </div>
+    @endif
     <div class="date-picker-container">
         <form action="{{ route('dashboard') }}" method="get">
             <label for="datePicker">Select Date:</label>
@@ -934,7 +963,10 @@ body {
             <button type="submit">Load Data</button>
         </form>
     </div>
+
+   
 </div>
+
 
 
 

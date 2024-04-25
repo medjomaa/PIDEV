@@ -60,8 +60,9 @@ class EventController extends Controller
 
 public function isAdmin() {
     $user = Auth::user();
-    return $user->email == 'admin@gmail.com';  // Check if the user is an admin by email
+    return  $this->$user->role == 'admin';  // Check if the user is an admin by email
 }
+
     public function show(Event $event)
     {
         // Show a single event
@@ -93,7 +94,10 @@ public function isAdmin() {
         // Redirect to the index page with a success message
         return redirect()->route('events.index')->with('success', 'Event updated successfully.');
     }
-
+    public function istrainer() {
+        $user = Auth::user();
+        return $user->role == 'trainer';  // Check if the user is an admin by role
+    }
     public function destroy(Event $event)
     {
         // Delete the event

@@ -162,7 +162,9 @@
                                             <form action="{{ route('products.destroy', $product) }}" method="post" style="display: inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit">Delete</button>
+                                                <button type="submit" onclick="confirmDeletion(event)" >
+                                                 Delete
+                                                </button>
                                             </form>
                                         @endif
                                     </td>
@@ -181,8 +183,28 @@
         <!-- Product details will be loaded here -->
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+        function confirmDeletion(event) {
+    event.preventDefault();
+    const form = event.target.form; // Access the form
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33', // Dark red for the confirm button
+        cancelButtonColor: '#444', // Dark grey (or blackish) for the cancel button
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            form.submit();
+        }
+    });
+}
+
     window.onload = function() {
     setTimeout(function() {
         var successMessage = document.getElementById('success-message');

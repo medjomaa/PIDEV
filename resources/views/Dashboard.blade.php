@@ -503,9 +503,9 @@
                 </div>
                 <ul class="nav-list">
                 @auth
-                  @if (Auth::user()->isAdmin()) <!-- Assuming there's an 'is_admin' attribute or a method to check admin status -->
+                    @if (Auth::user()->isAdmin())
                         <li>
-                            <a href="/dashboard" class="{{ request()->is('dashboard') || request()->is('visualizations') ? 'active' : '' }}">
+                            <a href="{{ route('dashboard') }}" class="{{ request()->is('admin/users') || request()->is('visualizations') ? 'active' : '' }}">
                                 <i class='bx bx-tachometer'></i>
                                 <span class="links_name">Admin Dashboard</span>
                             </a>
@@ -513,6 +513,7 @@
                         </li>
                     @endif
                 @endauth
+
 
                     <li>
                         <a href="/home" class="{{ request()->is('home') ? 'active' : '' }}">

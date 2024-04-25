@@ -54,7 +54,10 @@ public function myMethod()
 
         return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
-
+    public function istrainer() {
+        $user = Auth::user();
+        return $user->role == 'trainer';  // Check if the user is an admin by role
+    }
     public function edit(Category $category)
     {
         return view('categories.edit', compact('category'));
@@ -71,7 +74,10 @@ public function myMethod()
 
         return redirect()->route('categories.index')->with('success', 'Category updated successfully.');
     }
-
+    public function isAdmin() {
+        $user = Auth::user();
+        return  $this->$user->role == 'admin';  // Check if the user is an admin by email
+    }
     public function destroy(Category $category)
     {
         $category->delete();
