@@ -17,10 +17,11 @@
             color: rgb(192,192,192);
             font-family: Cambria;
             font-size: 16px;
-            background-image: url(https://img.freepik.com/premium-photo/gym-with-red-lights-black-wall-that-says-gym-it_876956-1215.jpg?w=740);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-image: url("https://www.pixel4k.com/wp-content/uploads/2020/08/red-and-blue-broken-abstract_1596929088.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;/* Do not repeat the background */
+        background-attachment: fixed;
         }
         .welcome {
         margin: 40px auto;

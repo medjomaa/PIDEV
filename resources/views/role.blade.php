@@ -5,10 +5,11 @@
 @section('content')
 <style>
     body {
-        background-image: url('https://img.freepik.com/premium-photo/dark-gym-with-red-lights-black-bar-that-says-fitness_911201-3358.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+        background-image: url("https://files.123freevectors.com/wp-content/original/128899-glowing-red-and-blue-wave-background.jpg");
+        background-size: cover; /* Scale the background to be as large as possible */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Do not repeat the background */
+    background-attachment: fixed;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -17,7 +18,7 @@
     }
 
     .container {
-        background: rgba(27, 27, 50, 0.85);
+        background-color: rgba(45, 85, 255, 0.2);
         padding: 20px;
         border-radius: 8px;
         width: 110%;
@@ -28,7 +29,7 @@
 
     h1 {
         text-align: center;
-        color: #FFC107;
+        color: rgba(72, 113, 247);
     }
 
     form {
@@ -76,13 +77,14 @@
     }
 
     td {
-        background: rgba(44, 44, 78, 0.85);
+        background-color: rgba(45, 85, 255, 0.2);
         color: #E0E0E0;
     }
 
     .pagination {
         justify-content: center;
         padding: 20px 0;
+
     }
 
     .role-update-form {

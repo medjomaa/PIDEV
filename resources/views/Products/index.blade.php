@@ -3,10 +3,11 @@
 @section('content')
 <style>
        body {
-        background-image: url('https://img.freepik.com/premium-photo/dark-gym-with-red-lights-black-bar-that-says-fitness_911201-3358.jpg');
+        background-image: url('https://images.hdqwalls.com/download/3d-abstract-traingle-low-poly-rq-1920x1200.jpg');
         background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: no-repeat;/* Do not repeat the background */
+        background-attachment: fixed;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -68,7 +69,7 @@
     }
 
     a {
-        color: #FFC107;
+        color: rgba(72, 113, 247);
         margin-right: 10px;
         text-decoration: none;
     }

@@ -79,7 +79,7 @@ html {
             flex-direction: column;
             width: 100%;
             height: 100%;
-            background-image: url('https://img.freepik.com/premium-photo/dark-gym-with-red-lights-black-background_876956-1225.jpg');
+            background-image: url('https://img.freepik.com/free-vector/colorful-abstract-background_23-2148807053.jpg');
             background-size: cover;
             color: #fff; /* White text for contrast */
         }

@@ -28,8 +28,15 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         return view('products.details', compact('product'));
     }
-    
-    public function index(Request $request)
+    public function index()
+    {
+        // Retrieve all products
+        $products = Product::all();
+        
+        return view('products.index', compact('products'));
+       
+    }
+    public function productshow(Request $request)
     {
         $query = Product::query();
     
@@ -64,14 +71,7 @@ class ProductController extends Controller
     
 
 
-    public function productshow()
-    {
-        // Retrieve all products
-        $products = Product::all();
-        
-        return view('products.productshow', compact('products'));
-       
-    }
+    
 
     public function create()
     {

@@ -7,7 +7,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
 body {
-    background-image: url("https://www.teahub.io/photos/full/36-364691_wallpaper-of-abstract-red-line-light-background-digital.jpg");
+    background-image: url("https://files.123freevectors.com/wp-content/original/128899-glowing-red-and-blue-wave-background.jpg");
     color: #fff; /* Keep text color for better contrast */
     font-family: 'Roboto', sans-serif; /* Ensures typography consistency */
 

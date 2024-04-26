@@ -177,7 +177,7 @@ Route::put('/products/{product}', [ProductController::class, 'update'])->name('p
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 Route::get('/productshow', [ProductController::class, 'productshow'])->name('products.productshow');
 Route::post('/purchase/{id}', [ProductController::class, 'purchase'])->name('purchase');
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+
 // Ensure this route uses a GET method and points to a method that processes sorting and searching.
 
 Route::get('/prosearchE', [ProductController::class, 'searchE'])->name('products.searchE');

@@ -14,10 +14,11 @@ body {
     color: rgb(192, 192, 192);
     font-family: 'Arial', sans-serif;
     font-size: 16px;
-    background-image: url('https://img.freepik.com/premium-photo/dark-gym-with-red-lights-black-bar-that-says-fitness_911201-3358.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url("https://www.pixel4k.com/wp-content/uploads/2020/08/red-and-blue-broken-abstract_1596929088.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;/* Do not repeat the background */
+        background-attachment: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;

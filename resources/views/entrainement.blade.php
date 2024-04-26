@@ -17,10 +17,11 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('https://images.pexels.com/photos/3207527/pexels-photo-3207527.jpeg?cs=srgb&dl=pexels-%C5%82ukasz-martenka-3207527.jpg&fm=jpg');
+    background-image: url('https://wallpapers.com/images/featured/blue-and-red-background-2b8kzci6r252crl3.jpg');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;/* Do not repeat the background */
+    background-attachment: fixed;
     color: #ffffff; /* Ensures text is white for visibility */
     display: flex;
     flex-direction: column;
@@ -7291,7 +7292,14 @@ q {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Softer shadow for subtle depth */
     padding: 0 1em; /* Padding on the sides for better text alignment */
 }
-
+p {
+    color: white; /* Light gray for readability against dark backgrounds */
+    font-size: 1em; /* Standard size for paragraph text */
+    line-height: 1.6; /* Enhanced line height for better readability */
+    margin-top: 0; /* Aligns closely with the bottom of the h2 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Softer shadow for subtle depth */
+    padding: 0 1em; /* Padding on the sides for better text alignment */
+}
 .ami-slideshow-separate-item {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
@@ -11767,7 +11775,7 @@ body.has-skin .owl-item {
 </a>
 
 
-<div class="left-sections">
+
     @auth
         <p>Welcome back, <strong>{{ Auth::user()->name }}</strong>! Your next challenge awaits.</p>
     @else

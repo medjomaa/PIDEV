@@ -17,10 +17,11 @@
             color: rgb(192,192,192);
             font-family: Cambria;
             font-size: 16px;
-            background-image: url(https://i0.wp.com/diversegym.co.uk/wp-content/uploads/2022/07/Diverse-Gym-Cardio-Gallery5.jpg?fit=1500%2C1000&ssl=1);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-image: url('https://images.hdqwalls.com/download/3d-abstract-traingle-low-poly-rq-1920x1200.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;/* Do not repeat the background */
+        background-attachment: fixed;
         }
         .welcome {
         margin: 20px auto;
@@ -174,7 +175,7 @@
         <p>At Power Gym Boutique, we are committed to providing you with the best fitness gear and equipment to support your wellness journey. Our carefully selected products range from professional gym machines to comfortable athletic wear, ensuring that you have everything you need for effective workouts. Explore our collection and find the perfect fit for your fitness goals!</p>
         
         <div class="search">
-            <form action="{{ route('products.index') }}" method="GET">
+            <form action="{{ route('products.productshow') }}" method="GET">
                 <input type="text" name="search" placeholder="Search products..." value="{{ request('search') }}">
                 <select name="sort">
                     <option value="asc" {{ request('sort') == 'asc' ? 'selected' : '' }}>Price low to high</option>

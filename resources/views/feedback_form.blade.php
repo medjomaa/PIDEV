@@ -22,10 +22,11 @@
     color: rgb(192,192,192); /* Text color */
     font-family: 'Arial', sans-serif;
     font-size: 16px;
-    background-image: url('https://img.freepik.com/premium-photo/dark-gym-with-red-lights-black-bar-that-says-fitness_911201-3358.jpg');
-    background-size: cover; /* Cover the entire page */
-    background-position: center; /* Center the background image */
-    background-repeat: no-repeat; /* Do not repeat the background */
+    background-image: url("https://i.pinimg.com/originals/c4/7f/aa/c47faa50b5bf8b30dc3c55bdfb38a0e9.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;/* Do not repeat the background */
+    background-attachment: fixed;  /* Do not repeat the background */
     display: flex;
     flex-direction: column; /* Stack content vertically */
     align-items: center; /* Center content horizontally */
@@ -45,7 +46,7 @@ form {
     margin: 20px auto;
     padding: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    background-color: rgba(27, 27, 50, 0.85); /* Faded form background */
+    background-color: rgba(45, 85, 255, 0.2);/* Faded form background */
     border-radius: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -82,9 +83,9 @@ fieldset .input-group label {
 }
 
 #form-selection button {
-    background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
-    color: rgba(255, 0, 0, 0.7); /* Red text color with transparency */
-    border: 2px solid rgba(255, 0, 0, 0.7); /* Red border with transparency */
+    background-color: rgba(45, 85, 255, 0.2); /* Black background with transparency */
+    color: #fff; /* Red text color with transparency */
+    border: 2px solid rgba(45, 85, 255, 0.9); /* Red border with transparency */
     border-radius: 5px;
     padding: 10px 20px;
     cursor: pointer;
@@ -94,7 +95,7 @@ fieldset .input-group label {
 }
 
 #form-selection button:hover {
-    background-color: rgba(255, 0, 0, 0.7); /* Red background with transparency when hovered */
+    background-color: rgba(45, 85, 255, 0.9); /* Red background with transparency when hovered */
     color: #fff; /* White text color when hovered for better contrast */
     border-color: rgba(255, 255, 255, 0.7); /* Lighter border color when hovered */
     opacity: 0.9; /* Slightly reduce opacity when hovered for a dynamic effect */
@@ -118,7 +119,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 input, textarea, select {
-    background-color: #0a0a23;
+    background-color: rgba(45, 85, 255, 0.4);
     border: 1px solid #cc0000;
     border-radius: 5px;
     color: #ffffff;
@@ -128,7 +129,7 @@ input, textarea, select {
 }
 
 input[type="submit"] {
-    background-color: #cc0000;
+    background-color: rgba(45, 85, 255, 0.2);
     border: none;
     border-radius: 5px;
     color: white;
@@ -140,7 +141,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #ff4d4d;
+    background-color: rgba(45, 85, 255, 0.9);
 }
 
 .alert {
