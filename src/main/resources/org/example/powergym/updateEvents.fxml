@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.powergym.UpdateEventsController">
+   <children>
+      <Text fill="#3e6fae" layoutX="193.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update Event" textAlignment="CENTER" wrappingWidth="213.69842529296875">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="update" layoutX="396.0" layoutY="345.0" mnemonicParsing="false" onAction="#update_event" styleClass="add1-btn" stylesheets="@style/style.css" text="Update" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="typaa" layoutX="251.0" layoutY="169.0" />
+      <TextField fx:id="Descriptiona" layoutX="251.0" layoutY="126.0" />
+      <Text fill="#3e6fae" layoutX="135.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title" textAlignment="CENTER" />
+      <Text fill="#3e6fae" layoutX="138.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" textAlignment="CENTER" />
+      <DatePicker fx:id="sdate" layoutX="251.0" layoutY="216.0" />
+      <DatePicker fx:id="edate" layoutX="251.0" layoutY="262.0" />
+      <Text fill="#3e6fae" layoutX="126.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date Start" textAlignment="CENTER" />
+      <Text fill="#3e6fae" layoutX="126.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date End" textAlignment="CENTER" />
+      <Text fill="#3e6fae" layoutX="122.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" textAlignment="CENTER" />
+      <TextField fx:id="namea" layoutX="251.0" layoutY="81.0" />
+      <Button fx:id="back" layoutX="488.0" layoutY="345.0" mnemonicParsing="false" onAction="#back" styleClass="add-btn" stylesheets="@style/style.css" text="Back" textFill="#f5f4f4">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+   </children>
+</AnchorPane>
